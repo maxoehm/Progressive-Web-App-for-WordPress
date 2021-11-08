@@ -20,7 +20,7 @@ import javax.annotation.security.PermitAll;
 public class HomeView extends VerticalLayout {
 
     public HomeView() {
-        setSpacing(false);
+    //    setSpacing(false);
 
         VerticalLayout vt = buildCategories();
         add(vt);
