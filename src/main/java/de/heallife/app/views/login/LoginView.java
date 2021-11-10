@@ -8,6 +8,7 @@ import com.vaadin.flow.router.PageTitle;
 import java.util.Base64;
 import java.nio.charset.StandardCharsets;
 import com.vaadin.flow.component.upload.Upload;
+import com.vaadin.flow.router.RouteAlias;
 import elemental.json.Json;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
@@ -19,6 +20,7 @@ import com.vaadin.flow.component.html.Image;
 
 @PageTitle("Login")
 @Route(value = "login")
+@RouteAlias(value = "error")
 public class LoginView extends LoginOverlay {
     public LoginView() {
         setAction("login");
