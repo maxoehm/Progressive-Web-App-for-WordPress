@@ -20,7 +20,6 @@ import com.vaadin.flow.component.html.Image;
 
 @PageTitle("Login")
 @Route(value = "login")
-@RouteAlias(value = "error")
 public class LoginView extends LoginOverlay {
     public LoginView() {
         setAction("login");
