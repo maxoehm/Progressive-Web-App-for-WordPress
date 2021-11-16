@@ -2,7 +2,9 @@ package de.heallife.app.security;
 
 import java.util.Optional;
 
+import de.heallife.app.data.QehrgUser;
 import de.heallife.app.data.entity.User;
+import de.heallife.app.data.service.QehrgUserRepository;
 import de.heallife.app.data.service.UserRepository;
 import com.vaadin.flow.component.UI;
 import com.vaadin.flow.server.VaadinServletRequest;
@@ -19,7 +21,7 @@ import org.springframework.stereotype.Component;
 public class AuthenticatedUser {
 
     @Autowired
-    private UserRepository userRepository;
+    private QehrgUserRepository userRepository;
 
     private Optional<Authentication> getAuthentication() {
         SecurityContext context = SecurityContextHolder.getContext();
@@ -27,8 +29,8 @@ public class AuthenticatedUser {
                 .filter(authentication -> !(authentication instanceof AnonymousAuthenticationToken));
     }
 
-    public Optional<User> get() {
-        return getAuthentication().map(authentication -> userRepository.findByUsername(authentication.getName()));
+    public Optional<QehrgUser> get() {
+        return getAuthentication().map(authentication -> userRepository.findByCustomQuery(authentication.getName()));
     }
 
     public void logout() {
