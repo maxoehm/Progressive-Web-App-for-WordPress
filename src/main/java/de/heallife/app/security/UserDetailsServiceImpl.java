@@ -1,9 +1,12 @@
 package de.heallife.app.security;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import de.heallife.app.data.QehrgUser;
 import de.heallife.app.data.entity.User;
+import de.heallife.app.data.service.QehrgUserRepository;
 import de.heallife.app.data.service.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,23 +21,16 @@ import org.springframework.stereotype.Service;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private QehrgUserRepository userRepository;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        QehrgUser user = userRepository.findByCustomQuery(username);
         if (user == null) {
             throw new UsernameNotFoundException("No user present with username: " + username);
         } else {
-            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getHashedPassword(),
-                    getAuthorities(user));
+            return new org.springframework.security.core.userdetails.User(user.getUserEmail(), user.getUserPass(), Collections.singleton(new SimpleGrantedAuthority("ROLE_" + "USER")));
         }
-    }
-
-    private static List<GrantedAuthority> getAuthorities(User user) {
-        return user.getRoles().stream().map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRoleName()))
-                .collect(Collectors.toList());
-
     }
 
 }
