@@ -4,6 +4,8 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.littemplate.LitTemplate;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.component.textfield.TextField;
@@ -14,6 +16,8 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 import de.heallife.app.data.QehrgUser;
 import de.heallife.app.data.service.QehrgUserService;
 import de.heallife.app.views.MainLayout;
+import org.aspectj.weaver.ast.Not;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
@@ -40,6 +44,7 @@ public class HomeView extends LitTemplate {
      */
 
     private QehrgUserService qehrgUserService;
+    private Notification notification;
 
     @Inject
     public HomeView(QehrgUserService qehrgUserService) {
@@ -47,18 +52,35 @@ public class HomeView extends LitTemplate {
         this.qehrgUserService = qehrgUserService;
 
         TextField textField = new TextField("Query");
+        TextField passwordField = new TextField("Password");
+
         Button button = new Button("LookUp");
         TextField result = new TextField("Result");
         result.setReadOnly(true);
 
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
         button.addClickListener(event -> {
             QehrgUser user = qehrgUserService.getUserByNiceName(textField.getValue());
+
+            if (encoder.matches(passwordField.getValue(), user.getUserPass())) {
+                notification = new Notification("Matches");
+                notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+
+            } else {
+                notification = new Notification("Does not match");
+                notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+            }
+
+            notification.open();
             result.setValue(user.getUserEmail());
         });
 
 
 
-        vaadinVerticalLayout.add(textField, button, result);
+
+
+        vaadinVerticalLayout.add(textField, passwordField, button, result);
 
     }
 
