@@ -33,7 +33,6 @@ import javax.inject.Inject;
 @RouteAlias(value = "", layout = MainLayout.class)
 @JsModule("./views/home/home-view.ts")
 @PermitAll
-@AnonymousAllowed
 public class HomeView extends LitTemplate {
 
     @Id("vaadinVerticalLayout")
@@ -43,44 +42,9 @@ public class HomeView extends LitTemplate {
      * Creates a new HomeView.
      */
 
-    private QehrgUserService qehrgUserService;
-    private Notification notification;
-
-    @Inject
-    public HomeView(QehrgUserService qehrgUserService) {
+    public HomeView() {
         // You can initialise any data required for the connected UI components here.
-        this.qehrgUserService = qehrgUserService;
 
-        TextField textField = new TextField("Query");
-        TextField passwordField = new TextField("Password");
-
-        Button button = new Button("LookUp");
-        TextField result = new TextField("Result");
-        result.setReadOnly(true);
-
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-
-        button.addClickListener(event -> {
-            QehrgUser user = qehrgUserService.getUserByNiceName(textField.getValue());
-
-            if (encoder.matches(passwordField.getValue(), user.getUserPass())) {
-                notification = new Notification("Matches");
-                notification.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
-
-            } else {
-                notification = new Notification("Does not match");
-                notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
-            }
-
-            notification.open();
-            result.setValue(user.getUserEmail());
-        });
-
-
-
-
-
-        vaadinVerticalLayout.add(textField, passwordField, button, result);
 
     }
 

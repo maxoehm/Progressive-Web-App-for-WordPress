@@ -1,7 +1,6 @@
 package de.heallife.app.data.service;
 
-import de.heallife.app.QehrgUserRepository;
-import de.heallife.app.data.QehrgUser;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -17,8 +16,8 @@ public class QehrgUserService {
         this.qehrgUserRepository = qehrgUserRepository;
     }
 
-    public QehrgUser getUserByNiceName(String niceName) {
-        return qehrgUserRepository.findByCustomQuery(niceName);
+    public boolean validatePassword(String username, String password) {
+        return new BCryptPasswordEncoder().matches(password, qehrgUserRepository.findByCustomQuery(username).getUserPass());
     }
 
 }

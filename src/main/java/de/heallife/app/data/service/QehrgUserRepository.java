@@ -1,4 +1,4 @@
-package de.heallife.app;
+package de.heallife.app.data.service;
 
 import de.heallife.app.data.QehrgUser;
 import org.springframework.data.jpa.repository.JpaRepository;
