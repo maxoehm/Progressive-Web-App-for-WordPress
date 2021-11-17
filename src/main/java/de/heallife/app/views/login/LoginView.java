@@ -23,6 +23,7 @@ import com.vaadin.flow.component.html.Image;
 
 @PageTitle("Login")
 @Route(value = "login")
+@RouteAlias(value = "error")
 public class LoginView extends LoginOverlay {
 
     private LoginI18n i18n = LoginI18n.createDefault();

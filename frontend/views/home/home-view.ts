@@ -16,10 +16,10 @@ export class HomeView extends LitElement {
     return html`
 <vaadin-vertical-layout style="width: 100%; height: 100%;">
  <vaadin-horizontal-layout style="width: 100%; height: 100%">
-  <vaadin-vertical-layout style="width: 100%; height: 100%;" id="vaadinVerticalLayout">
+  <vaadin-vertical-layout style="width: 100%; height: 100%;" id="box1">
    <h3>Heading 3</h3>
   </vaadin-vertical-layout>
-  <vaadin-vertical-layout style="width: 100%; height: 100%;" id="vaadinVerticalLayout">
+  <vaadin-vertical-layout style="width: 100%; height: 100%;" id="box2">
    <h3>Heading 3</h3>
   </vaadin-vertical-layout>
  </vaadin-horizontal-layout>
