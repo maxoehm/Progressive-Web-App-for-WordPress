@@ -33,20 +33,5 @@ public class PostService {
         return repo.findByPostTypeAndPostStatusAllIgnoreCase(postType, postStatus);
     }
 
-    public List<QehrgPost> getPost(String postType, String postStatus, String postCategory) {
-
-        List<QehrgPost> postListUncategorized =  repo.findByPostTypeAndPostStatusAllIgnoreCase(postType, postStatus);
-        List<QehrgPost> postsCategorized = new ArrayList<>();
-
-
-        for (int i = 0; postListUncategorized.size() > i; i++) {
-
-            var temp = metaRepo.findByPostId(Long.valueOf(postListUncategorized.get(i).getId()));
-            postsCategorized.add(repo.);
-
-        }
-
-    }
-
 
 }

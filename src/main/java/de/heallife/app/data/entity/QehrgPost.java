@@ -3,7 +3,10 @@ package de.heallife.app.data.entity;
 import de.heallife.app.data.AbstractEntity;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Table(name = "QEhRG_posts", indexes = {
         @Index(name = "post_author", columnList = "post_author"),
@@ -12,7 +15,7 @@ import java.time.Instant;
         @Index(name = "post_parent", columnList = "post_parent")
 })
 @Entity
-public class QehrgPost extends AbstractEntity {
+public class QehrgPost extends AbstractEntity implements Serializable {
     @Column(name = "post_author", nullable = false)
     private Long postAuthor;
 
@@ -84,6 +87,11 @@ public class QehrgPost extends AbstractEntity {
 
     @Column(name = "comment_count", nullable = false)
     private Long commentCount;
+
+    @ElementCollection
+    @Column(name = "post_category", nullable = false)
+    private List<String> categories;
+
 
     public Long getCommentCount() {
         return commentCount;
@@ -259,5 +267,13 @@ public class QehrgPost extends AbstractEntity {
 
     public void setPostAuthor(Long postAuthor) {
         this.postAuthor = postAuthor;
+    }
+
+    public List<String> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<String> categories) {
+        this.categories = categories;
     }
 }

@@ -5,19 +5,19 @@ import de.heallife.app.data.AbstractEntity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "QEhRG_postmeta", indexes = {
-        @Index(name = "post_id", columnList = "post_id"),
+@Table(name = "QEhRG_termmeta", indexes = {
+        @Index(name = "term_id", columnList = "term_id"),
         @Index(name = "meta_key", columnList = "meta_key")
 })
 @Entity
-public class QehrgPostmeta extends AbstractEntity  implements Serializable  {
+public class QehrgTermmeta extends AbstractEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "meta_id", nullable = false)
     private Long id1;
 
-    @Column(name = "post_id", nullable = false)
-    private Long postId;
+    @Column(name = "term_id", nullable = false)
+    private Long termId;
 
     @Column(name = "meta_key")
     private String metaKey;
@@ -42,12 +42,12 @@ public class QehrgPostmeta extends AbstractEntity  implements Serializable  {
         this.metaKey = metaKey;
     }
 
-    public Long getPostId() {
-        return postId;
+    public Long getTermId() {
+        return termId;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
+    public void setTermId(Long termId) {
+        this.termId = termId;
     }
 
     public Long getId1() {
