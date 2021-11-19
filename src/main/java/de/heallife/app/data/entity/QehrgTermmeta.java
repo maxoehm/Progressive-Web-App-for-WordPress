@@ -5,10 +5,11 @@ import de.heallife.app.data.AbstractEntity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "QEhRG_termmeta", indexes = {
+@Table(name = "qehrg_termmeta", indexes = {
         @Index(name = "term_id", columnList = "term_id"),
         @Index(name = "meta_key", columnList = "meta_key")
 })
+@IdClass(QehrgTermmeta.QehrgTermmetaPK.class)
 @Entity
 public class QehrgTermmeta extends AbstractEntity implements Serializable {
     @Id
@@ -56,5 +57,12 @@ public class QehrgTermmeta extends AbstractEntity implements Serializable {
 
     public void setId1(Long id1) {
         this.id1 = id1;
+    }
+
+    public class QehrgTermmetaPK implements Serializable {
+
+        private Long id;
+        private Long id1;
+
     }
 }

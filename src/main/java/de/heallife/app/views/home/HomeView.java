@@ -52,6 +52,8 @@ public class HomeView extends LitTemplate {
 
     private CategoryService categoryService;
     private PostService postService;
+    private int i = 0;
+
 
     @Inject
     public HomeView(PostService postService, CategoryService categoryService) {
@@ -62,18 +64,30 @@ public class HomeView extends LitTemplate {
         TextArea textArea = new TextArea();
         textArea.setWidth("100%");
 
-        box1.add(textArea);
+        TextArea taxonomyInformation = new TextArea();
+        taxonomyInformation.setWidth("100%");
+
+        box1.add(textArea, taxonomyInformation);
 
         TextArea textArea1 = new TextArea();
 
         List<QehrgPost> postList = postService.getPost("post", "publish");
-        QehrgPost entityOne = postList.get(0);
+        QehrgPost entityOne = postList.get(i);
 
-        textArea.setValue(String.valueOf(entityOne.getCategories()));
-
+        textArea.setValue(String.valueOf(entityOne.getPostName()));
+        textArea1.setValue(postList.get(i).getId().toString());
+        taxonomyInformation.setValue(categoryService.getCategory(entityOne).toString());
         textArea.setWidth("100%");
 
-        box2.add(textArea1);
+        Button button = new Button("Next");
+        box2.add(textArea1, button);
+
+        button.addClickListener(event -> {
+            textArea.setValue(String.valueOf(postList.get(i++).getPostName()));
+            textArea1.setValue(postList.get(i).getId().toString());
+            taxonomyInformation.setValue(categoryService.getCategory(entityOne).toString());
+
+        });
 
 
     }
