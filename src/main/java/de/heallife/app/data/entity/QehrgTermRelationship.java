@@ -5,7 +5,7 @@ import de.heallife.app.data.AbstractEntity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "qehrg_term_relationships")
+@Table(name = "QEhRG_term_relationships")
 @Entity
 @IdClass(QehrgTermRelationshipId.class)
 public class QehrgTermRelationship extends AbstractEntity implements Serializable {

@@ -7,6 +7,7 @@ import de.heallife.app.security.PostService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
+import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,15 +29,10 @@ public class CategoryService {
 
     public List<String> getCategory(QehrgPost post) {
 
-        List<QehrgTermRelationship> termRelationship = termRelationshipRepository.findById1(Long.valueOf(post.getId()));
+        Long id = Long.valueOf(post.getId());
+
+        List<QehrgTermRelationship> termRelationship = termRelationshipRepository.findById1(id);
         List<String> categories = new ArrayList<>();
-
-
-        for (int i = 0; i < termRelationship.size(); i++) {
-
-            categories.add(termRepository.findById1(termRelationship.get(i).getId2()).get(i).getName());
-
-        }
 
 
         return categories;
