@@ -8,19 +8,24 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.template.Id;
+import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.dom.Element;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
 import de.heallife.app.data.QehrgUser;
+import de.heallife.app.data.entity.QehrgPost;
+import de.heallife.app.data.service.CategoryService;
 import de.heallife.app.data.service.QehrgUserService;
+import de.heallife.app.security.PostService;
 import de.heallife.app.views.MainLayout;
 import org.aspectj.weaver.ast.Not;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * A Designer generated component for the home-view template.
@@ -33,17 +38,71 @@ import javax.inject.Inject;
 @RouteAlias(value = "", layout = MainLayout.class)
 @JsModule("./views/home/home-view.ts")
 @PermitAll
+@AnonymousAllowed
 public class HomeView extends LitTemplate {
-
-    @Id("vaadinVerticalLayout")
-    private VerticalLayout vaadinVerticalLayout;
 
     /**
      * Creates a new HomeView.
      */
 
-    public HomeView() {
+    @Id("box1")
+    private VerticalLayout box1;
+    @Id("box2")
+    private VerticalLayout box2;
+
+
+    private CategoryService categoryService;
+    private PostService postService;
+    private int i = 0;
+
+
+    @Inject
+    public HomeView(PostService postService, CategoryService categoryService) {
         // You can initialise any data required for the connected UI components here.
+        this.postService = postService;
+        this.categoryService = categoryService;
+
+        TextArea textArea = new TextArea();
+        textArea.setWidth("100%");
+
+        TextArea taxonomyInformation = new TextArea();
+        taxonomyInformation.setWidth("100%");
+
+        box1.add(textArea, taxonomyInformation);
+
+        TextArea textArea1 = new TextArea();
+
+        List<QehrgPost> postList = postService.getPost("post", "publish");
+
+        textArea.setValue(String.valueOf(postList.get(i).getPostName()));
+        textArea1.setValue(postList.get(i).getId().toString());
+
+        var categories = categoryService.getCategories(postList.get(i+1));
+
+        String categoriesListString = "";
+
+        for (var category : categories) {
+
+            categoriesListString = categoriesListString + ", " + categories.get(i).toString();
+
+        }
+
+
+
+        taxonomyInformation.setValue(categoriesListString);
+        textArea.setWidth("100%");
+
+
+
+        Button button = new Button("Next");
+        box2.add(textArea1, button);
+
+        button.addClickListener(event -> {
+            textArea.setValue(String.valueOf(postList.get(i++).getPostName()));
+            textArea1.setValue(postList.get(i).getId().toString());
+            taxonomyInformation.setValue(categoryService.getCategories(postList.get(i)).toString());
+
+        });
 
 
     }
