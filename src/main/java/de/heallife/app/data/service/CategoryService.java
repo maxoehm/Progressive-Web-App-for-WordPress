@@ -1,13 +1,13 @@
 package de.heallife.app.data.service;
 
-import de.heallife.app.data.QehrgUser;
 import de.heallife.app.data.entity.QehrgPost;
-import de.heallife.app.data.entity.QehrgTermRelationship;
 import de.heallife.app.security.PostService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.math.BigInteger;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,44 +15,35 @@ import java.util.List;
 public class CategoryService {
 
     private PostService postService;
-    private QehrgTermRelationshipRepository termRelationshipRepository;
     private QehrgTermRepository termRepository;
 
 
     @Inject
-    public CategoryService(PostService postService, QehrgTermRelationshipRepository termRelationshipRepository, QehrgTermRepository termRepository) {
+    public CategoryService(PostService postService, QehrgTermRepository termRepository) {
         this.postService  = postService;
-        this.termRelationshipRepository = termRelationshipRepository;
         this.termRepository = termRepository;
 
     }
 
-    public List<String> getCategory(QehrgPost post) {
+    @PersistenceContext
+    private EntityManager em;
 
-        Long id = Long.valueOf(post.getId());
+    public List<String> getCategoryTest(QehrgPost post) {
 
-        List<QehrgTermRelationship> termRelationship = termRelationshipRepository.findById1(id);
+
+        String query = "select * from qehrg_term_relationships as u where u.objectid = :vx";
+        Query q = em.createNativeQuery(query);
+        q.setParameter("vx", 635);
+        List<Object[]> resultList = q.getResultList();
+
+        resultList.get(0).toString();
+
         List<String> categories = new ArrayList<>();
 
 
         return categories;
     }
 
-    public List<String> getCategory(List<QehrgPost> post) {
-
-        List<QehrgTermRelationship> termRelationship = termRelationshipRepository.findById1(Long.valueOf(post.get(0).getId()));
-        List<String> categories = new ArrayList<>();
-
-
-        for (int i = 0; i < termRelationship.size(); i++) {
-
-            categories.add(termRepository.findById1(termRelationship.get(i).getId2()).get(i).getName());
-
-        }
-
-
-        return categories;
-    }
 
 
 }
