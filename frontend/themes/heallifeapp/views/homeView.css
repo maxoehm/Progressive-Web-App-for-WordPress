@@ -1,0 +1,25 @@
+.categoryBox {
+    font-size: 1.05rem;
+    font-weight: bolder;
+    color: white;
+    width: 5rem;
+}
+
+.box {
+
+    width: 10rem;
+    height: 40vw;
+    padding-left: 1rem;
+    border-radius: 20px;
+    background-size: 300px 100%;
+
+}
+
+.box_big {
+    width: 10rem;
+    height: 70vw;
+    padding-left: 1rem;
+    border-radius: 20px;
+    background-size: 300px 100%;
+
+}
