@@ -76,10 +76,23 @@ public class HomeView extends LitTemplate {
 
         textArea.setValue(String.valueOf(postList.get(i).getPostName()));
         textArea1.setValue(postList.get(i).getId().toString());
-     //   taxonomyInformation.setValue(categoryService.getCategory(postList).toString());
+
+        var categories = categoryService.getCategories(postList.get(i+1));
+
+        String categoriesListString = "";
+
+        for (var category : categories) {
+
+            categoriesListString = categoriesListString + ", " + categories.get(i).toString();
+
+        }
+
+
+
+        taxonomyInformation.setValue(categoriesListString);
         textArea.setWidth("100%");
 
-        categoryService.getCategoryTest(postList.get(i++));
+
 
         Button button = new Button("Next");
         box2.add(textArea1, button);
@@ -87,7 +100,7 @@ public class HomeView extends LitTemplate {
         button.addClickListener(event -> {
             textArea.setValue(String.valueOf(postList.get(i++).getPostName()));
             textArea1.setValue(postList.get(i).getId().toString());
-   //         taxonomyInformation.setValue(categoryService.getCategory(postList).toString());
+            taxonomyInformation.setValue(categoryService.getCategories(postList.get(i)).toString());
 
         });
 
