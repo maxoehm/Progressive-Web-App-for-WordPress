@@ -35,7 +35,10 @@ public class SecurityConfiguration extends VaadinWebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/images/*.png");
         web.ignoring().antMatchers("/images/*.jpg");
         web.ignoring().antMatchers("/images/*.webp");
-        web.ignoring().antMatchers("/images/**");
+        web.ignoring().antMatchers("/images/***");
+        web.ignoring().antMatchers("/images/categories/*.png");
+        web.ignoring().antMatchers("/images/categories/*.jpg");
+
 
 
     }

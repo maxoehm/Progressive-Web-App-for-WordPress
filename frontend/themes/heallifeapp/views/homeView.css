@@ -1,25 +1,28 @@
 .categoryBox {
     font-size: 1.05rem;
-    font-weight: bolder;
     color: white;
     width: 5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    line-height: 1.1rem;
+
 }
 
 .box {
 
-    width: 10rem;
-    height: 40vw;
+    width: 9.5rem;
+    height: 10rem;
     padding-left: 1rem;
     border-radius: 20px;
-    background-size: 300px 100%;
+    background-size: 100% auto;
 
 }
 
 .box_big {
-    width: 10rem;
-    height: 70vw;
+    width: 9.5rem;
+    height: 15rem;
     padding-left: 1rem;
     border-radius: 20px;
-    background-size: 300px 100%;
+    background-size: 100% auto;
 
 }
