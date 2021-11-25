@@ -14,7 +14,11 @@ export class PostView extends LitElement {
 
   render() {
     return html`
-<vaadin-vertical-layout style="width: 100%; height: 100%;"></vaadin-vertical-layout>
+<vaadin-vertical-layout style="width: 100%; height: 100%; padding-left: 1.2rem; overflow-x: hidden;">
+ <h1 id="h1">Heading 1</h1>
+ <div id="div">
+ </div>
+</vaadin-vertical-layout>
 `;
   }
 

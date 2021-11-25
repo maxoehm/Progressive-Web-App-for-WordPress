@@ -33,7 +33,7 @@ export class HomeView extends LitElement {
 <vaadin-vertical-layout theme="spacing">
  <vaadin-horizontal-layout theme="spacing" style="width: 90%; margin-top: 1.5rem; margin-left: 1.2rem;">
   <vaadin-vertical-layout theme="spacing">
-   <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/cactus.jpg');">
+   <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/cactus.jpg');" id="c1">
     <h5 class="categoryBox">Mount Kailash</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/day.jpg');">
@@ -42,10 +42,9 @@ export class HomeView extends LitElement {
    <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/woman.jpg');">
     <h5 class="categoryBox">Berlin Tower</h5>
    </vaadin-vertical-layout>
-    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/landscape.jpg');">
-     <h5 class="categoryBox">Mount Kailash</h5>
-    </vaadin-vertical-layout>
-    
+   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/landscape.jpg');">
+    <h5 class="categoryBox">Mount Kailash</h5>
+   </vaadin-vertical-layout>
   </vaadin-vertical-layout>
   <vaadin-vertical-layout theme="spacing">
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/man.jpg');">
@@ -60,9 +59,9 @@ export class HomeView extends LitElement {
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sun.jpg');">
     <h5 class="categoryBox">Berlin Tower</h5>
    </vaadin-vertical-layout>
-    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sunset.jpg');">
-      <h5 class="categoryBox">Berlin Tower</h5>
-    </vaadin-vertical-layout>
+   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sunset.jpg');">
+    <h5 class="categoryBox">Berlin Tower</h5>
+   </vaadin-vertical-layout>
   </vaadin-vertical-layout>
  </vaadin-horizontal-layout>
 </vaadin-vertical-layout>

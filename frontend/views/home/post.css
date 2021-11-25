@@ -1,0 +1,30 @@
+:host(:not([no-scroll])) [content] {
+    overflow: hidden;
+}
+.wp-block-video {
+    width: 130%;
+    margin-left: -10vw;
+}
+
+#h1 {
+    width: 85%;
+    font-weight: 600;
+    color: black;
+    font-size: 2rem;
+}
+
+video {
+    margin-left: 2.3rem;
+    width: 75%;
+    height: auto;
+}
+
+figure {
+    width: 95%;
+}
+
+
+
+:host(content) {
+    overflow-x: hidden;
+}
