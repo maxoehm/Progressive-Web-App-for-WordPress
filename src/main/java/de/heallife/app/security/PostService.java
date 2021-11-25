@@ -1,11 +1,14 @@
 package de.heallife.app.security;
 
 import de.heallife.app.data.entity.QehrgPost;
+import de.heallife.app.data.service.CategoryService;
 import de.heallife.app.data.service.QehrgPostRepository;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class PostService {
@@ -27,6 +30,10 @@ public class PostService {
 
     public List<QehrgPost> getPost(String postType, String postStatus) {
         return repo.findByPostTypeAndPostStatusAllIgnoreCase(postType, postStatus);
+    }
+
+    public Optional<QehrgPost> getPost(Integer id) {
+        return repo.findById(id);
     }
 
 
