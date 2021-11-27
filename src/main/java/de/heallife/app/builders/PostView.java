@@ -14,6 +14,8 @@ import de.heallife.app.data.entity.QehrgPost;
 import de.heallife.app.data.service.QehrgPostRepository;
 import de.heallife.app.security.PostService;
 import de.heallife.app.views.MainLayout;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.security.PermitAll;
 import java.util.Optional;
@@ -56,7 +58,7 @@ public class PostView extends LitTemplate implements HasUrlParameter<Integer> {
     public void setParameter(BeforeEvent event, Integer parameter) {
         objectId = parameter;
 
-        post = service.getPost(parameter);
+        post = service.getPostById(parameter);
 
         h1.setText(post.get().getPostTitle());
 
@@ -72,8 +74,6 @@ public class PostView extends LitTemplate implements HasUrlParameter<Integer> {
     }
 
     private void applyChanges() {
-
-
 
     }
 

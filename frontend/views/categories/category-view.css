@@ -1,0 +1,19 @@
+.post-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    margin-top: 0rem;
+}
+
+#title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem;
+    margin-left: 1.2rem;
+    margin-top: 1rem;
+}
+
+.titleImage {
+    width: 35vw;
+    height: auto;
+    border-radius: 10px;
+    margin-left: 0.1rem;
+}

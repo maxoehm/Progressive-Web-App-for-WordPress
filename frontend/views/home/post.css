@@ -10,7 +10,8 @@
     width: 85%;
     font-weight: 600;
     color: black;
-    font-size: 2rem;
+    font-size: 1.8rem;
+    font-family: 'Montserrat', sans-serif;
 }
 
 video {
@@ -27,4 +28,14 @@ figure {
 
 :host(content) {
     overflow-x: hidden;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    margin-left: -2.3rem;
+}
+
+audio {
+    margin-left: -2.3rem;
 }

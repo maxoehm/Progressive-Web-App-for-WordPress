@@ -37,7 +37,6 @@ import java.util.List;
 @JsModule("./views/home/home-view.ts")
 @CssImport("./themes/heallifeapp/views/homeView.css")
 @PermitAll
-@AnonymousAllowed
 public class HomeView extends LitTemplate {
 
     /**
@@ -54,6 +53,22 @@ public class HomeView extends LitTemplate {
     private H1 h1;
     @Id("c1")
     private VerticalLayout c1;
+    @Id("vaadinVerticalLayout")
+    private VerticalLayout vaadinVerticalLayout;
+    @Id("vaadinVerticalLayout1")
+    private VerticalLayout vaadinVerticalLayout1;
+    @Id("vaadinVerticalLayout2")
+    private VerticalLayout vaadinVerticalLayout2;
+    @Id("vaadinVerticalLayout3")
+    private VerticalLayout vaadinVerticalLayout3;
+    @Id("vaadinVerticalLayout4")
+    private VerticalLayout vaadinVerticalLayout4;
+    @Id("vaadinVerticalLayout5")
+    private VerticalLayout vaadinVerticalLayout5;
+    @Id("vaadinVerticalLayout6")
+    private VerticalLayout vaadinVerticalLayout6;
+    @Id("vaadinVerticalLayout7")
+    private VerticalLayout vaadinVerticalLayout7;
 
 
     @Inject
@@ -77,11 +92,30 @@ public class HomeView extends LitTemplate {
 
         }
 
-        String route = RouteConfiguration.forSessionScope()
-                .getUrl(CategoryView.class, "Kraft");
+
 
         c1.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(CategoryView.class, "Allgemeinwissen");
             c1.getUI().ifPresent(ui -> ui.navigate(route));
+        });
+
+        vaadinVerticalLayout.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(CategoryView.class, "Kraft");
+            vaadinVerticalLayout.getUI().ifPresent(ui -> ui.navigate(route));
+        });
+
+        vaadinVerticalLayout1.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(CategoryView.class, "Freizeit");
+            vaadinVerticalLayout1.getUI().ifPresent(ui -> ui.navigate(route));
+        });
+
+        vaadinVerticalLayout2.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(CategoryView.class, "Lifestyle");
+            vaadinVerticalLayout2.getUI().ifPresent(ui -> ui.navigate(route));
         });
 
 /*

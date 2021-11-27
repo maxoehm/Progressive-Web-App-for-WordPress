@@ -32,7 +32,7 @@ public class PostService {
         return repo.findByPostTypeAndPostStatusAllIgnoreCase(postType, postStatus);
     }
 
-    public Optional<QehrgPost> getPost(Integer id) {
+    public Optional<QehrgPost> getPostById(Integer id) {
         return repo.findById(id);
     }
 

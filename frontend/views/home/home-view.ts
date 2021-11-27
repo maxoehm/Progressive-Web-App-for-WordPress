@@ -34,33 +34,33 @@ export class HomeView extends LitElement {
  <vaadin-horizontal-layout theme="spacing" style="width: 90%; margin-top: 1.5rem; margin-left: 1.2rem;">
   <vaadin-vertical-layout theme="spacing">
    <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/cactus.jpg');" id="c1">
-    <h5 class="categoryBox">Mount Kailash</h5>
+    <h5 class="categoryBox titleB">Allgemeines Wissen</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/day.jpg');">
-    <h5 class="categoryBox">Mount Kailash</h5>
+   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/day.jpg');" id="vaadinVerticalLayout">
+    <h5 class="categoryBox">Kraft Übungen</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/woman.jpg');">
-    <h5 class="categoryBox">Berlin Tower</h5>
+   <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/woman.jpg');" id="vaadinVerticalLayout1">
+    <h5 class="categoryBox">Outdoor Aktibitäten</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/landscape.jpg');">
-    <h5 class="categoryBox">Mount Kailash</h5>
+   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/landscape.jpg');" id="vaadinVerticalLayout2">
+    <h5 class="categoryBox">Lifestyle</h5>
    </vaadin-vertical-layout>
   </vaadin-vertical-layout>
   <vaadin-vertical-layout theme="spacing">
-   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/man.jpg');">
-    <h5 class="categoryBox">Mount Kailash</h5>
+   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/man.jpg');" id="vaadinVerticalLayout3">
+    <h5 class="categoryBox">Physische Gesundheit</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/ship.jpg');">
-    <h5 class="categoryBox">Berlin Tower</h5>
+   <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/ship.jpg');" id="vaadinVerticalLayout4">
+    <h5 class="categoryBox">Seelische und Mentale Gesundheit</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sununder.png');">
-    <h5 class="categoryBox">Berlin Tower</h5>
+   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sununder.png');" id="vaadinVerticalLayout5">
+    <h5 class="categoryBox">Podcasts</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sun.jpg');">
-    <h5 class="categoryBox">Berlin Tower</h5>
+   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sun.jpg');" id="vaadinVerticalLayout6">
+    <h5 class="categoryBox">Empfehlungen</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sunset.jpg');">
-    <h5 class="categoryBox">Berlin Tower</h5>
+   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sunset.jpg');" id="vaadinVerticalLayout7">
+    <h5 class="categoryBox">Lebensrat</h5>
    </vaadin-vertical-layout>
   </vaadin-vertical-layout>
  </vaadin-horizontal-layout>
