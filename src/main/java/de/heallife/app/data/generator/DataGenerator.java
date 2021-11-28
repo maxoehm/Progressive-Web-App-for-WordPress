@@ -2,6 +2,8 @@ package de.heallife.app.data.generator;
 
 import com.vaadin.flow.spring.annotation.SpringComponent;
 
+import de.heallife.app.data.service.QehrgUserRepository;
+import de.heallife.app.data.service.QehrgUserService;
 import de.heallife.app.data.service.UserRepository;
 import de.heallife.app.data.entity.User;
 import java.util.Collections;
@@ -21,7 +23,7 @@ import com.vaadin.exampledata.ExampleDataGenerator;
 public class DataGenerator {
 
     @Bean
-    public CommandLineRunner loadData(PasswordEncoder passwordEncoder, UserRepository userRepository) {
+    public CommandLineRunner loadData(PasswordEncoder passwordEncoder, QehrgUserRepository userRepository) {
         return args -> {
             Logger logger = LoggerFactory.getLogger(getClass());
             if (userRepository.count() != 0L) {

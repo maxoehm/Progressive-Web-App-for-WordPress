@@ -1,7 +1,7 @@
 .categoryBox {
     font-size: 1.05rem;
     color: white;
-    width: 5rem;
+    width: 7.5rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
     line-height: 1.1rem;
@@ -19,7 +19,12 @@
 }
 
 .titleB {
-    margin-top: 0.1rem;
+    margin-top: 0.2rem;
+
+    -webkit-user-select: none; /* Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+/Edge */
+    user-select: none; /* Standard */
 }
 
 .box_big {

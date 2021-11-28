@@ -5,7 +5,7 @@ import de.heallife.app.data.AbstractEntity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "qehrg_term_taxonomy", indexes = {
+@Table(name = "QEhRG_term_taxonomy", indexes = {
         @Index(name = "term_id_taxonomy", columnList = "term_id, taxonomy", unique = true),
         @Index(name = "taxonomy", columnList = "taxonomy")
 })

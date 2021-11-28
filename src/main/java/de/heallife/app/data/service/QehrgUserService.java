@@ -9,15 +9,15 @@ import javax.inject.Inject;
 public class QehrgUserService {
 
 
-    private QehrgUserRepository qehrgUserRepository;
+    private QehrgUserRepository QEhRGUserRepository;
 
     @Inject
-    public QehrgUserService(QehrgUserRepository qehrgUserRepository) {
-        this.qehrgUserRepository = qehrgUserRepository;
+    public QehrgUserService(QehrgUserRepository QEhRGUserRepository) {
+        this.QEhRGUserRepository = QEhRGUserRepository;
     }
 
     public boolean validatePassword(String username, String password) {
-        return new BCryptPasswordEncoder().matches(password, qehrgUserRepository.findByCustomQuery(username).getUserPass());
+        return new BCryptPasswordEncoder().matches(password, QEhRGUserRepository.findByCustomQuery(username).getUserPass());
     }
 
 }

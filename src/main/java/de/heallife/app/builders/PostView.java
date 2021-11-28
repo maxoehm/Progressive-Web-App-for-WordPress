@@ -63,7 +63,14 @@ public class PostView extends LitTemplate implements HasUrlParameter<Integer> {
         h1.setText(post.get().getPostTitle());
 
         try {
-            html = new Html("<div>" + post.get().getPostContent() + "</div>");
+
+            var postContent = post.get().getPostContent();
+
+            if (postContent.contains("youtu")) {
+                postContent = getBetween(postContent, "\"url\\\":\\\"", "\\\",");
+            }
+
+            html = new Html("<div>" + postContent + "</div>");
         } catch (IllegalArgumentException e) {
             html = new Html("<div><p>Ein fehler ist in der Darstellung aufgetreten, um dieses Problem zu lösen schau dir den Post online an.</p> <a href=\"" + post.get().getGuid() + "\">Link zum Post</a> </div>");
         }
@@ -75,6 +82,10 @@ public class PostView extends LitTemplate implements HasUrlParameter<Integer> {
 
     private void applyChanges() {
 
+    }
+
+    private String getBetween(String str, String start, String end) {
+        return str.substring(str.indexOf(start) + start.length(), str.indexOf(end));
     }
 
 

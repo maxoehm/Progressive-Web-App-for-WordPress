@@ -34,7 +34,7 @@ public class CategoryService {
 
     public List<String> getCategories(QehrgPost post) {
 
-        String query = "select * from qehrg_term_relationships as u where u.objectid = :vx";
+        String query = "select * from QEhRG_term_relationships as u where u.object_id = :vx";
         Query q = em.createNativeQuery(query);
         q.setParameter("vx", post.getId());
         List<Object[]> resultList = q.getResultList();

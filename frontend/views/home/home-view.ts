@@ -37,30 +37,30 @@ export class HomeView extends LitElement {
     <h5 class="categoryBox titleB">Allgemeines Wissen</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/day.jpg');" id="vaadinVerticalLayout">
-    <h5 class="categoryBox">Kraft Übungen</h5>
+    <h5 class="categoryBox titleB">Kraft Übungen</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/woman.jpg');" id="vaadinVerticalLayout1">
-    <h5 class="categoryBox">Outdoor Aktibitäten</h5>
+    <h5 class="categoryBox titleB">Outdoor Aktibitäten</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/landscape.jpg');" id="vaadinVerticalLayout2">
-    <h5 class="categoryBox">Lifestyle</h5>
+    <h5 class="categoryBox titleB">Lifestyle</h5>
    </vaadin-vertical-layout>
   </vaadin-vertical-layout>
   <vaadin-vertical-layout theme="spacing">
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/man.jpg');" id="vaadinVerticalLayout3">
-    <h5 class="categoryBox">Physische Gesundheit</h5>
+    <h5 class="categoryBox titleB">Physische Gesundheit</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/ship.jpg');" id="vaadinVerticalLayout4">
-    <h5 class="categoryBox">Seelische und Mentale Gesundheit</h5>
+    <h5 class="categoryBox titleB">Seelische und Mentale Gesundheit</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sununder.png');" id="vaadinVerticalLayout5">
-    <h5 class="categoryBox">Podcasts</h5>
+    <h5 class="categoryBox titleB">Podcasts</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sun.jpg');" id="vaadinVerticalLayout6">
-    <h5 class="categoryBox">Empfehlungen</h5>
+    <h5 class="categoryBox titleB">Empfehlungen</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sunset.jpg');" id="vaadinVerticalLayout7">
-    <h5 class="categoryBox">Lebensrat</h5>
+    <h5 class="categoryBox titleB">Lebensrat</h5>
    </vaadin-vertical-layout>
   </vaadin-vertical-layout>
  </vaadin-horizontal-layout>

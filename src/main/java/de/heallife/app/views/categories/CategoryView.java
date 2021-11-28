@@ -83,6 +83,7 @@ public class CategoryView extends FlexLayout implements HasUrlParameter<String> 
 
             });
 
+            postLayout.getStyle().set("margin-top", "1rem");
             list.add(postLayout);
         }
 

@@ -5,7 +5,7 @@ import de.heallife.app.data.AbstractEntity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "qehrg_termmeta", indexes = {
+@Table(name = "QEhRG_termmeta", indexes = {
         @Index(name = "term_id", columnList = "term_id"),
         @Index(name = "meta_key", columnList = "meta_key")
 })

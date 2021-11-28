@@ -8,8 +8,11 @@ import java.util.Set;
 import javax.persistence.ElementCollection;
 import javax.persistence.FetchType;
 import de.heallife.app.data.Role;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.Lob;
 
+@Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
     User findByUsername(String username);
