@@ -18,4 +18,8 @@ public interface QehrgUserRepository extends JpaRepository<QehrgUser, Integer> {
             nativeQuery = true)
     QehrgUser findByCustomQuery(@Param("name") String name);
 
+    @Query(value = "select * from QEhRG_users as u where u.user_email = :email",
+            nativeQuery = true)
+    QehrgUser findByCustomQueryEmail(@Param("email") String email);
+
 }

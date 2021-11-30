@@ -37,6 +37,17 @@ public class QehrgUser extends AbstractEntity {
     @Column(name = "display_name", nullable = false, length = 250)
     private String displayName;
 
+    @Column(name = "user_activation_key", nullable = false)
+    private String userActivationKey;
+
+    public String getUserActivationKey() {
+        return userActivationKey;
+    }
+
+    public void setUserActivationKey(String userActivationKey) {
+        this.userActivationKey = userActivationKey;
+    }
+
     public String getDisplayName() {
         return displayName;
     }

@@ -1,6 +1,10 @@
 package de.heallife.app.views.profile;
 
+import com.vaadin.flow.component.notification.NotificationVariant;
+import com.vaadin.flow.data.binder.ValidationException;
+import de.heallife.app.data.QehrgUser;
 import de.heallife.app.data.entity.SamplePerson;
+import de.heallife.app.data.service.QehrgUserService;
 import de.heallife.app.data.service.SamplePersonService;
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.button.Button;
@@ -18,12 +22,22 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.data.binder.Binder;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
+import de.heallife.app.security.AuthenticatedUser;
 import de.heallife.app.views.MainLayout;
 import javax.annotation.security.PermitAll;
+import javax.inject.Inject;
+
 import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.data.renderer.TemplateRenderer;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.checkbox.Checkbox;
+import org.springframework.security.core.AuthenticatedPrincipal;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.security.Principal;
+import java.util.Optional;
 
 @PageTitle("profile")
 @Route(value = "profile", layout = MainLayout.class)
@@ -31,39 +45,60 @@ import com.vaadin.flow.component.checkbox.Checkbox;
 @Uses(Icon.class)
 public class ProfileView extends Div {
 
+    private AuthenticatedUser authenticatedUser;
+    private QehrgUserService service;
+
+
     private TextField firstName = new TextField("First name");
     private TextField lastName = new TextField("Last name");
     private EmailField email = new EmailField("Email address");
     private DatePicker dateOfBirth = new DatePicker("Birthday");
-    private PhoneNumberField phone = new PhoneNumberField("Phone number");
     private TextField occupation = new TextField("Occupation");
 
     private Button cancel = new Button("Cancel");
     private Button save = new Button("Save");
 
-    private Binder<SamplePerson> binder = new Binder(SamplePerson.class);
+    private Binder<QehrgUser> binder = new Binder(QehrgUser.class);
 
-    public ProfileView(SamplePersonService personService) {
+    @Inject
+    public ProfileView(AuthenticatedUser authenticatedUser, QehrgUserService service) {
+        this.authenticatedUser = authenticatedUser;
+        this.service = service;
+
         addClassName("profile-view");
 
         add(createTitle());
         add(createFormLayout());
         add(createButtonLayout());
 
-        binder.bindInstanceFields(this);
-        clearForm();
+        var authentication = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
+        QehrgUser current = service.findAuth(authentication);
 
-        cancel.addClickListener(e -> clearForm());
+
+        binder.readBean(current);
+
+
+        firstName.setValue(current.getUserNicename());
+
+        binder.forField(lastName).bind("displayName");
+
+        lastName.setValue(current.getDisplayName());
+        email.setValue(current.getUserEmail());
+        occupation.setValue(current.getUserLogin());
+
         save.addClickListener(e -> {
-            personService.update(binder.getBean());
-            Notification.show(binder.getBean().getClass().getSimpleName() + " details stored.");
-            clearForm();
+            try {
+                binder.writeBean(current);
+                Notification notify = new Notification("Erfolgreich gespeichert");
+                notify.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
+                notify.open();
+            } catch (ValidationException ex) {
+                ex.printStackTrace();
+            }
+            service.updateEntity(current);
         });
     }
 
-    private void clearForm() {
-        binder.setBean(new SamplePerson());
-    }
 
     private Component createTitle() {
         return new H3("Personal information");
@@ -72,7 +107,7 @@ public class ProfileView extends Div {
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
         email.setErrorMessage("Please enter a valid email address");
-        formLayout.add(firstName, lastName, dateOfBirth, phone, email, occupation);
+        formLayout.add(firstName, lastName, dateOfBirth, email, occupation);
         return formLayout;
     }
 

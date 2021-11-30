@@ -1,24 +1,20 @@
 package de.heallife.app.data.entity;
 
-
 import javax.persistence.*;
-import java.io.Serializable;
 
-@Table(name = "QEhRG_postmeta", indexes = {
-        @Index(name = "post_id", columnList = "post_id"),
+@Table(name = "QEhRG_usermeta", indexes = {
+        @Index(name = "user_id", columnList = "user_id"),
         @Index(name = "meta_key", columnList = "meta_key")
 })
 @Entity
-@IdClass(QehrgPostmetaPK.class)
-public class QehrgPostmeta implements Serializable {
+public class QehrgUsermeta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "meta_id", nullable = false)
-    private Long id1;
+    @Column(name = "umeta_id", nullable = false)
+    private Long id;
 
-    @Id
-    @Column(name = "post_id", nullable = false)
-    private Long postId;
+    @Column(name = "user_id", nullable = false)
+    private Long userId;
 
     @Column(name = "meta_key")
     private String metaKey;
@@ -43,19 +39,19 @@ public class QehrgPostmeta implements Serializable {
         this.metaKey = metaKey;
     }
 
-    public Long getPostId() {
-        return postId;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setPostId(Long postId) {
-        this.postId = postId;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
-    public Long getId1() {
-        return id1;
+    public Long getId() {
+        return id;
     }
 
-    public void setId1(Long id1) {
-        this.id1 = id1;
+    public void setId(Long id) {
+        this.id = id;
     }
 }

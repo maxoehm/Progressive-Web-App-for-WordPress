@@ -6,5 +6,6 @@ import java.io.Serializable;
 public class QehrgPostmetaPK implements Serializable {
 
     private Long id1;
+    private Long postId;
 
 }

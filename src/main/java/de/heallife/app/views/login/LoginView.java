@@ -30,9 +30,11 @@ public class LoginView extends LoginOverlay {
     public LoginView() {
         setAction("login");
 
+
+
         i18n.setHeader(new LoginI18n.Header());
         i18n.getHeader().setTitle("HealLife App");
-        i18n.getHeader().setDescription("Login using user/user or admin/admin");
+        i18n.getHeader().setDescription("Melde dich mit deinem Nutzernamen und Passwort an");
         i18n.setAdditionalInformation(null);
         setI18n(i18n);
 

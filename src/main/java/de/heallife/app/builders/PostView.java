@@ -18,7 +18,10 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.security.PermitAll;
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * A Designer generated component for the post-view template.
@@ -67,7 +70,7 @@ public class PostView extends LitTemplate implements HasUrlParameter<Integer> {
             var postContent = post.get().getPostContent();
 
             if (postContent.contains("youtu")) {
-                postContent = getBetween(postContent, "\"url\\\":\\\"", "\\\",");
+                postContent = getAllLinksFromTheText(postContent);
             }
 
             html = new Html("<div>" + postContent + "</div>");
@@ -80,13 +83,26 @@ public class PostView extends LitTemplate implements HasUrlParameter<Integer> {
 
     }
 
-    private void applyChanges() {
+    private static final String LINK_REGEX = "((http:\\/\\/|https:\\/\\/)?(www.)?(([a-zA-Z0-9-]){2,2083}\\.){1,4}([a-zA-Z]){2,6}(\\/(([a-zA-Z-_\\/\\.0-9#:?=&;,]){0,2083})?){0,2083}?[^ \\n]*)";
 
+    private String getAllLinksFromTheText(String text) {
+        Pattern p = Pattern.compile(LINK_REGEX, Pattern.CASE_INSENSITIVE);
+        Matcher m = p.matcher(text);
+
+        if (m.find()) {
+
+            var s = m.find() ? m.group(1) : "";
+
+            s = s.replaceAll("youtu.be", "youtube.com/embed");
+
+            var iFrameA = "<iframe width=\"100%\" height=\"auto\" style=\"margin-left: -2rem;\" src=\"";
+            var iFrameB = "\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>";
+            return m.replaceAll(iFrameA + s + iFrameB);
+        }
+        return text;
     }
 
-    private String getBetween(String str, String start, String end) {
-        return str.substring(str.indexOf(start) + start.length(), str.indexOf(end));
-    }
+
 
 
 }
