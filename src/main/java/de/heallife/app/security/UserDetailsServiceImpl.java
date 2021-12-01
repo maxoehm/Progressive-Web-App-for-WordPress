@@ -23,14 +23,25 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private QehrgUserRepository userRepository;
 
+    private QehrgUser user;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        QehrgUser user = userRepository.findByCustomQuery(username);
+
+
+        user = userRepository.findByCustomQuery(username);
+
         if (user == null) {
-            throw new UsernameNotFoundException("No user present with username: " + username);
-        } else {
-            return new org.springframework.security.core.userdetails.User(user.getUserLogin(), user.getUserPass(), Collections.singleton(new SimpleGrantedAuthority("ROLE_" + "USER")));
+
+            user = userRepository.findByCustomQueryEmail(username);
+
+            if (user == null) {
+
+                throw new UsernameNotFoundException("No user present with username: " + username);
+            }
         }
+            return new org.springframework.security.core.userdetails.User(user.getUserLogin(), user.getUserPass(), Collections.singleton(new SimpleGrantedAuthority("ROLE_" + "USER")));
+
     }
 
 }

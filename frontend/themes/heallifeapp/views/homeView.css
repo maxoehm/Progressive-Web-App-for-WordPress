@@ -8,6 +8,28 @@
 
 }
 
+@media screen and (min-width: 600px) {
+    .categoryBox {
+        font-size: 1.75rem;
+        color: white;
+        width: 40vw;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        height: 8rem;
+        line-height: 2.1rem;
+    }
+}
+@media screen and (min-width: 600px) {
+    .box {
+        width: 40vw;
+        height: 8rem;
+        padding-left: 1rem;
+        border-radius: 20px;
+        background-size: auto auto;
+
+    }
+}
+
 .box {
 
     width: 9.5rem;
@@ -34,4 +56,15 @@
     border-radius: 20px;
     background-size: 100% auto;
 
+}
+
+@media screen and (min-width: 600px) {
+    .box_big {
+        width: 100%;
+        height: 8rem;
+        padding-left: 1rem;
+        border-radius: 20px;
+        background-size: 100% auto;
+
+    }
 }
