@@ -1,41 +1,22 @@
 package de.heallife.app.views;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
 import com.vaadin.flow.component.Component;
-import com.vaadin.flow.component.Html;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.applayout.AppLayout;
-import com.vaadin.flow.component.applayout.DrawerToggle;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
-import com.vaadin.flow.component.dependency.NpmPackage;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
-import com.vaadin.flow.component.icon.VaadinIcon;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.tabs.Tab;
-import com.vaadin.flow.component.tabs.TabVariant;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
-import com.vaadin.flow.router.Router;
 import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.router.PageTitle;
-import de.heallife.app.data.QehrgUser;
 import de.heallife.app.views.events.EventsView;
 import de.heallife.app.views.home.HomeView;
 import de.heallife.app.views.profile.ProfileView;
 import de.heallife.app.views.blog.BlogView;
-import de.heallife.app.views.subscribe.SubscribeView;
-import com.vaadin.flow.component.avatar.Avatar;
-import de.heallife.app.data.entity.User;
 import de.heallife.app.security.AuthenticatedUser;
 import com.vaadin.flow.server.auth.AccessAnnotationChecker;
-import com.vaadin.flow.component.contextmenu.ContextMenu;
 
 /**
  * The main view is a top-level placeholder for other views.
@@ -100,7 +81,7 @@ public class MainLayout extends AppLayout {
         swatchbook.add(events);
         Tab swatchTab = new Tab(swatchbook);
 
-        RouterLink headphones = new RouterLink(null, SubscribeView.class);
+        RouterLink headphones = new RouterLink(null, EventsView.class);
         headphones.add(subscribe);
         Tab headTab = new Tab(headphones);
 

@@ -1,8 +1,10 @@
 package de.heallife.app.views.profile;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.notification.NotificationVariant;
 import com.vaadin.flow.data.binder.ValidationException;
 import de.heallife.app.data.QehrgUser;
+import de.heallife.app.data.entity.QehrgUsermeta;
 import de.heallife.app.data.entity.SamplePerson;
 import de.heallife.app.data.service.QehrgUserService;
 import de.heallife.app.data.service.SamplePersonService;
@@ -49,16 +51,22 @@ public class ProfileView extends Div {
     private QehrgUserService service;
 
 
-    private TextField firstName = new TextField("First name");
-    private TextField lastName = new TextField("Last name");
-    private EmailField email = new EmailField("Email address");
-    private DatePicker dateOfBirth = new DatePicker("Birthday");
-    private TextField occupation = new TextField("Occupation");
+    private TextField firstName = new TextField("Vorname");
+    private TextField lastName = new TextField("Nachname");
+    private EmailField email = new EmailField("Email Adresse");
+    private TextField addressOne = new TextField("Straßenname");
+    private TextField addressCity = new TextField("Stadt");
+    private TextField addressZip = new TextField("Zip");
 
-    private Button cancel = new Button("Cancel");
-    private Button save = new Button("Save");
+    private Button cancel = new Button("Abonennt beenden");
+    private Button save = new Button("Speichern");
 
-    private Binder<QehrgUser> binder = new Binder(QehrgUser.class);
+    private Binder<QehrgUser> binderUser = new Binder(QehrgUser.class);
+    private Binder<QehrgUsermeta> binderFirstName = new Binder(QehrgUsermeta.class);
+    private Binder<QehrgUsermeta> binderLastName = new Binder(QehrgUsermeta.class);
+    private Binder<QehrgUsermeta> binderAdress = new Binder(QehrgUsermeta.class);
+    private Binder<QehrgUsermeta> binderCity = new Binder(QehrgUsermeta.class);
+    private Binder<QehrgUsermeta> binderZip = new Binder(QehrgUsermeta.class);
 
     @Inject
     public ProfileView(AuthenticatedUser authenticatedUser, QehrgUserService service) {
@@ -74,40 +82,82 @@ public class ProfileView extends Div {
         var authentication = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
         QehrgUser current = service.findAuth(authentication);
 
+        var usermeta = service.getProfileValues(Long.valueOf(current.getId()));
 
-        binder.readBean(current);
+        binderUser.readBean(current);
 
+        firstName.setValue(usermeta.get(0).getMetaValue());
+        binderFirstName.forField(firstName).bind("metaValue");
 
-        firstName.setValue(current.getUserNicename());
+        lastName.setValue(usermeta.get(1).getMetaValue());
+        binderFirstName.forField(lastName).bind("metaValue");
 
-        binder.forField(lastName).bind("displayName");
-
-        lastName.setValue(current.getDisplayName());
         email.setValue(current.getUserEmail());
-        occupation.setValue(current.getUserLogin());
+        binderUser.forField(email).bind("userEmail");
+
+        addressOne.setValue(usermeta.get(2).getMetaValue());
+        binderAdress.forField(addressOne).bind("metaValue");
+
+        addressCity.setValue(usermeta.get(3).getMetaValue());
+        binderCity.forField(addressCity).bind("metaValue");
+
+        addressZip.setValue(usermeta.get(4).getMetaValue());
+        binderZip.forField(addressZip).bind("metaValue");
+
+        cancel.addClickListener(event -> {
+            UI.getCurrent().getPage().setLocation("https://heallife.de/protected-parent/account-page/?action=subscriptions");
+                });
 
         save.addClickListener(e -> {
             try {
-                binder.writeBean(current);
+
+                binderFirstName.writeBean(usermeta.get(0));
+                binderLastName.writeBean(usermeta.get(1));
+                binderAdress.writeBean(usermeta.get(2));
+                binderCity.writeBean(usermeta.get(3));
+                binderZip.writeBean(usermeta.get(4));
+
+
+                binderUser.writeBean(current);
                 Notification notify = new Notification("Erfolgreich gespeichert");
+
+                notify.setDuration(1500);
+                notify.setPosition(Notification.Position.TOP_CENTER);
                 notify.addThemeVariants(NotificationVariant.LUMO_SUCCESS);
                 notify.open();
+
             } catch (ValidationException ex) {
                 ex.printStackTrace();
             }
+
             service.updateEntity(current);
+
+            for (var bean : usermeta) {
+                service.saveMeta(bean);
+            }
+
         });
     }
 
 
     private Component createTitle() {
-        return new H3("Personal information");
+        return new H3("Informationen ändern");
     }
 
     private Component createFormLayout() {
         FormLayout formLayout = new FormLayout();
-        email.setErrorMessage("Please enter a valid email address");
-        formLayout.add(firstName, lastName, dateOfBirth, email, occupation);
+        email.setErrorMessage("Das ist keine gültige Email Adresse!");
+        formLayout.add(firstName, lastName, email, addressZip, addressOne, addressCity);
+
+        formLayout.setResponsiveSteps(
+                new FormLayout.ResponsiveStep("0", 1),
+                new FormLayout.ResponsiveStep("100px", 2)
+
+        );
+
+        formLayout.setColspan(addressCity,2);
+        formLayout.setColspan(email, 2);
+
         return formLayout;
     }
 
@@ -118,50 +168,6 @@ public class ProfileView extends Div {
         buttonLayout.add(save);
         buttonLayout.add(cancel);
         return buttonLayout;
-    }
-
-    private static class PhoneNumberField extends CustomField<String> {
-        private ComboBox<String> countryCode = new ComboBox<>();
-        private TextField number = new TextField();
-
-        public PhoneNumberField(String label) {
-            setLabel(label);
-            countryCode.setWidth("120px");
-            countryCode.setPlaceholder("Country");
-            countryCode.setPattern("\\+\\d*");
-            countryCode.setPreventInvalidInput(true);
-            countryCode.setItems("+354", "+91", "+62", "+98", "+964", "+353", "+44", "+972", "+39", "+225");
-            countryCode.addCustomValueSetListener(e -> countryCode.setValue(e.getDetail()));
-            number.setPattern("\\d*");
-            number.setPreventInvalidInput(true);
-            HorizontalLayout layout = new HorizontalLayout(countryCode, number);
-            layout.setFlexGrow(1.0, number);
-            add(layout);
-        }
-
-        @Override
-        protected String generateModelValue() {
-            if (countryCode.getValue() != null && number.getValue() != null) {
-                String s = countryCode.getValue() + " " + number.getValue();
-                return s;
-            }
-            return "";
-        }
-
-        @Override
-        protected void setPresentationValue(String phoneNumber) {
-            String[] parts = phoneNumber != null ? phoneNumber.split(" ", 2) : new String[0];
-            if (parts.length == 1) {
-                countryCode.clear();
-                number.setValue(parts[0]);
-            } else if (parts.length == 2) {
-                countryCode.setValue(parts[0]);
-                number.setValue(parts[1]);
-            } else {
-                countryCode.clear();
-                number.clear();
-            }
-        }
     }
 
 }
