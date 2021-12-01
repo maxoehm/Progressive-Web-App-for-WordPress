@@ -6,5 +6,7 @@ public interface QehrgUsermetaRepository extends JpaRepository<QehrgUsermeta, Lo
 
     QehrgUsermeta findByUserId(Long userId);
 
+    QehrgUsermeta findByUserIdAndMetaKey(Long userId, String metaKey);
+
 
 }

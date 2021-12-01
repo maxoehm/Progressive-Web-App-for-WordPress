@@ -1,33 +1,32 @@
 package de.heallife.app.views.events;
 
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dependency.JsModule;
+import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.router.Route;
-import com.vaadin.flow.router.PageTitle;
 import de.heallife.app.views.MainLayout;
+
 import javax.annotation.security.PermitAll;
 
-@PageTitle("Events")
+/**
+ * A Designer generated component for the events-view template.
+ *
+ * Designer will add and remove fields with @Id mappings but
+ * does not overwrite or otherwise change this file.
+ */
+@Tag("events-view")
+@JsModule("./views/events/events-view.ts")
+@CssImport("./views/events/events-view.css")
 @Route(value = "events", layout = MainLayout.class)
 @PermitAll
-public class EventsView extends VerticalLayout {
+public class EventsView extends LitTemplate {
 
+    /**
+     * Creates a new EventsView.
+     */
     public EventsView() {
-        setSpacing(false);
-
-        Image img = new Image("images/empty-plant.png", "placeholder plant");
-        img.setWidth("200px");
-        add(img);
-
-        add(new H2("This place intentionally left empty"));
-        add(new Paragraph("It’s a place where you can grow your own UI 🤗"));
-
-        setSizeFull();
-        setJustifyContentMode(JustifyContentMode.CENTER);
-        setDefaultHorizontalComponentAlignment(Alignment.CENTER);
-        getStyle().set("text-align", "center");
+        // You can initialise any data required for the connected UI components here.
     }
 
 }
