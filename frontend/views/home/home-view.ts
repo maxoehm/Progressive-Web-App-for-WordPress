@@ -25,7 +25,7 @@ export class HomeView extends LitElement {
 <vaadin-vertical-layout theme="spacing" style="margin-left: 1.2rem; margin-top: 2rem;">
  <h1 style="margin-top: 0rem; margin-bottom: 0rem; font-family: 'Montserrat', sans-serif; font-weight: 700; " id="h1">Heading 1</h1>
  <vaadin-horizontal-layout theme="spacing" style="width: 95%;">
-  <vaadin-text-field style="margin-top: 0rem; width: 98.5%; border-radius: 25px; font-family: 'Montserrat', sans-serif; font-weight: 700;" placeholder="Search">
+  <vaadin-text-field style="margin-top: 0rem; width: 98.5%; border-radius: 25px; font-family: 'Montserrat', sans-serif; font-weight: 700;" placeholder="Durchsuchen">
    <iron-icon icon="lumo:search" slot="suffix"></iron-icon>
   </vaadin-text-field>
  </vaadin-horizontal-layout>

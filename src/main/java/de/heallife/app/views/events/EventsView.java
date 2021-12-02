@@ -11,6 +11,7 @@ import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteConfiguration;
+import de.heallife.app.builders.PostView;
 import de.heallife.app.views.MainLayout;
 import de.heallife.app.views.categories.CategoryView;
 
@@ -65,6 +66,17 @@ public class EventsView extends FlexLayout {
         subtitleG.addClassName("subtitle");
         descriptionG.addClassName("description");
 
+        yogaNidra.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(PostView.class, 235109);
+            layout.getUI().ifPresent(ui -> ui.navigate(route));
+        });
+
+        gutenMorgen.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(PostView.class, 235344);
+            layout.getUI().ifPresent(ui -> ui.navigate(route));
+        });
 
         yogaNidra.setId("yogaNidra");
         gutenMorgen.setId("gutenMorgen");
@@ -84,21 +96,21 @@ public class EventsView extends FlexLayout {
         H1 title = new H1("Events");
         title.setId("mainTitle");
 
-        VerticalLayout yogaNidra = new VerticalLayout();
+        VerticalLayout local = new VerticalLayout();
         var subtitleY = new H3("In deiner Umgebung");
         var descriptionY = new Paragraph("Hier findest du alle Live Angebote in deiner Umgebung zum Teilnehmen. Hier ist bestimmt für jeden was dabei.");
 
         descriptionY.addClassName("description");
         subtitleY.addClassName("subtitle");
 
-        yogaNidra.add(subtitleY, descriptionY);
+        local.add(subtitleY, descriptionY);
 
 
-        yogaNidra.setId("events");
+        local.setId("events_local");
 
-        yogaNidra.addClassName("box_cat");
+        local.addClassName("box_cat");
 
-        yogaNidra.addClickListener(event -> {
+        local.addClickListener(event -> {
                 String route = RouteConfiguration.forSessionScope()
                         .getUrl(CategoryView.class, "Event");
             layout.getUI().ifPresent(ui -> ui.navigate(route));
@@ -119,11 +131,11 @@ public class EventsView extends FlexLayout {
 
         online.addClickListener(event -> {
             String route = RouteConfiguration.forSessionScope()
-                    .getUrl(CategoryView.class, "Event");
+                    .getUrl(CategoryView.class, "Event Online");
             layout.getUI().ifPresent(ui -> ui.navigate(route));
         });
 
-        layout.add(title, yogaNidra, online);
+        layout.add(title, local, online);
 
         return layout;
     }

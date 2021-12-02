@@ -134,4 +134,8 @@ public class CategoryService {
     }
 
 
+    public List<QehrgPost> getAllPosts() {
+        return postService.getPost("post", "publish");
+    }
+
 }

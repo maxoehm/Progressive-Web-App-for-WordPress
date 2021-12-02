@@ -70,7 +70,7 @@ public class MainLayout extends AppLayout {
         blog.setSize("30px");
         Icon events = new Icon("heallife","swatchbook");
         events.setSize("30px");
-        Icon subscribe = new Icon("heallife", "headphones");
+        Icon subscribe = new Icon("heallife", "user-square");
         subscribe.setSize("30px");
 
         RouterLink homeRoute = new RouterLink(null, HomeView.class);
