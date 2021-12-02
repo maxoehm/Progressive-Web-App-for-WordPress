@@ -97,6 +97,10 @@ public class CategoryService {
                 categories.add("Events");
             } else
 
+            if (entity == 96) {
+                categories.add("Events Online");
+            } else
+
             if (entity == 49) {
                 categories.add("Seelische und mentale Gesundheit");
             } else

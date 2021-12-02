@@ -23,7 +23,7 @@ import com.vaadin.flow.component.dependency.NpmPackage;
         name = "HealLife",
         shortName = "HealLife",
         offlineResources = {"images/logo.png", "images/favicon.ico", "images/categories/", "images/categories/cactus.jpg", "images/categories/landscape.jpg", "images/categories/waterfall.jpg", "images/categories/ship.jpg", "images/categories/nightsky3.png", "images/categories/street.jpg", "images/categories/woman.jpg", "images/categories/day.jpg", "images/categories/sun.jpg", "images/categories/man.jpg", "images/categories/sununder.png", "images/categories/deer.jpg", "images/categories/nightsky.png", "images/categories/water.jpg", "images/categories/nightsky1.png", "images/categories/sunset.jpg", "images/categories/heallifelogo.svg", "/images/events/gw.jpg", "/views/home/post.css", "/themes/heallifeapp/views/homeView.css", "/themes/heallifeapp/views/heallife-iconset.js", "/themes/heallifeapp/main-layout.css", "styles.css"},
-        iconPath = "images/rge.png", backgroundColor = "#ffffff", themeColor = "#ffffff")
+        iconPath = "images/logo.png", backgroundColor = "#ffffff", themeColor = "#ffffff")
 @NpmPackage(value = "line-awesome", version = "1.3.0")
 public class Application extends SpringBootServletInitializer implements AppShellConfigurator {
 

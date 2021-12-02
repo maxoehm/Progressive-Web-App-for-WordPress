@@ -85,7 +85,7 @@ public class EventsView extends FlexLayout {
         title.setId("mainTitle");
 
         VerticalLayout yogaNidra = new VerticalLayout();
-        var subtitleY = new H3("Events");
+        var subtitleY = new H3("In deiner Umgebung");
         var descriptionY = new Paragraph("Hier findest du alle Live Angebote in deiner Umgebung zum Teilnehmen. Hier ist bestimmt für jeden was dabei.");
 
         descriptionY.addClassName("description");
@@ -98,13 +98,32 @@ public class EventsView extends FlexLayout {
 
         yogaNidra.addClassName("box_cat");
 
-        layout.addClickListener(event -> {
+        yogaNidra.addClickListener(event -> {
                 String route = RouteConfiguration.forSessionScope()
                         .getUrl(CategoryView.class, "Event");
             layout.getUI().ifPresent(ui -> ui.navigate(route));
             });
 
-        layout.add(title, yogaNidra);
+        VerticalLayout online = new VerticalLayout();
+        var subtitle = new H3("Über das Internet");
+        var description = new Paragraph("Hier findest du alle Live Angebote die über das Internet stattfinden.");
+
+        description.addClassName("description");
+        subtitle.addClassName("subtitle");
+
+        online.add(subtitle, description);
+
+        online.setId("events");
+
+        online.addClassName("box_cat");
+
+        online.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(CategoryView.class, "Event");
+            layout.getUI().ifPresent(ui -> ui.navigate(route));
+        });
+
+        layout.add(title, yogaNidra, online);
 
         return layout;
     }
