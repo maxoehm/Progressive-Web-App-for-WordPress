@@ -47,51 +47,59 @@ public class CategoryService {
 
             if (entity == 18) {
                 categories.add("Mediathek");
-            }
+            } else
 
-            if (entity == 21) {
-                categories.add("Kraft");
-            }
+            if (entity == 94) {
+                categories.add("Gezielte Bewegung");
+            } else
 
             if (entity == 22) {
                 categories.add("Lifestyle");
-            }
+            } else
 
             if (entity == 23) {
                 categories.add("Yoga");
-            }
+            } else
 
             if (entity == 25) {
                 categories.add("Freizeit");
-            }
+            } else
 
             if (entity == 26) {
                 categories.add("Ernährung");
-            }
+            } else
 
             if (entity == 27) {
                 categories.add("Meditation");
-            }
+            } else
 
             if (entity == 28) {
                 categories.add("Allgemeinwissen");
-            }
+            } else
 
             if (entity == 29) {
                 categories.add("Empfehlungen");
-            }
+            } else
 
             if (entity == 30) {
                 categories.add("Artikel");
-            }
+            } else
 
             if (entity == 31) {
                 categories.add("Podcast");
-            }
+            } else
 
             if (entity == 32) {
                 categories.add("Video");
-            }
+            } else
+
+            if (entity == 95) {
+                categories.add("Events");
+            } else
+
+            if (entity == 49) {
+                categories.add("Seelische und mentale Gesundheit");
+            } else
 
             if (entity == 93) {
                 categories.add("Ja' hör mal Gabi!");

@@ -1,28 +1,20 @@
 package de.heallife.app.views.home;
 
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.template.Id;
-import com.vaadin.flow.dom.Element;
-import com.vaadin.flow.router.*;
-import com.vaadin.flow.server.auth.AnonymousAllowed;
-import de.heallife.app.builders.PostView;
-import de.heallife.app.data.entity.QehrgPost;
-import de.heallife.app.data.service.CategoryService;
-import de.heallife.app.security.AuthenticatedUser;
-import de.heallife.app.security.PostService;
+import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteAlias;
+import com.vaadin.flow.router.RouteConfiguration;
 import de.heallife.app.views.MainLayout;
 import de.heallife.app.views.categories.CategoryView;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
-import java.util.List;
 
 
 /**
@@ -38,16 +30,6 @@ import java.util.List;
 @CssImport("./themes/heallifeapp/views/homeView.css")
 @PermitAll
 public class HomeView extends LitTemplate {
-
-    /**
-     * Creates a new HomeView.
-     */
-
-
-    private CategoryService categoryService;
-    private PostService postService;
-    private AuthenticatedUser authenticatedUser;
-    private int i = 0;
 
     @Id("h1")
     private H1 h1;
@@ -72,27 +54,10 @@ public class HomeView extends LitTemplate {
 
 
     @Inject
-    public HomeView(PostService postService, CategoryService categoryService, AuthenticatedUser authenticatedUser) {
+    public HomeView() {
         // You can initialise any data required for the connected UI components here.
-        this.postService = postService;
-        this.categoryService = categoryService;
-        this.authenticatedUser = authenticatedUser;
 
-        h1.setText("Discover");
-
-        List<QehrgPost> postList = postService.getPost("post", "publish");
-
-        var categories = categoryService.getCategories(postList.get(i+1));
-
-        String categoriesListString = "";
-
-        for (var category : categories) {
-
-            categoriesListString = categoriesListString + ", " + categories.get(i).toString();
-
-        }
-
-
+        h1.setText("Entdecken");
 
         c1.addClickListener(event -> {
             String route = RouteConfiguration.forSessionScope()
@@ -102,7 +67,7 @@ public class HomeView extends LitTemplate {
 
         vaadinVerticalLayout.addClickListener(event -> {
             String route = RouteConfiguration.forSessionScope()
-                    .getUrl(CategoryView.class, "Kraft");
+                    .getUrl(CategoryView.class, "Gezielte Bewegung");
             vaadinVerticalLayout.getUI().ifPresent(ui -> ui.navigate(route));
         });
 
@@ -118,6 +83,30 @@ public class HomeView extends LitTemplate {
             vaadinVerticalLayout2.getUI().ifPresent(ui -> ui.navigate(route));
         });
 
+        vaadinVerticalLayout3.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(CategoryView.class, "Meditation");
+            vaadinVerticalLayout3.getUI().ifPresent(ui -> ui.navigate(route));
+                });
+
+        vaadinVerticalLayout4.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(CategoryView.class, "Seelische und mentale Gesundheit");
+            vaadinVerticalLayout4.getUI().ifPresent(ui -> ui.navigate(route));
+                });
+
+        vaadinVerticalLayout5.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(CategoryView.class, "Ernährung");
+            vaadinVerticalLayout5.getUI().ifPresent(ui -> ui.navigate(route));
+                });
+
+        vaadinVerticalLayout6.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(CategoryView.class, "Yoga");
+            vaadinVerticalLayout6.getUI().ifPresent(ui -> ui.navigate(route));
+                });
+
 /*
         String route = RouteConfiguration.forSessionScope()
                 .getUrl(PostView.class, postList.get(i+1).getId());
@@ -126,5 +115,6 @@ public class HomeView extends LitTemplate {
             c1.getUI().ifPresent(ui -> ui.navigate(route));
         });
 */
+
     }
 }

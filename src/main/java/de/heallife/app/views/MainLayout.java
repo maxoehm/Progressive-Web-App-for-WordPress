@@ -77,11 +77,11 @@ public class MainLayout extends AppLayout {
         homeRoute.add(home);
         homeTab = new Tab(homeRoute);
 
-        RouterLink swatchbook = new RouterLink(null, ProfileView.class);
+        RouterLink swatchbook = new RouterLink(null, EventsView.class);
         swatchbook.add(events);
         Tab swatchTab = new Tab(swatchbook);
 
-        RouterLink headphones = new RouterLink(null, EventsView.class);
+        RouterLink headphones = new RouterLink(null, ProfileView.class);
         headphones.add(subscribe);
         Tab headTab = new Tab(headphones);
 
@@ -89,7 +89,7 @@ public class MainLayout extends AppLayout {
         book.add(blog);
         Tab bookTab = new Tab(book);
 
-        Tabs tabs = new Tabs(homeTab, swatchTab, headTab, bookTab);
+        Tabs tabs = new Tabs(homeTab, swatchTab, bookTab, headTab);
 
         tabs.getStyle().set("color", "black");
         tabs.addThemeVariants(TabsVariant.LUMO_EQUAL_WIDTH_TABS);

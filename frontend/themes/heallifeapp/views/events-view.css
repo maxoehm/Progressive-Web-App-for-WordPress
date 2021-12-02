@@ -4,11 +4,20 @@
   font-size: 1.2em;
   font-weight: bold;
   margin-bottom: 0.5em;
-  color: white;
+  color: black;
+}
+
+#mainTitle {
+  margin-bottom: 0.5rem;
+  font-size: 1.8em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: black;
+  margin-top: -0.5rem;
 }
 
 .description {
-  color: white;
+  color: black;
   font-weight: 500;
 }
 
@@ -20,14 +29,21 @@
 
 #yogaNidra {
 
-  background-image: url("/images/nightsskysthio.jpg");
+  background-image: url("/images/events/gw.jpg");
+  background-size: 100% auto;
+
+}
+
+#events {
+
+  background-image: url("/images/events/ryanplomp.jpg");
   background-size: 100% auto;
 
 }
 
 #gutenMorgen {
 
-  background-image: url("/images/morningqwdas.jpg");
+  background-image: url("/images/events/cupofnothing.jpg");
   background-size: 100% auto;
 
 }

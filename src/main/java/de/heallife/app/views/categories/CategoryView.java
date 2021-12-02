@@ -22,12 +22,13 @@ import de.heallife.app.views.MainLayout;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.security.PermitAll;
 import java.util.List;
 
 
 @Route(value = "category", layout = MainLayout.class)
 @CssImport("./views/categories/category-view.css")
-@AnonymousAllowed
+@PermitAll
 public class CategoryView extends FlexLayout implements HasUrlParameter<String> {
 
     private String parameter;

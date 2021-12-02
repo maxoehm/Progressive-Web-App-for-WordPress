@@ -37,10 +37,10 @@ export class HomeView extends LitElement {
     <h5 class="categoryBox titleB">Allgemeines Wissen</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/day.jpg');" id="vaadinVerticalLayout">
-    <h5 class="categoryBox titleB">Kraft Übungen</h5>
+    <h5 class="categoryBox titleB">Gezielte Bewegung</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/woman.jpg');" id="vaadinVerticalLayout1">
-    <h5 class="categoryBox titleB">Outdoor Aktibitäten</h5>
+    <h5 class="categoryBox titleB">Freizeit & Aktivität</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/landscape.jpg');" id="vaadinVerticalLayout2">
     <h5 class="categoryBox titleB">Lifestyle</h5>
@@ -57,10 +57,10 @@ export class HomeView extends LitElement {
     <h5 class="categoryBox titleB">Podcasts</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sun.jpg');" id="vaadinVerticalLayout6">
-    <h5 class="categoryBox titleB">Empfehlungen</h5>
+    <h5 class="categoryBox titleB">Ernährung</h5>
    </vaadin-vertical-layout>
    <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sunset.jpg');" id="vaadinVerticalLayout7">
-    <h5 class="categoryBox titleB">Lebensrat</h5>
+    <h5 class="categoryBox titleB">Yoga</h5>
    </vaadin-vertical-layout>
   </vaadin-vertical-layout>
  </vaadin-horizontal-layout>

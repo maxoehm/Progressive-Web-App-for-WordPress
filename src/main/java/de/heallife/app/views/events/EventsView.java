@@ -10,7 +10,9 @@ import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
+import com.vaadin.flow.router.RouteConfiguration;
 import de.heallife.app.views.MainLayout;
+import de.heallife.app.views.categories.CategoryView;
 
 import javax.annotation.security.PermitAll;
 
@@ -29,10 +31,14 @@ public class EventsView extends FlexLayout {
     /**
      * Creates a new EventsView.
      */
+
     public EventsView() {
         // You can initialise any data required for the connected UI components here.
 
-        add(buildFormLayout());
+        VerticalLayout mainLayout = new VerticalLayout();
+        mainLayout.add(buildFormLayout(), buildEventsLayout());
+
+        add(mainLayout);
 
     }
 
@@ -41,6 +47,7 @@ public class EventsView extends FlexLayout {
         VerticalLayout layout = new VerticalLayout();
 
         H1 title = new H1("Liveangebote");
+        title.setId("mainTitle");
 
         VerticalLayout yogaNidra = new VerticalLayout();
         var subtitleY = new H3("Yoga Nidra");
@@ -50,8 +57,6 @@ public class EventsView extends FlexLayout {
         subtitleY.addClassName("subtitle");
 
         yogaNidra.add(subtitleY, descriptionY);
-
-
 
         VerticalLayout gutenMorgen = new VerticalLayout();
         var subtitleG = new H3("Guten Morgen, Körper!");
@@ -69,6 +74,37 @@ public class EventsView extends FlexLayout {
 
         gutenMorgen.add(subtitleG, descriptionG);
         layout.add(title, yogaNidra, gutenMorgen);
+
+        return layout;
+    }
+
+    VerticalLayout buildEventsLayout() {
+        VerticalLayout layout = new VerticalLayout();
+
+        H1 title = new H1("Events");
+        title.setId("mainTitle");
+
+        VerticalLayout yogaNidra = new VerticalLayout();
+        var subtitleY = new H3("Events");
+        var descriptionY = new Paragraph("Hier findest du alle Live Angebote in deiner Umgebung zum Teilnehmen. Hier ist bestimmt für jeden was dabei.");
+
+        descriptionY.addClassName("description");
+        subtitleY.addClassName("subtitle");
+
+        yogaNidra.add(subtitleY, descriptionY);
+
+
+        yogaNidra.setId("events");
+
+        yogaNidra.addClassName("box_cat");
+
+        layout.addClickListener(event -> {
+                String route = RouteConfiguration.forSessionScope()
+                        .getUrl(CategoryView.class, "Event");
+            layout.getUI().ifPresent(ui -> ui.navigate(route));
+            });
+
+        layout.add(title, yogaNidra);
 
         return layout;
     }
