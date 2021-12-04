@@ -15,7 +15,7 @@ import java.util.List;
         @Index(name = "post_parent", columnList = "post_parent")
 })
 @Entity
-public class QehrgPost extends AbstractEntity implements Serializable {
+public class QehrgPost extends AbstractEntity implements Serializable, Comparable<QehrgPost> {
     @Column(name = "post_author", nullable = false)
     private Long postAuthor;
 
@@ -275,5 +275,10 @@ public class QehrgPost extends AbstractEntity implements Serializable {
 
     public void setCategories(List<String> categories) {
         this.categories = categories;
+    }
+
+    @Override
+    public int compareTo(QehrgPost o) {
+        return this.getId().compareTo(o.getId());
     }
 }

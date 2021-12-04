@@ -21,7 +21,7 @@ public class PostMetaService {
         return repo.findByPostId(postId);
     }
 
-    public String findFeaturedImage(Integer postId) {
+    public String findFeaturedImage(Integer postId) throws NumberFormatException{
         var entity = repo.findByCustomQuery(Long.valueOf(postId));
 
 

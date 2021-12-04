@@ -23,6 +23,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.security.PermitAll;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -65,10 +66,13 @@ public class CategoryView extends FlexLayout implements HasUrlParameter<String> 
     private VerticalLayout buildPosts(String category) {
 
         List<QehrgPost> posts = categoryService.getPostByCategory("post", "publish", category);
+        Collections.reverse(posts);
+
         VerticalLayout list = new VerticalLayout();
 
         for (QehrgPost post : posts) {
             HorizontalLayout postLayout = new HorizontalLayout();
+
             Image titleImage = new Image(postMetaService.findFeaturedImage(post.getId()), "titleImage");
             titleImage.addClassName("titleImage");
             H1 title = new H1(post.getPostTitle());
@@ -87,6 +91,7 @@ public class CategoryView extends FlexLayout implements HasUrlParameter<String> 
             postLayout.getStyle().set("margin-top", "1rem");
             list.add(postLayout);
         }
+
 
         return list;
     }
