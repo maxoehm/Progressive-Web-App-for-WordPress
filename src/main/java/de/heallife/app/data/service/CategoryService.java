@@ -20,8 +20,6 @@ public class CategoryService {
     private PostService postService;
     private QehrgTermRepository termRepository;
 
-
-
     @Inject
     public CategoryService(PostService postService, QehrgTermRepository termRepository) {
         this.postService  = postService;

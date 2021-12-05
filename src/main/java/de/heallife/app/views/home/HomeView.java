@@ -4,12 +4,15 @@ import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.template.Id;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.router.RouteConfiguration;
+import de.heallife.app.builders.PostView;
 import de.heallife.app.views.MainLayout;
 import de.heallife.app.views.categories.CategoryView;
 
@@ -51,11 +54,27 @@ public class HomeView extends LitTemplate {
     private VerticalLayout vaadinVerticalLayout6;
     @Id("vaadinVerticalLayout7")
     private VerticalLayout vaadinVerticalLayout7;
+    @Id("search-input")
+    private TextField searchInput;
+    @Id("search-icon")
+    private Icon searchIcon;
+
 
 
     @Inject
     public HomeView() {
         // You can initialise any data required for the connected UI components here.
+
+        searchIcon.addClickListener(e -> {
+
+                String route = RouteConfiguration.forSessionScope()
+                        .getUrl(SearchResultView.class, searchInput.getValue());
+
+            searchIcon.getUI().ifPresent(ui -> ui.navigate(route));
+
+        });
+
+
 
         h1.setText("Entdecken");
 
