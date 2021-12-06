@@ -37,4 +37,7 @@ public class PostService {
     }
 
 
+    public List searchByString(String s) {
+        return repo.findByPostTypeAndPostStatusAllIgnoreCaseAndPostTitleContainingOrPostContentContaining("post", "publish", s, s);
+    }
 }

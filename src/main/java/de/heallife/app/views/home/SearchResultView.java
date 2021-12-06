@@ -76,15 +76,12 @@ public class SearchResultView extends VerticalLayout implements HasUrlParameter<
 
                 list.getStyle().set("margin-top", "-1rem");
 
-            } catch (Exception e) {
+            } catch (NullPointerException e) {
                 Notification notification = new Notification("Keine Inhalte mit dem Schlüsselwort gefunden");
                 notification.setDuration(3000);
                 notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
                 notification.open();
             }
-
-
-
 
             return list;
         }

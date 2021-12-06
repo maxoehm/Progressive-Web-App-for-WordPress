@@ -13,4 +13,6 @@ public interface QehrgPostRepository extends JpaRepository<QehrgPost, Integer> {
 
     List<QehrgPost> findByPostTypeAndPostStatusAllIgnoreCase(String posttype, String status);
 
+    List<QehrgPost> findByPostTypeAndPostStatusAllIgnoreCaseAndPostTitleContainingOrPostContentContaining(String posttype, String status, String title, String content);
+
 }

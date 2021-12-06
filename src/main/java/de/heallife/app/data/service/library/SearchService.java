@@ -2,6 +2,7 @@ package de.heallife.app.data.service.library;
 
 import de.heallife.app.data.entity.QehrgPost;
 import de.heallife.app.data.service.CategoryService;
+import de.heallife.app.security.PostService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -12,24 +13,16 @@ import java.util.List;
 public class SearchService {
 
     private CategoryService categoryService;
+    private PostService postService;
 
     @Inject
-    public SearchService(CategoryService categoryService) {
+    public SearchService(CategoryService categoryService, PostService postService) {
         this.categoryService = categoryService;
+        this.postService = postService;
     }
 
 
     public List<QehrgPost> getFromSearch(String s) {
-        List<QehrgPost> searchList = categoryService.getAllPosts();
-        List<QehrgPost> finalList = new ArrayList<>();
-
-
-        for (QehrgPost post : searchList) {
-            if (post.getPostTitle().contains(s) || post.getPostContent().contains(s) || String.valueOf(post.getPostDate()).equals(s) || String.valueOf(post.getPostDate()).contains(s)) {
-                  finalList.add(post);
-            }
-        }
-
-        return finalList;
+        return postService.searchByString(s);
     }
 }
