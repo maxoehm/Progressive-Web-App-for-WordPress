@@ -1,5 +1,7 @@
 package de.heallife.app.views.home;
 
+import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.KeyModifier;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -65,13 +67,16 @@ public class HomeView extends LitTemplate {
     public HomeView() {
         // You can initialise any data required for the connected UI components here.
 
-        searchIcon.addClickListener(e -> {
+        searchInput.addKeyPressListener(Key.ENTER, e -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(SearchResultView.class, searchInput.getValue());
+            searchIcon.getUI().ifPresent(ui -> ui.navigate(route));
+        });
 
+        searchIcon.addClickListener(e -> {
                 String route = RouteConfiguration.forSessionScope()
                         .getUrl(SearchResultView.class, searchInput.getValue());
-
             searchIcon.getUI().ifPresent(ui -> ui.navigate(route));
-
         });
 
 
@@ -104,7 +109,7 @@ public class HomeView extends LitTemplate {
 
         vaadinVerticalLayout3.addClickListener(event -> {
             String route = RouteConfiguration.forSessionScope()
-                    .getUrl(CategoryView.class, "Meditation");
+                    .getUrl(CategoryView.class, "Physische Gesundheit");
             vaadinVerticalLayout3.getUI().ifPresent(ui -> ui.navigate(route));
                 });
 
@@ -116,15 +121,21 @@ public class HomeView extends LitTemplate {
 
         vaadinVerticalLayout5.addClickListener(event -> {
             String route = RouteConfiguration.forSessionScope()
-                    .getUrl(CategoryView.class, "Ernährung");
+                    .getUrl(CategoryView.class, "Podcast");
             vaadinVerticalLayout5.getUI().ifPresent(ui -> ui.navigate(route));
                 });
 
         vaadinVerticalLayout6.addClickListener(event -> {
             String route = RouteConfiguration.forSessionScope()
-                    .getUrl(CategoryView.class, "Yoga");
+                    .getUrl(CategoryView.class, "Ernährung");
             vaadinVerticalLayout6.getUI().ifPresent(ui -> ui.navigate(route));
                 });
+
+        vaadinVerticalLayout7.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(CategoryView.class, "Yoga");
+            vaadinVerticalLayout7.getUI().ifPresent(ui -> ui.navigate(route));
+        });
 
 /*
         String route = RouteConfiguration.forSessionScope()

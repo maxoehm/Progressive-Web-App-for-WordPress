@@ -108,6 +108,10 @@ public class CategoryService {
                 categories.add("Ja' hör mal Gabi!");
             }
 
+            if (entity == 97) {
+                categories.add("Physische Gesundheit");
+            }
+
         }
 
         return categories;

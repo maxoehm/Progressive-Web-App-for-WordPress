@@ -3,6 +3,8 @@ package de.heallife.app.data.entity;
 import de.heallife.app.security.PostService;
 import org.springframework.stereotype.Service;
 
+import java.util.NoSuchElementException;
+
 @Service
 public class PostMetaService {
 
@@ -21,7 +23,7 @@ public class PostMetaService {
         return repo.findByPostId(postId);
     }
 
-    public String findFeaturedImage(Integer postId) throws NumberFormatException{
+    public String findFeaturedImage(Integer postId) throws NumberFormatException, NoSuchElementException {
         var entity = repo.findByCustomQuery(Long.valueOf(postId));
 
 
@@ -33,6 +35,11 @@ public class PostMetaService {
         }
 
         var object = service.getPostById(Integer.valueOf(metaValue));
-        return object.get().getGuid();
+
+        try {
+            return object.get().getGuid();
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("No featured image found");
+        }
     }
 }

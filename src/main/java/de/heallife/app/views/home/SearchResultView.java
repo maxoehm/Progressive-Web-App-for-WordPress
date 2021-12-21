@@ -18,6 +18,7 @@ import org.atmosphere.config.service.Post;
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Route(value = "search/result", layout = MainLayout.class)
 @PermitAll
@@ -49,10 +50,10 @@ public class SearchResultView extends VerticalLayout implements HasUrlParameter<
                     try {
                         titleImage = new Image(postMetaService.findFeaturedImage(posts.get(i).getId()), "titleImage");
                         titleImage.addClassName("titleImage");
-                    } catch (NumberFormatException e) {
+                    } catch (NumberFormatException | NoSuchElementException | NullPointerException e) {
                         titleImage = new Image("/images/events/cupofnothing.jpg", "titleImage");
                         titleImage.addClassName("titleImage");
-
+                        break;
                     }
 
 
@@ -88,6 +89,10 @@ public class SearchResultView extends VerticalLayout implements HasUrlParameter<
 
     @Override
     public void setParameter(BeforeEvent beforeEvent, String s) {
+
+        if (s == null) {
+            s = "Keine Ergebnisse gefunden!";
+        }
 
         main = new VerticalLayout();
         title = new H1("");

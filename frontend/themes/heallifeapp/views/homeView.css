@@ -1,6 +1,6 @@
 .categoryBox {
     font-size: 1.05rem;
-    color: white;
+    color: #000000;
     width: 7.5rem;
     font-family: 'Montserrat', sans-serif;
     font-weight: 700;
@@ -11,7 +11,7 @@
 @media screen and (min-width: 600px) {
     .categoryBox {
         font-size: 1.75rem;
-        color: white;
+        color: #000000;
         width: 40vw;
         font-family: 'Montserrat', sans-serif;
         font-weight: 700;
@@ -36,7 +36,10 @@
     height: 10rem;
     padding-left: 1rem;
     border-radius: 20px;
-    background-size: 100% auto;
+
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center bottom 20%;
+    background-size: 85%;
 
 }
 
@@ -54,7 +57,10 @@
     height: 15rem;
     padding-left: 1rem;
     border-radius: 20px;
-    background-size: 100% auto;
+
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-position: center bottom 20%;
+    background-size: 85%;
 
 }
 
@@ -67,4 +73,49 @@
         background-size: 100% auto;
 
     }
+}
+
+#c1 {
+    background-color: rgba(70, 70, 70, 0.08);
+    background-image: url('/images/categories/new/undraw_reading_book_re_kqpk.svg');
+}
+
+#vaadinVerticalLayout {
+    background-color: rgba(70, 70, 70, 0.08);
+    background-image: url('/images/categories/new/undraw_nature_benefits_re_kk70 (1).svg');
+}
+
+#vaadinVerticalLayout1 {
+    background-color: rgba(70, 70, 70, 0.08);
+    background-image: url('/images/categories/new/undraw_skateboarding_-929-d.svg');
+}
+
+#vaadinVerticalLayout2 {
+    background-color: rgba(70, 70, 70, 0.08);
+    background-image: url('/images/categories/new/undraw_selfie_time_re_apbg.svg');
+}
+
+#vaadinVerticalLayout3 {
+    background-color: rgba(70, 70, 70, 0.08);
+    background-image: url('/images/categories/new/undraw_young_and_happy_hfpe.svg');
+}
+
+#vaadinVerticalLayout4 {
+    background-color: rgba(70, 70, 70, 0.08);
+    background-image: url('/images/categories/new/undraw_in_thought_re_qyxl.svg');
+}
+
+#vaadinVerticalLayout5 {
+    background-color: rgba(70, 70, 70, 0.08);
+    background-image: url('/images/categories/new/undraw_podcast_re_wr88.svg');
+}
+
+#vaadinVerticalLayout6 {
+    background-color: rgba(70, 70, 70, 0.08);
+    background-image: url('/images/categories/new/undraw_mint_tea_-7-su0.svg');
+}
+
+#vaadinVerticalLayout7 {
+    background-color: rgba(70, 70, 70, 0.08);
+    background-image: url('/images/categories/new/undraw_yoga_-248-n.svg');
 }

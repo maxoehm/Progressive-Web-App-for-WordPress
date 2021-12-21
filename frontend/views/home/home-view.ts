@@ -33,33 +33,33 @@ export class HomeView extends LitElement {
 <vaadin-vertical-layout theme="spacing">
  <vaadin-horizontal-layout theme="spacing" style="width: 90%; margin-top: 1.5rem; margin-left: 1.2rem;">
   <vaadin-vertical-layout theme="spacing">
-   <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/cactus.jpg');" id="c1">
+   <vaadin-vertical-layout theme="spacing" class="box_big" id="c1">
     <h5 class="categoryBox titleB">Allgemeines Wissen</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/day.jpg');" id="vaadinVerticalLayout">
+   <vaadin-vertical-layout theme="spacing" class="box" id="vaadinVerticalLayout">
     <h5 class="categoryBox titleB">Gezielte Bewegung</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/woman.jpg');" id="vaadinVerticalLayout1">
+   <vaadin-vertical-layout theme="spacing" class="box_big" id="vaadinVerticalLayout1">
     <h5 class="categoryBox titleB">Freizeit & Aktivität</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/landscape.jpg');" id="vaadinVerticalLayout2">
+   <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout2">
     <h5 class="categoryBox titleB">Lifestyle</h5>
    </vaadin-vertical-layout>
   </vaadin-vertical-layout>
   <vaadin-vertical-layout theme="spacing">
-   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/man.jpg');" id="vaadinVerticalLayout3">
+   <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout3">
     <h5 class="categoryBox titleB">Physische Gesundheit</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box_big" style="background-image: url('/images/categories/ship.jpg');" id="vaadinVerticalLayout4">
+   <vaadin-vertical-layout theme="spacing" class="box_big"  id="vaadinVerticalLayout4">
     <h5 class="categoryBox titleB">Seelische und Mentale Gesundheit</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sununder.png');" id="vaadinVerticalLayout5">
+   <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout5">
     <h5 class="categoryBox titleB">Podcasts</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sun.jpg');" id="vaadinVerticalLayout6">
+   <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout6">
     <h5 class="categoryBox titleB">Ernährung</h5>
    </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box" style="background-image: url('/images/categories/sunset.jpg');" id="vaadinVerticalLayout7">
+   <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout7">
     <h5 class="categoryBox titleB">Yoga</h5>
    </vaadin-vertical-layout>
   </vaadin-vertical-layout>
