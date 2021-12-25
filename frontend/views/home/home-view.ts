@@ -32,7 +32,7 @@ export class HomeView extends LitElement {
 </vaadin-vertical-layout>
 <vaadin-vertical-layout theme="spacing">
  <vaadin-horizontal-layout theme="spacing" style="width: 90%; margin-top: 1.5rem; margin-left: 1.2rem;">
-  <vaadin-vertical-layout theme="spacing">
+  <vaadin-vertical-layout theme="spacing" style = "width: 100%;">
    <vaadin-vertical-layout theme="spacing" class="box_big" id="c1">
     <h5 class="categoryBox titleB">Allgemeines Wissen</h5>
    </vaadin-vertical-layout>
@@ -46,7 +46,7 @@ export class HomeView extends LitElement {
     <h5 class="categoryBox titleB">Lifestyle</h5>
    </vaadin-vertical-layout>
   </vaadin-vertical-layout>
-  <vaadin-vertical-layout theme="spacing">
+  <vaadin-vertical-layout theme="spacing" style = "width: 100%;">
    <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout3">
     <h5 class="categoryBox titleB">Physische Gesundheit</h5>
    </vaadin-vertical-layout>
