@@ -74,7 +74,7 @@ public class EventsView extends FlexLayout {
 
         gutenMorgen.addClickListener(event -> {
             String route = RouteConfiguration.forSessionScope()
-                    .getUrl(PostView.class, 235344);
+                    .getUrl(PostView.class, 235698);
             layout.getUI().ifPresent(ui -> ui.navigate(route));
         });
 
@@ -112,7 +112,7 @@ public class EventsView extends FlexLayout {
 
         local.addClickListener(event -> {
                 String route = RouteConfiguration.forSessionScope()
-                        .getUrl(CategoryView.class, "Event");
+                        .getUrl(CategoryView.class, "Events");
             layout.getUI().ifPresent(ui -> ui.navigate(route));
             });
 
@@ -131,7 +131,7 @@ public class EventsView extends FlexLayout {
 
         online.addClickListener(event -> {
             String route = RouteConfiguration.forSessionScope()
-                    .getUrl(CategoryView.class, "Event Online");
+                    .getUrl(CategoryView.class, "Events Online");
             layout.getUI().ifPresent(ui -> ui.navigate(route));
         });
 

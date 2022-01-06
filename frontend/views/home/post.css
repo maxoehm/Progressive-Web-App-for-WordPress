@@ -39,3 +39,8 @@ img {
 audio {
     margin-left: -2.3rem;
 }
+
+figcaption {
+    font-size: 15px;
+    margin-left: -10vw;
+}

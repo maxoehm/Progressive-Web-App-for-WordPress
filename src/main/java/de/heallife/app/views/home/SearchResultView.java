@@ -56,7 +56,6 @@ public class SearchResultView extends VerticalLayout implements HasUrlParameter<
                         break;
                     }
 
-
                     H1 title = new H1(posts.get(i).getPostTitle());
                     title.addClassName("post-title");
                     postLayout.add(titleImage, title);
@@ -77,7 +76,7 @@ public class SearchResultView extends VerticalLayout implements HasUrlParameter<
 
                 list.getStyle().set("margin-top", "-1rem");
 
-            } catch (NullPointerException e) {
+            } catch (NumberFormatException | NoSuchElementException | NullPointerException e) {
                 Notification notification = new Notification("Keine Inhalte mit dem Schlüsselwort gefunden");
                 notification.setDuration(3000);
                 notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
