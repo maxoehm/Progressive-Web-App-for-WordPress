@@ -66,11 +66,38 @@
 @media screen and (min-width: 600px) {
     .box_big {
         width: 100%;
-        height: 8rem;
+        height: 20vw;
         padding-left: 1rem;
         border-radius: 20px;
-        background-size: 100% auto;
+        background-size: 50% auto;
 
+    }
+
+    .box {
+        width: 100%;
+        height: 15vw;
+        padding-left: 1rem;
+        border-radius: 20px;
+        background-size: 50% auto;
+    }
+
+    @media screen and (min-width: 1000px) {
+        .box_big {
+            width: 100%;
+            height: 20vw;
+            padding-left: 1rem;
+            border-radius: 20px;
+            background-size: 30% auto;
+
+        }
+
+        .box {
+            width: 100%;
+            height: 15vw;
+            padding-left: 1rem;
+            border-radius: 20px;
+            background-size: 30% auto;
+        }
     }
 }
 
