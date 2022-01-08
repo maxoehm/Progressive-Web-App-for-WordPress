@@ -1,14 +1,21 @@
 package de.heallife.app;
 
 import com.vaadin.flow.component.page.AppShellConfigurator;
+import com.vaadin.flow.component.page.Inline;
+import com.vaadin.flow.component.page.TargetElement;
+import com.vaadin.flow.server.AppShellSettings;
 import com.vaadin.flow.server.PWA;
 
+import de.heallife.app.security.AuthenticatedUser;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.vaadin.artur.helpers.LaunchUtil;
 import com.vaadin.flow.theme.Theme;
 import com.vaadin.flow.component.dependency.NpmPackage;
+
+import javax.inject.Inject;
 
 /**
  * The entry point of the Spring Boot application.
@@ -30,5 +37,29 @@ public class Application extends SpringBootServletInitializer implements AppShel
     public static void main(String[] args) {
         LaunchUtil.launchBrowserInDevelopmentMode(SpringApplication.run(Application.class, args));
     }
+
+    private AuthenticatedUser authenticatedUser;
+
+    @Inject
+    public Application(AuthenticatedUser authenticatedUser) {
+        this.authenticatedUser = authenticatedUser;
+    }
+
+    @Override
+    public void configurePage(AppShellSettings settings) {
+
+        if (!authenticatedUser.get().isEmpty()) {
+            settings.addInlineWithContents(TargetElement.HEAD, Inline.Position.APPEND, "<!-- Global site tag (gtag.js) - Google Analytics -->\n" +
+                    "<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-QDPCWFWSHM\"></script>\n" +
+                    "<script>\n" +
+                    "  window.dataLayer = window.dataLayer || [];\n" +
+                    "  function gtag(){dataLayer.push(arguments);}\n" +
+                    "  gtag('js', new Date());\n" +
+                    "\n" +
+                    "  gtag('config', 'G-QDPCWFWSHM');\n" +
+                    "</script>", Inline.Wrapping.AUTOMATIC);
+        }
+    }
+
 
 }
