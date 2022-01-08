@@ -2,11 +2,13 @@ package de.heallife.app.security;
 
 import com.vaadin.flow.spring.security.VaadinWebSecurityConfigurerAdapter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import de.heallife.app.views.login.LoginView;
@@ -22,16 +24,24 @@ public class SecurityConfiguration extends VaadinWebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
+    @Autowired
+    private UserDetailsService userDetailsService;
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
+
+        http.rememberMe().alwaysRemember(true)
+                .userDetailsService(userDetailsService);
+
         super.configure(http);
         setLoginView(http, LoginView.class, LOGOUT_URL);
+
+
     }
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        super.configure(web);
         web.ignoring().antMatchers("/images/*.png");
         web.ignoring().antMatchers("/images/*.jpg");
         web.ignoring().antMatchers("/images/*.webp");
@@ -41,5 +51,6 @@ public class SecurityConfiguration extends VaadinWebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/images/events/*.*");
         web.ignoring().antMatchers("/images/events/***");
 
+        super.configure(web);
     }
 }
