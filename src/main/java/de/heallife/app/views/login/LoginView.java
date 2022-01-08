@@ -2,14 +2,13 @@ package de.heallife.app.views.login;
 
 import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.login.LoginOverlay;
-import com.vaadin.flow.router.BeforeEvent;
-import com.vaadin.flow.router.HasUrlParameter;
-import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.router.Route;
+import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.notification.NotificationVariant;
+import com.vaadin.flow.router.*;
 
 @PageTitle("Login")
 @Route(value = "login")
-public class LoginView extends LoginOverlay {
+public class LoginView extends LoginOverlay implements BeforeEnterObserver {
 
     private LoginI18n i18n = LoginI18n.createDefault();
 
@@ -25,8 +24,19 @@ public class LoginView extends LoginOverlay {
         setI18n(i18n);
         setForgotPasswordButtonVisible(false);
         setOpened(true);
+    }
 
+    @Override
+    public void beforeEnter(BeforeEnterEvent beforeEnterEvent) {
+        Location location = beforeEnterEvent.getLocation();
+        QueryParameters queryParameters = location.getQueryParameters();
 
+        if (queryParameters.getParameters().containsKey("error")) {
+            Notification notification = new Notification("Login fehlgeschlagen, bitte überprüfe deine Anmeldedaten und stelle sicher, dass dein Abo aktiv ist. Du kannst dein Abo auf heallife.de/login einsehen.");
+            notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+
+            notification.open();
+        }
 
     }
 }
