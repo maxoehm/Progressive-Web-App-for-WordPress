@@ -54,14 +54,13 @@ public class CategoryView extends FlexLayout implements HasUrlParameter<String> 
     @Override
     public void setParameter(BeforeEvent event, String parameter) {
 
-        title.setText(parameter);
-        main.add(buildPosts(parameter));
-
+        title.setText(parameter.replaceAll("_", " "));
+        main.add(buildPosts(Enum.valueOf(CategoryService.CATEGORY.class, parameter)));
     }
 
-    private VerticalLayout buildPosts(String category) {
+    private VerticalLayout buildPosts(CategoryService.CATEGORY category) {
 
-        List<QehrgPost> posts = categoryService.getPostByCategory("post", "publish", category);
+        List<QehrgPost> posts = categoryService.getAllPostsByCategory(category);
         Collections.reverse(posts);
 
         VerticalLayout list = new VerticalLayout();

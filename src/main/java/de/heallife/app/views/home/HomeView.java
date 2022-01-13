@@ -79,8 +79,6 @@ public class HomeView extends LitTemplate {
             searchIcon.getUI().ifPresent(ui -> ui.navigate(route));
         });
 
-
-
         h1.setText("Entdecken");
 
         c1.addClickListener(event -> {
@@ -91,7 +89,7 @@ public class HomeView extends LitTemplate {
 
         vaadinVerticalLayout.addClickListener(event -> {
             String route = RouteConfiguration.forSessionScope()
-                    .getUrl(CategoryView.class, "Gezielte Bewegung");
+                    .getUrl(CategoryView.class, "Gezielte_Bewegung");
             vaadinVerticalLayout.getUI().ifPresent(ui -> ui.navigate(route));
         });
 
@@ -109,13 +107,13 @@ public class HomeView extends LitTemplate {
 
         vaadinVerticalLayout3.addClickListener(event -> {
             String route = RouteConfiguration.forSessionScope()
-                    .getUrl(CategoryView.class, "Physische Gesundheit");
+                    .getUrl(CategoryView.class, "Physische_Gesundheit");
             vaadinVerticalLayout3.getUI().ifPresent(ui -> ui.navigate(route));
                 });
 
         vaadinVerticalLayout4.addClickListener(event -> {
             String route = RouteConfiguration.forSessionScope()
-                    .getUrl(CategoryView.class, "Seelische und mentale Gesundheit");
+                    .getUrl(CategoryView.class, "Seelische_und_mentale_Gesundheit");
             vaadinVerticalLayout4.getUI().ifPresent(ui -> ui.navigate(route));
                 });
 

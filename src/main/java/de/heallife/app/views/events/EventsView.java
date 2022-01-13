@@ -131,7 +131,7 @@ public class EventsView extends FlexLayout {
 
         online.addClickListener(event -> {
             String route = RouteConfiguration.forSessionScope()
-                    .getUrl(CategoryView.class, "Events Online");
+                    .getUrl(CategoryView.class, "Events_Online");
             layout.getUI().ifPresent(ui -> ui.navigate(route));
         });
 

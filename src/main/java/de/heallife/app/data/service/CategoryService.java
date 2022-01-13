@@ -1,31 +1,29 @@
 package de.heallife.app.data.service;
 
 import de.heallife.app.data.entity.QehrgPost;
+import de.heallife.app.data.entity.QehrgTermRelationship;
+import de.heallife.app.data.repositories.QehrgTermRelationshipRepository;
 import de.heallife.app.security.PostService;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class CategoryService {
 
     private PostService postService;
     private QehrgTermRepository termRepository;
+    private QehrgTermRelationshipRepository termRelationshipRepository;
 
     @Inject
-    public CategoryService(PostService postService, QehrgTermRepository termRepository) {
+    public CategoryService(PostService postService, QehrgTermRepository termRepository, QehrgTermRelationshipRepository termRelationshipRepository) {
         this.postService  = postService;
         this.termRepository = termRepository;
-
-
+        this.termRelationshipRepository = termRelationshipRepository;
     }
 
     @PersistenceContext
@@ -33,16 +31,13 @@ public class CategoryService {
 
     public List<String> getCategories(QehrgPost post) {
 
-        String query = "select * from QEhRG_term_relationships as u where u.object_id = :vx";
-        Query q = em.createNativeQuery(query);
-        q.setParameter("vx", post.getId());
-        List<Object[]> resultList = q.getResultList();
+        List<QehrgTermRelationship> resultList = termRelationshipRepository.findQehrgTermRelationshipsByIdObjectId(Long.valueOf(post.getId()));
 
         List<String> categories = new ArrayList<>();
 
-        for (Object[] objects : resultList) {
+        for (QehrgTermRelationship objects : resultList) {
 
-            var entity = Integer.parseInt(objects[1].toString());
+            var entity = objects.getId().getTermTaxonomyId();
 
             if (entity == 18) {
                 categories.add("Mediathek");
@@ -117,25 +112,40 @@ public class CategoryService {
         return categories;
     }
 
-    @Transactional
-    public List<QehrgPost> getPostByCategory(String postType, String postStatus, String category) {
-        List<QehrgPost> posts = postService.getPost(postType, postStatus);
 
-        List<QehrgPost> filteredPosts = new ArrayList<>();
+    public enum CATEGORY {
+        Physische_Gesundheit(97L), Seelische_und_mentale_Gesundheit(49L),
+        Mediathek(18L), Gezielte_Bewegung(94L), Lifestyle(22L),
+        Yoga(23L), Freizeit(25L),
+        Ernährung(26L), Meditation(27L), Allgemeinwissen(28L),
+        Empfehlungen(29L), Artikel(30L), Podcast(31L), Video(32L),
+        Events(95L), Events_Online(96L), Ja_hör_mal_Gabi(93L);
 
-        for (int i = 0; i < posts.size(); i++) {
-
-            for (int j = 0; j < getCategories(posts.get(i)).size(); j++) {
-
-                if (Objects.equals(getCategories(posts.get(i)).get(j), category)) {
-                    filteredPosts.add(posts.get(i));
-                }
-            }
+        private Long mapping;
+        CATEGORY(Long mapping) {
+            this.mapping = mapping;
         }
-
-        return filteredPosts;
+        public Long getMapping() {
+            return mapping;
+        }
     }
 
+    public List<QehrgPost> getAllPostsByCategory(CATEGORY category) {
+
+        List<QehrgTermRelationship> da = termRelationshipRepository.findAllById_TermTaxonomyId(category.getMapping());
+        List<QehrgPost> posts = new ArrayList<>();
+
+        for (QehrgTermRelationship qehrgTermRelationship : da) {
+            var b = postService.getPostByIdAndPostStatus(Math.toIntExact(qehrgTermRelationship.getId().getObjectId()), "publish");
+
+            if (b != null) {
+                posts.add(b);
+            }
+
+        }
+
+        return posts;
+    }
 
     public List<QehrgPost> getAllPosts() {
         return postService.getPost("post", "publish");
