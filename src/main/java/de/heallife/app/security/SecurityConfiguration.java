@@ -50,6 +50,9 @@ public class SecurityConfiguration extends VaadinWebSecurityConfigurerAdapter {
         web.ignoring().antMatchers("/images/categories/*.jpg");
         web.ignoring().antMatchers("/images/events/*.*");
         web.ignoring().antMatchers("/images/events/***");
+        web.ignoring().antMatchers("manifest.json");
+        web.ignoring().antMatchers("/manifest.json");
+
 
         super.configure(web);
     }
