@@ -57,7 +57,7 @@ public class Application extends SpringBootServletInitializer implements AppShel
                     "  gtag('js', new Date());\n" +
                     "\n" +
                     "  gtag('config', 'G-QDPCWFWSHM');\n" +
-                    "</script>", Inline.Wrapping.AUTOMATIC);
+                    "</script>"+ "<meta name=\"sentry-trace\" content=\"{{ span.toSentryTrace() }}\" />\n", Inline.Wrapping.AUTOMATIC);
         }
     }
 

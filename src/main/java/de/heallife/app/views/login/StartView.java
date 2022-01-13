@@ -21,7 +21,7 @@ import javax.annotation.security.PermitAll;
 
 
 @Route(value = "start", layout = MainLayout.class)
-@PermitAll
+@AnonymousAllowed
 @CssImport("./themes/heallifeapp/views/install-view.css")
 public class StartView extends FlexLayout implements HasUrlParameter<String>  {
 
