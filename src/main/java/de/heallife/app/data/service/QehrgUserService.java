@@ -36,10 +36,10 @@ public class QehrgUserService {
     public QehrgUser find(String username) {
 
         try {
-            return QEhRGUserRepository.findByCustomQuery(username);
+            return QEhRGUserRepository.findQehrgUserByUserEmail(username);
         } catch (NullPointerException e) {
+            return QEhRGUserRepository.findQehrgUserByUserNicename(username);
 
-            return QEhRGUserRepository.findByCustomQueryEmail(username);
         }
     }
 

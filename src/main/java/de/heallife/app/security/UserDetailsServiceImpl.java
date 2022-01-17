@@ -50,7 +50,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             } else {
                 throw new UsernameNotFoundException("Subscription is not active");
             }
-
     }
 
     private List<QehrgMeprSubscription> member;

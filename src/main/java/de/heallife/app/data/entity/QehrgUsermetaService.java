@@ -1,6 +1,7 @@
 package de.heallife.app.data.entity;
 
 
+import de.heallife.app.data.service.QehrgUserRepository;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -12,10 +13,12 @@ public class QehrgUsermetaService {
 
 
     private QehrgUsermetaRepository qehrgUsermetaRepository;
+    private QehrgUserRepository qehrgUserRepository;
 
     @Inject
-    public QehrgUsermetaService(QehrgUsermetaRepository qehrgUsermetaRepository) {
+    public QehrgUsermetaService(QehrgUsermetaRepository qehrgUsermetaRepository, QehrgUserRepository qehrgUserRepository) {
         this.qehrgUsermetaRepository = qehrgUsermetaRepository;
+        this.qehrgUserRepository = qehrgUserRepository;
     }
 
     public QehrgUsermeta findByUserId(Long userId) {
@@ -41,5 +44,6 @@ public class QehrgUsermetaService {
 
         return beans;
     }
+
 
 }
