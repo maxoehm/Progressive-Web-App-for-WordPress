@@ -92,6 +92,7 @@ public class MainLayout extends AppLayout {
         Tabs tabs = new Tabs(homeTab, swatchTab, bookTab, headTab);
 
         tabs.getStyle().set("color", "black");
+        tabs.getStyle().set("height", "62px");
         tabs.addThemeVariants(TabsVariant.LUMO_EQUAL_WIDTH_TABS);
 
         tabs.addSelectedChangeListener(change -> {
