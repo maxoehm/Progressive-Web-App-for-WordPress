@@ -119,7 +119,7 @@ public class CategoryService {
         Yoga(23L), Freizeit(25L),
         Ernährung(26L), Meditation(27L), Allgemeinwissen(28L),
         Empfehlungen(29L), Artikel(30L), Podcast(31L), Video(32L),
-        Events(95L), Events_Online(96L), Ja_hör_mal_Gabi(93L);
+        Events(95L), Events_Online(96L), Ja_hör_mal_Gabi(93L), Spendenaktion(98L);
 
         private Long mapping;
         CATEGORY(Long mapping) {

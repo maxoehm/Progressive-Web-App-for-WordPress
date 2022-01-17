@@ -56,6 +56,8 @@ public class HomeView extends LitTemplate {
     private VerticalLayout vaadinVerticalLayout6;
     @Id("vaadinVerticalLayout7")
     private VerticalLayout vaadinVerticalLayout7;
+    @Id("vaadinVerticalLayout8")
+    private VerticalLayout vaadinVerticalLayout8;
     @Id("search-input")
     private TextField searchInput;
     @Id("search-icon")
@@ -134,6 +136,12 @@ public class HomeView extends LitTemplate {
                     .getUrl(CategoryView.class, "Yoga");
             vaadinVerticalLayout7.getUI().ifPresent(ui -> ui.navigate(route));
         });
+
+        vaadinVerticalLayout8.addClickListener(event -> {
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(CategoryView.class, "Spendenaktion");
+            vaadinVerticalLayout8.getUI().ifPresent(ui -> ui.navigate(route));
+                });
 
 /*
         String route = RouteConfiguration.forSessionScope()

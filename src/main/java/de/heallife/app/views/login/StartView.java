@@ -1,8 +1,12 @@
 package de.heallife.app.views.login;
 
+import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.UI;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.icon.VaadinIcon;
@@ -48,8 +52,9 @@ public class StartView extends FlexLayout implements HasUrlParameter<String>  {
 
     @Override
     public void setParameter(BeforeEvent beforeEvent, String parameter) {
-        if (parameter.equals("install")) {
 
+
+        if (parameter.equals("install")) {
 
              if (UI.getCurrent().getSession().getBrowser().isAndroid()) {
 
@@ -61,11 +66,36 @@ public class StartView extends FlexLayout implements HasUrlParameter<String>  {
                  }
 
              } else if (UI.getCurrent().getSession().getBrowser().isSafari()) {
+                 promtKnowHowToNavigate();
                  buildIos();
              }
 
         }
     }
+
+    private void promtKnowHowToNavigate() {
+
+        ConfirmDialog dialog = new ConfirmDialog();
+        dialog.setHeader("Weisst du wie man navigiert?");
+        dialog.setText("Weisst du wie man vor und zurück geht, also auf die vorherige Seite kommt?");
+
+        dialog.setCancelText("Ja, weiss ich.");
+        dialog.setCancelable(true);
+        dialog.addCancelListener(event -> {
+                dialog.close();
+                });
+
+        dialog.setConfirmText("Nein, zeig mir wie.");
+        dialog.addConfirmListener(event -> {
+            dialog.close();
+            UI.getCurrent().getPage().setLocation("https://youtu.be/H8w1NCkBhV4?t=35");
+        });
+
+        add(dialog);
+        dialog.open();
+    }
+
+
 
     private void buildIos() {
 
@@ -79,7 +109,9 @@ public class StartView extends FlexLayout implements HasUrlParameter<String>  {
         Paragraph step3 = new Paragraph("3. Öffne die App von deinem Home-Bildschirm aus");
         step3.addClassName("step");
 
-        main.add(step1, step2, step3);
+        Html html = new Html("<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/9l-Uu3QiYDM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
+
+        main.add(step1, step2, step3, html);
         horizontalLayout.add(home);
         mainLayout.add(horizontalLayout, main);
 
@@ -94,12 +126,13 @@ public class StartView extends FlexLayout implements HasUrlParameter<String>  {
 
         Paragraph step1 = new Paragraph("1. Bitte auf die drei Punkte oben rechts auf deinem Bildschirm");
         step1.addClassName("step");
-        Paragraph step2 = new Paragraph("2. Klicke auf App installieren");
+        Paragraph step2 = new Paragraph("2. Klicke auf 'Zum Home-Bildschirm hinzufügen'");
         step2.addClassName("step");
         Paragraph step3 = new Paragraph("3. Öffne die App von deinem Home-Bildschirm aus");
         step3.addClassName("step");
+        Html html = new Html("<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/9l-Uu3QiYDM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
 
-        main.add(home, step1, step2, step3);
+        main.add(home, step1, step2, step3, html);
         horizontalLayout.add(home);
 
         mainLayout.add(horizontalLayout, main);

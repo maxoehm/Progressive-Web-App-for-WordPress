@@ -138,6 +138,13 @@
     background-image: url('/images/categories/new/undraw_yoga_-248-n.svg');
 }
 
+#vaadinVerticalLayout8 {
+    background-color: rgba(70, 70, 70, 0.08);
+    background-image: url('/images/categories/new/undraw_a_whole_year_vnfm.svg');
+
+    margin-bottom: 20vw;
+}
+
 @media (max-width:960px) {
     .box_big {
         height: 70vw;

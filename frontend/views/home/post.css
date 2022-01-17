@@ -7,11 +7,27 @@
 }
 
 #h1 {
-    width: 85%;
-    font-weight: 600;
-    color: black;
     font-size: 1.8rem;
     font-family: 'Montserrat', sans-serif;
+}
+
+
+h1 {
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+    font-weight: 700;
+    color: #000000!important;
+}
+
+h2 {
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+    font-weight: 700;
+    color: #000000!important;
+}
+
+h3 {
+    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
+    font-weight: 700;
+    color: #000000!important;
 }
 
 video {
@@ -31,9 +47,10 @@ figure {
 }
 
 img {
+    border-radius: 10px;
     width: 100%;
     height: auto;
-    margin-left: -2.3rem;
+    margin-left: -2.5rem;
 }
 
 audio {

@@ -45,6 +45,9 @@ export class HomeView extends LitElement {
    <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout2">
     <h5 class="categoryBox titleB">Lifestyle</h5>
    </vaadin-vertical-layout>
+    <vaadin-vertical-layout theme="spacing" class="box_big" id="vaadinVerticalLayout8">
+      <h5 class="categoryBox titleB">Freizeit & Aktivität</h5>
+    </vaadin-vertical-layout>
   </vaadin-vertical-layout>
   <vaadin-vertical-layout theme="spacing" style = "width: 100%;">
    <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout3">
