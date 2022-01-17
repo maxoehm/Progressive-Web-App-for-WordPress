@@ -1,63 +1,60 @@
 :host(:not([no-scroll])) [content] {
-    overflow: hidden;
+  overflow: hidden;
 }
 .wp-block-video {
-    width: 130%;
-    margin-left: -10vw;
+  width: 130%;
+  margin-left: -10vw;
 }
 
 #h1 {
-    font-size: 1.8rem;
-    font-family: 'Montserrat', sans-serif;
+  font-size: 1.8rem;
+  font-family: 'Montserrat', sans-serif;
 }
 
-
 h1 {
-    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-    font-weight: 700;
-    color: #000000!important;
+  font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 700;
+  color: #000000 !important;
 }
 
 h2 {
-    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-    font-weight: 700;
-    color: #000000!important;
+  font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 700;
+  color: #000000 !important;
 }
 
 h3 {
-    font-family: 'Montserrat',Helvetica,Arial,Lucida,sans-serif;
-    font-weight: 700;
-    color: #000000!important;
+  font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 700;
+  color: #000000 !important;
 }
 
 video {
-    margin-left: 2.3rem;
-    width: 75%;
-    height: auto;
+  margin-left: 2.3rem;
+  width: 75%;
+  height: auto;
 }
 
 figure {
-    width: 95%;
+  width: 95%;
 }
 
-
-
 :host(content) {
-    overflow-x: hidden;
+  overflow-x: hidden;
 }
 
 img {
-    border-radius: 10px;
-    width: 100%;
-    height: auto;
-    margin-left: -2.5rem;
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  margin-left: -2.5rem;
 }
 
 audio {
-    margin-left: -2.3rem;
+  margin-left: -2.3rem;
 }
 
 figcaption {
-    font-size: 15px;
-    margin-left: -10vw;
+  font-size: 15px;
+  margin-left: -10vw;
 }
