@@ -99,42 +99,29 @@ public class StartView extends FlexLayout implements HasUrlParameter<String>  {
 
     private void buildIos() {
 
-        Icon home = new Icon("heallife","arrow-up");
-        home.addClassName("rotated");
-
-        Paragraph step1 = new Paragraph("1. Bitte auf den Teilen -Button unten auf deinem Bildschirm");
+        Paragraph step1 = new Paragraph("1. Klicke auf den Teilen -Button unten auf deinem Bildschirm");
         step1.addClassName("step");
         Paragraph step2 = new Paragraph("2. Klicke auf 'Zum Home-Bildschirm hinzufügen'");
         step2.addClassName("step");
         Paragraph step3 = new Paragraph("3. Öffne die App von deinem Home-Bildschirm aus");
         step3.addClassName("step");
 
-        Html html = new Html("<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/9l-Uu3QiYDM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
-
+        Html html = new Html("<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/AL_77M46fwk\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
+        html.getElement().getStyle().set("width", "100%");
         main.add(step1, step2, step3, html);
-        horizontalLayout.add(home);
-        mainLayout.add(horizontalLayout, main);
-
-        home.getStyle().set("justify-content", "center");
-        add(home);
+        mainLayout.add(main);
     }
 
     private void buildChorome() {
 
-        Icon home = new Icon("heallife","arrow-up");
-        home.addClassName("bounce");
-
-        Paragraph step1 = new Paragraph("1. Bitte auf die drei Punkte oben rechts auf deinem Bildschirm");
+        Paragraph step1 = new Paragraph("1. Klicke auf den Google Play Store Button unten.");
         step1.addClassName("step");
-        Paragraph step2 = new Paragraph("2. Klicke auf 'Zum Home-Bildschirm hinzufügen'");
+        Paragraph step2 = new Paragraph("2. Installiere die App");
         step2.addClassName("step");
-        Paragraph step3 = new Paragraph("3. Öffne die App von deinem Home-Bildschirm aus");
-        step3.addClassName("step");
-        Html html = new Html("<iframe width=\"560\" height=\"315\" src=\"https://www.youtube-nocookie.com/embed/9l-Uu3QiYDM\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>");
 
-        main.add(home, step1, step2, step3, html);
-        horizontalLayout.add(home);
+        Html html = new Html("<a href='https://play.google.com/store/apps/details?id=de.heallife.app.twa&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>");
 
+        main.add(step1, step2, html);
         mainLayout.add(horizontalLayout, main);
     }
 }

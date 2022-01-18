@@ -2,23 +2,20 @@ package de.heallife.app.builders;
 
 import com.vaadin.flow.component.Html;
 import com.vaadin.flow.component.Tag;
-import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.littemplate.LitTemplate;
 import com.vaadin.flow.component.template.Id;
-import com.vaadin.flow.router.*;
+import com.vaadin.flow.router.BeforeEvent;
+import com.vaadin.flow.router.HasUrlParameter;
+import com.vaadin.flow.router.Route;
 import de.heallife.app.data.entity.QehrgPost;
-import de.heallife.app.data.service.QehrgPostRepository;
 import de.heallife.app.security.PostService;
 import de.heallife.app.views.MainLayout;
-import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import javax.annotation.security.PermitAll;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -62,7 +59,6 @@ public class PostView extends LitTemplate implements HasUrlParameter<Integer> {
         objectId = parameter;
 
         post = service.getPostById(parameter);
-
         h1.setText(post.get().getPostTitle());
 
         try {
