@@ -11,64 +11,76 @@ export class HomeView extends LitElement {
   static get styles() {
     return css`
       :host {
-          display: block;
-          height: 100%;
+        display: block;
+        height: 100%;
       }
-      `;
+    `;
   }
 
   render() {
     return html`
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
-<vaadin-vertical-layout theme="spacing" style="margin-left: 1.2rem; margin-top: 2rem;">
- <h1 style="margin-top: 0rem; margin-bottom: 0rem; font-family: 'Montserrat', sans-serif; font-weight: 700; " id="h1">Heading 1</h1>
- <vaadin-horizontal-layout theme="spacing" style="width: 95%;">
-  <vaadin-text-field style="margin-top: 0rem; width: 98.5%; border-radius: 25px; font-family: 'Montserrat', sans-serif; font-weight: 700;" placeholder="Durchsuchen" id="search-input">
-   <vaadin-icon icon="lumo:search" slot="suffix" id="search-icon"></vaadin-icon>
-  </vaadin-text-field>
- </vaadin-horizontal-layout>
-</vaadin-vertical-layout>
-<vaadin-vertical-layout theme="spacing">
- <vaadin-horizontal-layout theme="spacing" style="width: 90%; margin-top: 1.5rem; margin-left: 1.2rem;">
-  <vaadin-vertical-layout theme="spacing" style = "width: 100%;">
-   <vaadin-vertical-layout theme="spacing" class="box_big" id="c1">
-    <h5 class="categoryBox titleB">Allgemeines Wissen</h5>
-   </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box" id="vaadinVerticalLayout">
-    <h5 class="categoryBox titleB">Gezielte Bewegung</h5>
-   </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box_big" id="vaadinVerticalLayout1">
-    <h5 class="categoryBox titleB">Freizeit & Aktivität</h5>
-   </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout2">
-    <h5 class="categoryBox titleB">Lifestyle</h5>
-   </vaadin-vertical-layout>
-    <vaadin-vertical-layout theme="spacing" class="box_big" id="vaadinVerticalLayout8">
-      <h5 class="categoryBox titleB">Freizeit & Aktivität</h5>
-    </vaadin-vertical-layout>
-  </vaadin-vertical-layout>
-  <vaadin-vertical-layout theme="spacing" style = "width: 100%;">
-   <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout3">
-    <h5 class="categoryBox titleB">Physische Gesundheit</h5>
-   </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box_big"  id="vaadinVerticalLayout4">
-    <h5 class="categoryBox titleB">Seelische und Mentale Gesundheit</h5>
-   </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout5">
-    <h5 class="categoryBox titleB">Podcasts</h5>
-   </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout6">
-    <h5 class="categoryBox titleB">Ernährung</h5>
-   </vaadin-vertical-layout>
-   <vaadin-vertical-layout theme="spacing" class="box"  id="vaadinVerticalLayout7">
-    <h5 class="categoryBox titleB">Yoga</h5>
-   </vaadin-vertical-layout>
-  </vaadin-vertical-layout>
- </vaadin-horizontal-layout>
-</vaadin-vertical-layout>
-`;
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,600;1,700;1,800;1,900&amp;display=swap"
+        rel="stylesheet"
+      />
+      <vaadin-vertical-layout theme="spacing" style="margin-left: 1.2rem; margin-top: 2rem;">
+        <h1
+          style="margin-top: 0rem; margin-bottom: 0rem; font-family: 'Montserrat', sans-serif; font-weight: 700; "
+          id="h1"
+        >
+          Heading 1
+        </h1>
+        <vaadin-horizontal-layout theme="spacing" style="width: 95%;">
+          <vaadin-text-field
+            style="margin-top: 0rem; width: 98.5%; border-radius: 25px; font-family: 'Montserrat', sans-serif; font-weight: 700;"
+            placeholder="Durchsuchen"
+            id="search-input"
+          >
+            <vaadin-icon icon="lumo:search" slot="suffix" id="search-icon"></vaadin-icon>
+          </vaadin-text-field>
+        </vaadin-horizontal-layout>
+      </vaadin-vertical-layout>
+      <vaadin-vertical-layout theme="spacing">
+        <vaadin-horizontal-layout theme="spacing" style="width: 90%; margin-top: 1.5rem; margin-left: 1.2rem;">
+          <vaadin-vertical-layout theme="spacing" style="width: 100%;">
+            <vaadin-vertical-layout theme="spacing" class="box_big" id="c1">
+              <h5 class="categoryBox titleB">Allgemeines Wissen</h5>
+            </vaadin-vertical-layout>
+            <vaadin-vertical-layout theme="spacing" class="box" id="vaadinVerticalLayout">
+              <h5 class="categoryBox titleB">Gezielte Bewegung</h5>
+            </vaadin-vertical-layout>
+            <vaadin-vertical-layout theme="spacing" class="box_big" id="vaadinVerticalLayout1">
+              <h5 class="categoryBox titleB">Freizeit & Aktivität</h5>
+            </vaadin-vertical-layout>
+            <vaadin-vertical-layout theme="spacing" class="box" id="vaadinVerticalLayout2">
+              <h5 class="categoryBox titleB">Lifestyle</h5>
+            </vaadin-vertical-layout>
+            <vaadin-vertical-layout theme="spacing" class="box_big" id="vaadinVerticalLayout8">
+              <h5 class="categoryBox titleB">Spendenaktion</h5>
+            </vaadin-vertical-layout>
+          </vaadin-vertical-layout>
+          <vaadin-vertical-layout theme="spacing" style="width: 100%;">
+            <vaadin-vertical-layout theme="spacing" class="box" id="vaadinVerticalLayout3">
+              <h5 class="categoryBox titleB">Physische Gesundheit</h5>
+            </vaadin-vertical-layout>
+            <vaadin-vertical-layout theme="spacing" class="box_big" id="vaadinVerticalLayout4">
+              <h5 class="categoryBox titleB">Seelische und Mentale Gesundheit</h5>
+            </vaadin-vertical-layout>
+            <vaadin-vertical-layout theme="spacing" class="box" id="vaadinVerticalLayout5">
+              <h5 class="categoryBox titleB">Podcasts</h5>
+            </vaadin-vertical-layout>
+            <vaadin-vertical-layout theme="spacing" class="box" id="vaadinVerticalLayout6">
+              <h5 class="categoryBox titleB">Ernährung</h5>
+            </vaadin-vertical-layout>
+            <vaadin-vertical-layout theme="spacing" class="box" id="vaadinVerticalLayout7">
+              <h5 class="categoryBox titleB">Yoga</h5>
+            </vaadin-vertical-layout>
+          </vaadin-vertical-layout>
+        </vaadin-horizontal-layout>
+      </vaadin-vertical-layout>
+    `;
   }
 
   // Remove this method to render the contents of this view inside Shadow DOM
