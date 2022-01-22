@@ -48,6 +48,7 @@ img {
   width: 100%;
   height: auto;
   margin-left: -2.5rem;
+  box-shadow: 0px 10px 13px -7px #0000001f, 5px 5px 15px 5px rgb(0 0 0 / 0%);
 }
 
 audio {
@@ -55,6 +56,7 @@ audio {
 }
 
 figcaption {
-  font-size: 15px;
+  font-size: 14px;
+  font-style: italic;
   margin-left: -10vw;
 }
