@@ -9,6 +9,7 @@
 #h1 {
   font-size: 1.8rem;
   font-family: 'Montserrat', sans-serif;
+  width: 90%;
 }
 
 h1 {
@@ -64,6 +65,7 @@ figcaption {
 blockquote {
   border-left: 2px solid black;
   color: black;
+  margin-left: 3vw;
 }
 blockquote p {
 padding-left: 1vw;
