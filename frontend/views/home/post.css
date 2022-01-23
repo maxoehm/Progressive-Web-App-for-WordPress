@@ -60,3 +60,11 @@ figcaption {
   font-style: italic;
   margin-left: -10vw;
 }
+
+blockquote {
+  border-left: 2px solid black;
+  color: black;
+}
+blockquote p {
+padding-left: 1vw;
+}
