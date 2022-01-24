@@ -9,6 +9,7 @@ import de.heallife.app.data.entity.QehrgMeprSubscription;
 import de.heallife.app.data.entity.QehrgMeprSubscriptionRepository;
 import de.heallife.app.data.entity.User;
 import de.heallife.app.data.service.QehrgUserRepository;
+import de.heallife.app.data.service.SubscriptionManagement;
 import de.heallife.app.data.service.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Autowired
     private QehrgUserRepository userRepository;
     @Autowired
-    private QehrgMeprSubscriptionRepository subscriptionRepository;
+    private SubscriptionManagement service;
 
     private QehrgUser user;
 
@@ -52,24 +53,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             }
     }
 
-    private List<QehrgMeprSubscription> member;
-
     private boolean subscriptionActive(QehrgUser user) {
 
-        try {
-            member = subscriptionRepository.findByUserId(Long.valueOf(user.getId()));
-        } catch (IncorrectResultSizeDataAccessException e) {
-            for (QehrgMeprSubscription qehrgMeprSubscription : member) {
-
-                // ToDo: Replace active call with subsription mangement bean
-
-                if (qehrgMeprSubscription.getStatus().equals("active")) {
-                    return true;
-                }
-            }
-        }
-
-        return member.get(0).getStatus().equals("active");
+    return service.isSubscriptionActive(user);
     }
 
 }
