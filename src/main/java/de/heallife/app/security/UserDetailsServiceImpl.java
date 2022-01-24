@@ -60,6 +60,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             member = subscriptionRepository.findByUserId(Long.valueOf(user.getId()));
         } catch (IncorrectResultSizeDataAccessException e) {
             for (QehrgMeprSubscription qehrgMeprSubscription : member) {
+
+                // ToDo: Replace active call with subsription mangement bean
+
                 if (qehrgMeprSubscription.getStatus().equals("active")) {
                     return true;
                 }
