@@ -51,4 +51,8 @@ public class SubscriptionManagement {
 
 
 
+  /**
+   * Access MemberPress Subscriptions and look for sub for current user, and return true if sub is
+   * not expired.
+   */
 }
