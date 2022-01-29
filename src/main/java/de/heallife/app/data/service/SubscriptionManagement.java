@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.persistence.NonUniqueResultException;
+import java.util.Date;
 import java.time.Instant;
 import java.util.List;
 
@@ -30,16 +31,13 @@ public class SubscriptionManagement {
 
         List<QehrgMeprTransaction> transaction = meprTransactionRepository.findQehrgMeprTransactionByUserId(getUser(user).getUserId());
 
-        if (!subscriptionRepository.findByUserId(Long.valueOf(user.getId())).get(0).getTrial()) {
             for (QehrgMeprTransaction t1 : transaction) {
-                if (t1.getExpiresAt().isBefore(Instant.now())) {
+                Date exp = Date.from(t1.getExpiresAt());
+                Date now = Date.from(Instant.now());
+
+                if (exp.after(now)) {
                     return true;
                 }
-            }
-
-        } else {
-
-            return true;
         }
         return false;
     }
