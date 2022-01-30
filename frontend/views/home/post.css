@@ -59,6 +59,10 @@ audio {
 figcaption {
   font-size: 14px;
   font-style: italic;
+  margin-left: 2.3rem;
+}
+
+figure figcaption {
   margin-left: -10vw;
 }
 
