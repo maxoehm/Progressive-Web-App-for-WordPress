@@ -5,14 +5,12 @@ import de.heallife.app.data.entity.QehrgMeprSubscription;
 import de.heallife.app.data.entity.QehrgMeprSubscriptionRepository;
 import de.heallife.app.data.entity.QehrgMeprTransaction;
 import de.heallife.app.data.repositories.QehrgMeprTransactionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import javax.persistence.NonUniqueResultException;
-import java.util.Date;
 import java.time.Instant;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -35,7 +33,11 @@ public class SubscriptionManagement {
                 Date exp = Date.from(t1.getExpiresAt());
                 Date now = Date.from(Instant.now());
 
-                if (exp.after(now)) {
+                Calendar cal = Calendar.getInstance();
+                cal.setTime(exp);
+                cal.add(Calendar.DAY_OF_MONTH, 3);
+
+                if (cal.getTime().after(now)) {
                     return true;
                 }
         }

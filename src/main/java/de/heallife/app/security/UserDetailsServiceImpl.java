@@ -54,8 +54,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     private boolean subscriptionActive(QehrgUser user) {
-
-    return service.isSubscriptionActive(user);
+        return service.isSubscriptionActive(user);
     }
 
 }
