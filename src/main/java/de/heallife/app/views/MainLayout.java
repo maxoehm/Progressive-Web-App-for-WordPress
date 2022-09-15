@@ -2,6 +2,7 @@ package de.heallife.app.views;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
+import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.*;
@@ -73,19 +74,19 @@ public class MainLayout extends AppLayout {
         Icon subscribe = new Icon("heallife", "user-square");
         subscribe.setSize("30px");
 
-        RouterLink homeRoute = new RouterLink(null, HomeView.class);
+        RouterLink homeRoute = new RouterLink("", HomeView.class);
         homeRoute.add(home);
         homeTab = new Tab(homeRoute);
 
-        RouterLink swatchbook = new RouterLink(null, EventsView.class);
+        RouterLink swatchbook = new RouterLink("", EventsView.class);
         swatchbook.add(events);
         Tab swatchTab = new Tab(swatchbook);
 
-        RouterLink headphones = new RouterLink(null, ProfileView.class);
+        RouterLink headphones = new RouterLink("", ProfileView.class);
         headphones.add(subscribe);
         Tab headTab = new Tab(headphones);
 
-        RouterLink book = new RouterLink(null, BlogView.class);
+        RouterLink book = new RouterLink("", BlogView.class);
         book.add(blog);
         Tab bookTab = new Tab(book);
 
@@ -121,8 +122,8 @@ public class MainLayout extends AppLayout {
                 bookTab.getStyle().set("filter", "grayscale(100%)");
             }
 
-
         });
+
 
         addToNavbar(true, tabs);
     }

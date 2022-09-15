@@ -2,6 +2,7 @@ package de.heallife.app.views.home;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.H1;
@@ -13,8 +14,13 @@ import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.router.RouteConfiguration;
+import de.heallife.app.builders.PostView;
+import de.heallife.app.data.service.communication.NewPostNotificationService;
 import de.heallife.app.views.MainLayout;
+import de.heallife.app.views.blog.BlogView;
 import de.heallife.app.views.categories.CategoryView;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 
@@ -71,9 +77,12 @@ public class HomeView extends LitTemplate {
   @Id("search-icon")
   private Icon searchIcon;
 
+  @Autowired
+  private NewPostNotificationService newPostNotificationService;
+
   @Inject
-  public HomeView() {
-    // You can initialise any data required for the connected UI components here.
+  public HomeView(NewPostNotificationService newPostNotificationService) {
+    this.newPostNotificationService = newPostNotificationService;
 
     searchInput.addKeyPressListener(
         Key.ENTER,
@@ -173,5 +182,29 @@ public class HomeView extends LitTemplate {
             });
     */
 
+        ConfirmDialog newPostNotify = new ConfirmDialog();
+/*
+        if (newPostNotificationService.isNewPostAvailable()) {
+
+            newPostNotify.setHeader("Es gibt neue Inhalte.");
+            newPostNotify.setText("Wirf doch vielleicht einen Blick drauf, es ist bestimmt was für dich dabei!");
+
+            newPostNotify.setRejectable(true);
+            newPostNotify.setRejectText("Nicht jetzt");
+
+            String route = RouteConfiguration.forSessionScope()
+                    .getUrl(PostView.class, newPostNotificationService.getLatestPost().getId());
+
+            newPostNotify.setConfirmText("Anschauen");
+            newPostNotify.addConfirmListener(event -> {
+                newPostNotify.getUI().ifPresent(ui -> ui.navigate(route));
+            });
+
+ */
+
+            c1.add(newPostNotify);
+
+        }
+
   }
-}
+

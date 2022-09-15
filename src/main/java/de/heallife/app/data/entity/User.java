@@ -21,6 +21,7 @@ public class User extends AbstractEntity {
     private Set<Role> roles;
     @Lob
     private String profilePictureUrl;
+    private long hasViewNotify;
 
     public String getUsername() {
         return username;
@@ -53,4 +54,11 @@ public class User extends AbstractEntity {
         this.profilePictureUrl = profilePictureUrl;
     }
 
+    public long getHasViewNotify() {
+        return hasViewNotify;
+    }
+
+    public void setHasViewNotify(long hasViewNotify) {
+        this.hasViewNotify = hasViewNotify;
+    }
 }
