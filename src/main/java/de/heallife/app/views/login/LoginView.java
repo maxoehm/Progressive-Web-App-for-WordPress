@@ -7,7 +7,6 @@ import com.vaadin.flow.component.login.LoginI18n;
 import com.vaadin.flow.component.login.LoginOverlay;
 import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.notification.NotificationVariant;
-import com.vaadin.flow.component.page.Page;
 import com.vaadin.flow.router.*;
 
 @PageTitle("Login")
