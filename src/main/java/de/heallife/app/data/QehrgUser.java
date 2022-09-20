@@ -1,9 +1,12 @@
 package de.heallife.app.data;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
 import javax.persistence.Table;
+import javax.validation.Valid;
 import java.time.Instant;
 
 @Table(name = "QEhRG_users", indexes = {
@@ -39,6 +42,9 @@ public class QehrgUser extends AbstractEntity {
 
     @Column(name = "user_activation_key", nullable = false)
     private String userActivationKey;
+
+    @Value("{$user.popUpLastSeen:0000}")
+    private Integer postPopUpLastSeen;
 
     public String getUserActivationKey() {
         return userActivationKey;
@@ -110,5 +116,13 @@ public class QehrgUser extends AbstractEntity {
 
     public void setUserLogin(String userLogin) {
         this.userLogin = userLogin;
+    }
+
+    public Integer getPostPopUpLastSeen() {
+        return postPopUpLastSeen;
+    }
+
+    public void setPostPopUpLastSeen(Integer postPopUpLastSeen) {
+        this.postPopUpLastSeen = postPopUpLastSeen;
     }
 }

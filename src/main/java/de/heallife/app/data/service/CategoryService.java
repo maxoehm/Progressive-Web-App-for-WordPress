@@ -6,6 +6,7 @@ import de.heallife.app.data.repositories.QehrgTermRelationshipRepository;
 import de.heallife.app.security.PostService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -75,7 +76,6 @@ public class CategoryService {
       } else if (entity == 93) {
         categories.add("Ja' hör mal Gabi!");
       }
-
       if (entity == 97) {
         categories.add("Physische Gesundheit");
       }
@@ -102,7 +102,8 @@ public class CategoryService {
     Events(95L),
     Events_Online(96L),
     Ja_hör_mal_Gabi(93L),
-    Spendenaktion(98L);
+    Spendenaktion(98L),
+    Challenges(101L);
 
     private Long mapping;
 
@@ -113,6 +114,11 @@ public class CategoryService {
     public Long getMapping() {
       return mapping;
     }
+  }
+
+  public boolean isInCategory(CATEGORY category, QehrgPost post) {
+    return Stream.of(termRelationshipRepository.findQehrgTermRelationshipsByIdObjectId(Long.valueOf(post.getId()))).anyMatch(
+        categoryResult -> categoryResult.equals(CATEGORY.Challenges));
   }
 
   public List<QehrgPost> getAllPostsByCategory(CATEGORY category) {

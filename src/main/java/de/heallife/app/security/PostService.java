@@ -34,6 +34,10 @@ public class PostService {
         return repo.findTopByPostTypeAndPostStatusOrderByPostDateDesc("post", "publish");
     }
 
+    public Optional<List<QehrgPost>> getLatestEdits() {
+        return repo.findTop5ByPostTypeAndPostStatusOrderByPostModifiedDesc("post", "publish");
+    }
+
     public Optional<QehrgPost> getPostById(Integer id) {
         return repo.findById(id);
     }
