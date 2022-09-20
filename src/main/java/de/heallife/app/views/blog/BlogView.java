@@ -1,10 +1,8 @@
 package de.heallife.app.views.blog;
 
 import com.vaadin.flow.component.Html;
-import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.html.H2;
-import com.vaadin.flow.component.html.Image;
-import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.Route;
@@ -16,11 +14,15 @@ import de.heallife.app.data.entity.QehrgPost;
 import de.heallife.app.data.service.CategoryService;
 import de.heallife.app.views.MainLayout;
 import javax.annotation.security.PermitAll;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @PageTitle("Blog")
 @Route(value = "blog", layout = MainLayout.class)
 @PermitAll
+@CssImport("./themes/heallifeapp/views/blogView.css")
 public class BlogView extends VerticalLayout {
 
     private H1 title;
@@ -49,12 +51,13 @@ public class BlogView extends VerticalLayout {
         List<QehrgPost> posts = categoryService.getAllPosts();
         VerticalLayout list = new VerticalLayout();
 
-        for (int i = posts.size()-1; i > 0; i--) {
+        for (int i = posts.size()-1; i > posts.size()/2; i--) {
             HorizontalLayout postLayout = new HorizontalLayout();
 
             try {
                  titleImage = new Image(postMetaService.findFeaturedImage(posts.get(i).getId()), "titleImage");
                  titleImage.addClassName("titleImage");
+                 title.getElement().setAttribute("loading", "lazy");
             } catch (NumberFormatException e) {
                 titleImage = new Image("/images/events/cupofnothing.jpg", "titleImage");
                 titleImage.addClassName("titleImage");
@@ -84,5 +87,35 @@ public class BlogView extends VerticalLayout {
 
         return list;
     }
+
+
+    private VerticalLayout buildBlogPostsNew() {
+
+        List<QehrgPost> posts = categoryService.getAllPosts();
+        VerticalLayout list = new VerticalLayout();
+
+        for (int i = posts.size() - 1; i > 0; i--) {
+            HorizontalLayout postLayout = new HorizontalLayout();
+
+            postLayout.setId("blogPostMin");
+            postLayout.getStyle().set("background-image", "url(" + postMetaService.findFeaturedImage(posts.get(i).getId()) + ")");
+            postLayout.getStyle().set("background-size", "cover");
+            H3 titleImage = new H3(posts.get(i).getPostTitle());
+            titleImage.setId("titleImage");
+            titleImage.getElement().setAttribute("lang", "de");
+
+            LocalDateTime ldt = LocalDateTime.ofInstant(posts.get(i).getPostDate(), ZoneId.systemDefault());
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+            Paragraph meta = new Paragraph(ldt.format(format));
+            meta.setId("meta");
+
+            postLayout.add(titleImage, meta);
+
+            list.add(postLayout);
+        }
+
+        return list;
+    }
+
 
 }
