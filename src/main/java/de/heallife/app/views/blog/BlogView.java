@@ -1,5 +1,6 @@
 package de.heallife.app.views.blog;
 
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
@@ -53,6 +54,7 @@ public class BlogView extends VerticalLayout implements DateFormatView {
         setPadding(false);
         setSpacing(false);
         add(buildBlogPostsNew());
+
     }
 
     private Image titleImage;
@@ -116,36 +118,63 @@ public class BlogView extends VerticalLayout implements DateFormatView {
 
             VerticalLayout postLayout = new VerticalLayout();
 
+            VerticalLayout overlayHolder = new VerticalLayout();
+            overlayHolder.addClassName("overlay");
+
             postLayout.setClassName("postElement");
+            overlayHolder.addClassName("postElement");
             postLayout.getStyle().set("background-image", "url(" + postMetaService.findFeaturedImage(post.getId()) + ")");
             postLayout.getStyle().set("background-size", "cover");
+            postLayout.setPadding(false);
 
-            H3 postTitle = new H3(post.getPostTitle());
-            postTitle.setClassName("postTitle");
-            postTitle.getElement().setAttribute("lang", "de");
+            Div postTitle = new Div();
+            H3 postTitleElement = new H3(post.getPostTitle());
+            postTitleElement.getStyle().set("margin-top", "15px!important");
+            postTitleElement.setClassName("postTitle");
+            postTitleElement.getElement().setAttribute("lang", "de");
 
 
             Paragraph meta = new Paragraph();
             meta.setClassName("meta");
 
+
             try {
                 meta.setText(formatDate(post.getPostDate()));
             } catch (ParseException e) {
                 e.printStackTrace();
-                Logger logger = LoggerFactory.getLogger(getClass());
-                logger.info(post.getPostDate().toString());
-                logger.info(post.getPostDateGmt().toString());
-
                 meta.setText("Heute neu Veröffentlicht");
+            }
+
+            Paragraph description = new Paragraph();
+            description.setClassName("meta");
+            description.setText(post.getPostExcerpt());
+
+            if (post.getPostExcerpt().isEmpty()) {
+                overlayHolder.add(postTitleElement, meta);
+            } else {
+                postTitle.add(postTitleElement, meta);
+                meta.addClassName("meta-split");
+                overlayHolder.add(postTitle, description);
             }
 
             if (first) {
                 first = false;
                 postLayout.setHeight("58vh");
+                overlayHolder.setHeight("58vh");
             }
 
-            postLayout.add(postTitle, meta);
+            postLayout.add(overlayHolder);
             parentList.add(postLayout);
+
+            postLayout.addClickListener(click -> {
+
+                String route = RouteConfiguration.forSessionScope()
+                        .getUrl(PostView.class, post.getId());
+
+                postLayout.getUI().ifPresent(ui -> ui.navigate(route));
+
+            });
+
         }
 
         return parentList;

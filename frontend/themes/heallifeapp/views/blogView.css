@@ -3,7 +3,12 @@
 }
 
 .firstElementPost {
-    height: 70vh!important;
+    height: 75vh!important;
+}
+
+.overlay {
+    background: linear-gradient(to right, rgba(132, 132, 132, 0.37), rgba(184, 184, 184, 0.2));
+    width: 100vw!important;
 }
 
 .postElement {
@@ -11,6 +16,7 @@
     height: 45vh;
     justify-content: space-between!important;
     margin: 0 0 0 0;
+
 }
 
 .postTitle {
@@ -31,4 +37,8 @@
     color: #ffffffc9;
     font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
     margin-bottom: 0px;
+}
+
+.meta-split {
+    margin-top: 10px!important;
 }
