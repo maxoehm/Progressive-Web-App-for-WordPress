@@ -94,5 +94,14 @@ public class Application extends SpringBootServletInitializer implements AppShel
               + "</script><meta name=\"sentry-trace\" content=\"{{ span.toSentryTrace() }}\" />\n",
           Inline.Wrapping.AUTOMATIC);
     }
+
+    settings.addInlineWithContents(
+            TargetElement.HEAD,
+            Inline.Position.APPEND,
+            "<link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"> \n" +
+                    "<link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin> \n" +
+                    "<link href=\"https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;" +
+                    "0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap\" rel=\"stylesheet\">",
+            Inline.Wrapping.AUTOMATIC);
   }
 }

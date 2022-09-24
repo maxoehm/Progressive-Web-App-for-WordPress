@@ -3,14 +3,12 @@ package de.heallife.app.views.home;
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.Tag;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.littemplate.LitTemplate;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -20,20 +18,18 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.RouteAlias;
 import com.vaadin.flow.router.RouteConfiguration;
 import de.heallife.app.builders.PostView;
-import de.heallife.app.data.entity.QehrgPost;
+import de.heallife.app.data.entity.Post;
 import de.heallife.app.data.service.communication.NewPostNotificationService;
 import de.heallife.app.views.MainLayout;
 import de.heallife.app.views.categories.CategoryView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
-import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
@@ -212,7 +208,7 @@ public class HomeView extends LitTemplate {
 
 
   private void buildDialogNewPost() {
-      Optional<QehrgPost> latestPost = newPostNotificationService.getPost();
+      Optional<Post> latestPost = newPostNotificationService.getPost();
 
       if (latestPost.isPresent()) {
 

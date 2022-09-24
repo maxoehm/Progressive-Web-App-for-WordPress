@@ -1,12 +1,11 @@
 package de.heallife.app.data.service.library;
 
-import de.heallife.app.data.entity.QehrgPost;
+import de.heallife.app.data.entity.Post;
 import de.heallife.app.data.service.CategoryService;
 import de.heallife.app.security.PostService;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,7 +21,7 @@ public class SearchService {
     }
 
 
-    public List<QehrgPost> getFromSearch(String s) {
+    public List<Post> getFromSearch(String s) {
         return postService.searchByString(s);
     }
 }

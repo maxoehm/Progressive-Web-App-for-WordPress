@@ -1,7 +1,9 @@
 package de.heallife.app.security;
 
-import de.heallife.app.data.entity.QehrgPost;
+import de.heallife.app.data.entity.Post;
 import de.heallife.app.data.service.QehrgPostRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -18,31 +20,34 @@ public class PostService {
         this.repo = repo;
     }
 
-    public List<QehrgPost> getPost() {
+    public List<Post> getPost() {
         return repo.findAll();
     }
 
-    public List<QehrgPost> getPost(String postType) {
+    public List<Post> getPost(String postType) {
         return repo.findByPostType(postType);
     }
 
-    public List<QehrgPost> getPost(String postType, String postStatus) {
+    public List<Post> getPost(String postType, String postStatus) {
         return repo.findByPostTypeAndPostStatusAllIgnoreCase(postType, postStatus);
     }
+    public Page<Post> getPostByNewest(String postType, String postStatus, Pageable paging) {
+        return repo.findByPostTypeAndPostStatusAllIgnoreCaseOrderByPostDateDesc(postType, postStatus, paging);
+    }
 
-    public Optional<QehrgPost> getLatest() {
+    public Optional<Post> getLatest() {
         return repo.findTopByPostTypeAndPostStatusOrderByPostDateDesc("post", "publish");
     }
 
-    public Optional<List<QehrgPost>> getLatestEdits() {
+    public Optional<List<Post>> getLatestEdits() {
         return repo.findTop5ByPostTypeAndPostStatusOrderByPostModifiedDesc("post", "publish");
     }
 
-    public Optional<QehrgPost> getPostById(Integer id) {
+    public Optional<Post> getPostById(Integer id) {
         return repo.findById(id);
     }
 
-    public QehrgPost getPostByIdAndPostStatus(Integer id, String postStatus) {
+    public Post getPostByIdAndPostStatus(Integer id, String postStatus) {
         return repo.findByIdAndPostStatusIs(id, postStatus);
     }
 

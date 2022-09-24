@@ -1,20 +1,14 @@
 package de.heallife.app.data.service.communication;
 
-import de.heallife.app.data.AbstractEntity;
 import de.heallife.app.data.QehrgUser;
 import de.heallife.app.data.entity.PostMetaService;
-import de.heallife.app.data.entity.QehrgPost;
+import de.heallife.app.data.entity.Post;
 import de.heallife.app.data.service.CategoryService;
 import de.heallife.app.data.service.QehrgUserService;
 import de.heallife.app.security.PostService;
-import jdk.jfr.Category;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
-import javax.persistence.PostLoad;
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -25,12 +19,12 @@ public class NewPostNotificationService {
     private QehrgUserService userService;
     private CategoryService categoryService;
 
-    private Optional<QehrgPost> latestPost = Optional.empty();
+    private Optional<Post> latestPost = Optional.empty();
     private QehrgUser user;
-    private Optional<QehrgPost> post;
-    private Optional<QehrgPost> latestUpdatedPost;
+    private Optional<Post> post;
+    private Optional<Post> latestUpdatedPost;
 
-    private Optional<QehrgPost> returnValue;
+    private Optional<Post> returnValue;
 
     @Inject
     public NewPostNotificationService(PostService postService, PostMetaService postMetaService, QehrgUserService userService, CategoryService categoryService) {
@@ -68,9 +62,9 @@ public class NewPostNotificationService {
         return false;
     }
 
-    private Optional<QehrgPost> get5LatestUpdates() {
+    private Optional<Post> get5LatestUpdates() {
         postService.getLatestEdits();
-        for (QehrgPost p : postService.getLatestEdits().get()) {
+        for (Post p : postService.getLatestEdits().get()) {
             if (categoryService.isInCategory(CategoryService.CATEGORY.Challenges, p)) {
                 return Optional.of(p);
             }
@@ -78,7 +72,7 @@ public class NewPostNotificationService {
         return Optional.empty();
     }
 
-    public Optional<QehrgPost> getPost() {
+    public Optional<Post> getPost() {
         setSeen();
         return returnValue;
     }

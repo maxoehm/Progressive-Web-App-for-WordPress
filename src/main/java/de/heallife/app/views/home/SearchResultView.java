@@ -9,11 +9,9 @@ import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.*;
 import de.heallife.app.builders.PostView;
 import de.heallife.app.data.entity.PostMetaService;
-import de.heallife.app.data.entity.QehrgPost;
-import de.heallife.app.data.service.CategoryService;
+import de.heallife.app.data.entity.Post;
 import de.heallife.app.data.service.library.SearchService;
 import de.heallife.app.views.MainLayout;
-import org.atmosphere.config.service.Post;
 
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
@@ -42,7 +40,7 @@ public class SearchResultView extends VerticalLayout implements HasUrlParameter<
             VerticalLayout list = new VerticalLayout();
 
             try {
-                List<QehrgPost> posts = searchService.getFromSearch(s);
+                List<Post> posts = searchService.getFromSearch(s);
 
                 for (int i = posts.size()-1; i > 0; i--) {
                     HorizontalLayout postLayout = new HorizontalLayout();

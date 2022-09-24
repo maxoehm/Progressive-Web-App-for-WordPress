@@ -5,7 +5,6 @@ import de.heallife.app.data.AbstractEntity;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 @Table(name = "QEhRG_posts", indexes = {
@@ -15,7 +14,7 @@ import java.util.List;
         @Index(name = "post_parent", columnList = "post_parent")
 })
 @Entity
-public class QehrgPost extends AbstractEntity implements Serializable, Comparable<QehrgPost> {
+public class Post extends AbstractEntity implements Serializable, Comparable<Post> {
     @Column(name = "post_author", nullable = false)
     private Long postAuthor;
 
@@ -278,7 +277,7 @@ public class QehrgPost extends AbstractEntity implements Serializable, Comparabl
     }
 
     @Override
-    public int compareTo(QehrgPost o) {
+    public int compareTo(Post o) {
         return this.getId().compareTo(o.getId());
     }
 }

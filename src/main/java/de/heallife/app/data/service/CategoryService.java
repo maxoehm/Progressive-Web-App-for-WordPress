@@ -1,6 +1,6 @@
 package de.heallife.app.data.service;
 
-import de.heallife.app.data.entity.QehrgPost;
+import de.heallife.app.data.entity.Post;
 import de.heallife.app.data.entity.QehrgTermRelationship;
 import de.heallife.app.data.repositories.QehrgTermRelationshipRepository;
 import de.heallife.app.security.PostService;
@@ -10,6 +10,9 @@ import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -31,7 +34,7 @@ public class CategoryService {
 
   @PersistenceContext private EntityManager em;
 
-  public List<String> getCategories(QehrgPost post) {
+  public List<String> getCategories(Post post) {
 
     List<QehrgTermRelationship> resultList =
         termRelationshipRepository.findQehrgTermRelationshipsByIdObjectId(
@@ -116,16 +119,16 @@ public class CategoryService {
     }
   }
 
-  public boolean isInCategory(CATEGORY category, QehrgPost post) {
+  public boolean isInCategory(CATEGORY category, Post post) {
     return Stream.of(termRelationshipRepository.findQehrgTermRelationshipsByIdObjectId(Long.valueOf(post.getId()))).anyMatch(
         categoryResult -> categoryResult.equals(CATEGORY.Challenges));
   }
 
-  public List<QehrgPost> getAllPostsByCategory(CATEGORY category) {
+  public List<Post> getAllPostsByCategory(CATEGORY category) {
 
     List<QehrgTermRelationship> da =
         termRelationshipRepository.findAllById_TermTaxonomyId(category.getMapping());
-    List<QehrgPost> posts = new ArrayList<>();
+    List<Post> posts = new ArrayList<>();
 
     for (QehrgTermRelationship qehrgTermRelationship : da) {
       var b =
@@ -140,7 +143,10 @@ public class CategoryService {
     return posts;
   }
 
-  public List<QehrgPost> getAllPosts() {
+  public List<Post> getAllPosts() {
     return postService.getPost("post", "publish");
+  }
+  public Page<Post> getAllPostsOrderByNewest(Pageable paging) {
+    return postService.getPostByNewest("post", "publish", paging);
   }
 }

@@ -11,7 +11,7 @@ import com.vaadin.flow.component.template.Id;
 import com.vaadin.flow.router.BeforeEvent;
 import com.vaadin.flow.router.HasUrlParameter;
 import com.vaadin.flow.router.Route;
-import de.heallife.app.data.entity.QehrgPost;
+import de.heallife.app.data.entity.Post;
 import de.heallife.app.security.PostService;
 import de.heallife.app.views.MainLayout;
 import java.util.Optional;
@@ -44,7 +44,7 @@ public class PostView extends LitTemplate implements HasUrlParameter<Integer> {
   private Div div;
 
   private Html html;
-  private Optional<QehrgPost> post;
+  private Optional<Post> post;
 
   public PostView(PostService service) {
     // You can initialise any data required for the connected UI components here.
