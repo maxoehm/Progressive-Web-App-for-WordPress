@@ -10,7 +10,6 @@ import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -120,8 +119,10 @@ public class CategoryService {
   }
 
   public boolean isInCategory(CATEGORY category, Post post) {
-    return Stream.of(termRelationshipRepository.findQehrgTermRelationshipsByIdObjectId(Long.valueOf(post.getId()))).anyMatch(
-        categoryResult -> categoryResult.equals(CATEGORY.Challenges));
+    return Stream.of(
+            termRelationshipRepository.findQehrgTermRelationshipsByIdObjectId(
+                Long.valueOf(post.getId())))
+        .anyMatch(categoryResult -> categoryResult.equals(CATEGORY.Challenges));
   }
 
   public List<Post> getAllPostsByCategory(CATEGORY category) {
@@ -146,6 +147,7 @@ public class CategoryService {
   public List<Post> getAllPosts() {
     return postService.getPost("post", "publish");
   }
+
   public Page<Post> getAllPostsOrderByNewest(Pageable paging) {
     return postService.getPostByNewest("post", "publish", paging);
   }
