@@ -1,14 +1,17 @@
 package de.heallife.app.data.service;
 
-import de.heallife.app.data.entity.QehrgPost;
+import de.heallife.app.data.entity.Post;
 import de.heallife.app.data.entity.QehrgTermRelationship;
 import de.heallife.app.data.repositories.QehrgTermRelationshipRepository;
 import de.heallife.app.security.PostService;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -30,7 +33,7 @@ public class CategoryService {
 
   @PersistenceContext private EntityManager em;
 
-  public List<String> getCategories(QehrgPost post) {
+  public List<String> getCategories(Post post) {
 
     List<QehrgTermRelationship> resultList =
         termRelationshipRepository.findQehrgTermRelationshipsByIdObjectId(
@@ -75,7 +78,6 @@ public class CategoryService {
       } else if (entity == 93) {
         categories.add("Ja' hör mal Gabi!");
       }
-
       if (entity == 97) {
         categories.add("Physische Gesundheit");
       }
@@ -102,7 +104,8 @@ public class CategoryService {
     Events(95L),
     Events_Online(96L),
     Ja_hör_mal_Gabi(93L),
-    Spendenaktion(98L);
+    Spendenaktion(98L),
+    Challenges(101L);
 
     private Long mapping;
 
@@ -115,11 +118,18 @@ public class CategoryService {
     }
   }
 
-  public List<QehrgPost> getAllPostsByCategory(CATEGORY category) {
+  public boolean isInCategory(CATEGORY category, Post post) {
+    return Stream.of(
+            termRelationshipRepository.findQehrgTermRelationshipsByIdObjectId(
+                Long.valueOf(post.getId())))
+        .anyMatch(categoryResult -> categoryResult.equals(CATEGORY.Challenges));
+  }
+
+  public List<Post> getAllPostsByCategory(CATEGORY category) {
 
     List<QehrgTermRelationship> da =
         termRelationshipRepository.findAllById_TermTaxonomyId(category.getMapping());
-    List<QehrgPost> posts = new ArrayList<>();
+    List<Post> posts = new ArrayList<>();
 
     for (QehrgTermRelationship qehrgTermRelationship : da) {
       var b =
@@ -134,7 +144,11 @@ public class CategoryService {
     return posts;
   }
 
-  public List<QehrgPost> getAllPosts() {
+  public List<Post> getAllPosts() {
     return postService.getPost("post", "publish");
+  }
+
+  public Page<Post> getAllPostsOrderByNewest(Pageable paging) {
+    return postService.getPostByNewest("post", "publish", paging);
   }
 }

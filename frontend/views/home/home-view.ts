@@ -26,11 +26,12 @@ export class HomeView extends LitElement {
         rel="stylesheet"
       />
       <vaadin-vertical-layout theme="spacing" style="margin-left: 1.2rem; margin-top: 2rem;">
+        <vaadin-dialog header-title="" id="dialog1"></vaadin-dialog>
         <h1
           style="margin-top: 0rem; margin-bottom: 0rem; font-family: 'Montserrat', sans-serif; font-weight: 700; "
           id="h1"
         >
-          Heading 1
+          Entdecken
         </h1>
         <vaadin-horizontal-layout theme="spacing" style="width: 95%;">
           <vaadin-text-field
