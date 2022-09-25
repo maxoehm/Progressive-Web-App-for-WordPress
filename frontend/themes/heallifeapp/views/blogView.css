@@ -33,12 +33,28 @@
 }
 
 .meta {
-    margin-top: 0px;
-    color: #ffffffc9;
+    color: rgba(0, 0, 0, 0.79);
     font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
-    margin-bottom: 0px;
+    margin-bottom: -8px!important;
 }
 
 .meta-split {
     margin-top: 10px!important;
+}
+
+.metaHold {
+    justify-content: space-between!important;
+}
+
+.postSection {
+    background-color: rgba(240, 248, 255, 0.35);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.post-title {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
 }

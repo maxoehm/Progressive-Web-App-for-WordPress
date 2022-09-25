@@ -5,6 +5,7 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.dom.DomEventListener;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouteConfiguration;
@@ -38,6 +39,8 @@ public class BlogView extends VerticalLayout implements DateFormatView {
     private VerticalLayout main;
     private PostMetaService postMetaService;
 
+    Logger logger = LoggerFactory.getLogger(BlogView.class);
+
     public BlogView(CategoryService categoryService, PostMetaService postMetaService) throws ParseException {
         this.categoryService = categoryService;
         this.postMetaService = postMetaService;
@@ -53,8 +56,7 @@ public class BlogView extends VerticalLayout implements DateFormatView {
         setWidth("100%");
         setPadding(false);
         setSpacing(false);
-        add(buildBlogPostsNew());
-
+        add(buildPosts());
     }
 
     private Image titleImage;
@@ -64,8 +66,16 @@ public class BlogView extends VerticalLayout implements DateFormatView {
         List<Post> posts = categoryService.getAllPosts();
         VerticalLayout list = new VerticalLayout();
 
+        list.getStyle().set("margin-top", "1rem");
+
         for (int i = posts.size()-1; i > posts.size()/2; i--) {
+
             HorizontalLayout postLayout = new HorizontalLayout();
+
+            if (first) {
+                first = false;
+                postLayout.getStyle().set("margin-top", "1rem");
+            }
 
             try {
                  titleImage = new Image(postMetaService.findFeaturedImage(posts.get(i).getId()), "titleImage");
@@ -78,9 +88,24 @@ public class BlogView extends VerticalLayout implements DateFormatView {
             }
 
 
+
+            Paragraph meta = new Paragraph();
+            meta.setClassName("meta");
+
+            try {
+                meta.setText(formatDate(posts.get(i).getPostDate()));
+            } catch (ParseException e) {
+                e.printStackTrace();
+                meta.setText("Heute neu Veröffentlicht");
+            }
+
             H1 title = new H1(posts.get(i).getPostTitle());
             title.addClassName("post-title");
-            postLayout.add(titleImage, title);
+
+            VerticalLayout textComponent = new VerticalLayout();
+            textComponent.addClassName("metaHold");
+            textComponent.add(title, meta);
+            postLayout.add(titleImage, textComponent);
 
             int finalI = i;
             postLayout.addClickListener(click -> {
@@ -92,7 +117,7 @@ public class BlogView extends VerticalLayout implements DateFormatView {
 
             });
 
-            postLayout.getStyle().set("margin-top", "1rem");
+            postLayout.addClassName("postSection");
             list.add(postLayout);
         }
 
