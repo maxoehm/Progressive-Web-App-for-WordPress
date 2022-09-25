@@ -2,7 +2,6 @@ package de.heallife.app.views;
 
 import com.vaadin.flow.component.Component;
 import com.vaadin.flow.component.applayout.AppLayout;
-import com.vaadin.flow.component.confirmdialog.ConfirmDialog;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
 import com.vaadin.flow.component.html.*;
@@ -10,134 +9,129 @@ import com.vaadin.flow.component.icon.Icon;
 import com.vaadin.flow.component.tabs.Tab;
 import com.vaadin.flow.component.tabs.Tabs;
 import com.vaadin.flow.component.tabs.TabsVariant;
-import com.vaadin.flow.router.RouterLink;
 import com.vaadin.flow.router.PageTitle;
+import com.vaadin.flow.router.RouterLink;
+import com.vaadin.flow.server.auth.AccessAnnotationChecker;
+import de.heallife.app.security.AuthenticatedUser;
+import de.heallife.app.views.blog.BlogView;
 import de.heallife.app.views.events.EventsView;
 import de.heallife.app.views.home.HomeView;
 import de.heallife.app.views.profile.ProfileView;
-import de.heallife.app.views.blog.BlogView;
-import de.heallife.app.security.AuthenticatedUser;
-import com.vaadin.flow.server.auth.AccessAnnotationChecker;
 
-/**
- * The main view is a top-level placeholder for other views.
- */
+/** The main view is a top-level placeholder for other views. */
 @PageTitle("Main")
 @JsModule("./themes/heallifeapp/views/heallife-iconset.js")
-@CssImport(value = "./themes/heallifeapp/views/app-layout-style.css", themeFor = "vaadin-app-layout")
+@CssImport(
+    value = "./themes/heallifeapp/views/app-layout-style.css",
+    themeFor = "vaadin-app-layout")
 public class MainLayout extends AppLayout {
 
-    public static class MenuItemInfo {
+  public static class MenuItemInfo {
 
-        private String text;
-        private String iconClass;
-        private Class<? extends Component> view;
+    private String text;
+    private String iconClass;
+    private Class<? extends Component> view;
 
-        public MenuItemInfo(String text, String iconClass, Class<? extends Component> view) {
-            this.text = text;
-            this.iconClass = iconClass;
-            this.view = view;
-        }
-
-        public String getText() {
-            return text;
-        }
-
-        public String getIconClass() {
-            return iconClass;
-        }
-
-        public Class<? extends Component> getView() {
-            return view;
-        }
-
+    public MenuItemInfo(String text, String iconClass, Class<? extends Component> view) {
+      this.text = text;
+      this.iconClass = iconClass;
+      this.view = view;
     }
 
-    private H1 viewTitle;
-    private Tab homeTab;
+    public String getText() {
+      return text;
+    }
 
-    private AuthenticatedUser authenticatedUser;
-    private AccessAnnotationChecker accessChecker;
+    public String getIconClass() {
+      return iconClass;
+    }
 
-    public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker) {
-        this.authenticatedUser = authenticatedUser;
-        this.accessChecker = accessChecker;
+    public Class<? extends Component> getView() {
+      return view;
+    }
+  }
 
-        viewTitle = new H1();
+  private H1 viewTitle;
+  private Tab homeTab;
 
-        Icon home = new Icon("heallife","home-alt");
-        home.setSize("30px");
-        Icon blog = new Icon("heallife","book-alt");
-        blog.setSize("30px");
-        Icon events = new Icon("heallife","swatchbook");
-        events.setSize("30px");
-        Icon subscribe = new Icon("heallife", "user-square");
-        subscribe.setSize("30px");
+  private AuthenticatedUser authenticatedUser;
+  private AccessAnnotationChecker accessChecker;
 
-        RouterLink homeRoute = new RouterLink("", HomeView.class);
-        homeRoute.add(home);
-        homeTab = new Tab(homeRoute);
+  public MainLayout(AuthenticatedUser authenticatedUser, AccessAnnotationChecker accessChecker) {
+    this.authenticatedUser = authenticatedUser;
+    this.accessChecker = accessChecker;
 
-        RouterLink swatchbook = new RouterLink("", EventsView.class);
-        swatchbook.add(events);
-        Tab swatchTab = new Tab(swatchbook);
+    viewTitle = new H1();
 
-        RouterLink headphones = new RouterLink("", ProfileView.class);
-        headphones.add(subscribe);
-        Tab headTab = new Tab(headphones);
+    Icon home = new Icon("heallife", "home-alt");
+    home.setSize("30px");
+    Icon blog = new Icon("heallife", "book-alt");
+    blog.setSize("30px");
+    Icon events = new Icon("heallife", "swatchbook");
+    events.setSize("30px");
+    Icon subscribe = new Icon("heallife", "user-square");
+    subscribe.setSize("30px");
 
-        RouterLink book = new RouterLink("", BlogView.class);
-        book.add(blog);
-        Tab bookTab = new Tab(book);
+    RouterLink homeRoute = new RouterLink("", HomeView.class);
+    homeRoute.add(home);
+    homeTab = new Tab(homeRoute);
 
-        Tabs tabs = new Tabs(homeTab, swatchTab, bookTab, headTab);
+    RouterLink swatchbook = new RouterLink("", EventsView.class);
+    swatchbook.add(events);
+    Tab swatchTab = new Tab(swatchbook);
 
-        tabs.getStyle().set("color", "black");
-        tabs.getStyle().set("height", "62px");
-        tabs.addThemeVariants(TabsVariant.LUMO_EQUAL_WIDTH_TABS);
+    RouterLink headphones = new RouterLink("", ProfileView.class);
+    headphones.add(subscribe);
+    Tab headTab = new Tab(headphones);
 
-        tabs.addSelectedChangeListener(change -> {
+    RouterLink book = new RouterLink("", BlogView.class);
+    book.add(blog);
+    Tab bookTab = new Tab(book);
 
-            if (homeTab.isSelected()) {
-                homeTab.getStyle().set("filter", "grayscale(0%)");
-            } else {
-                homeTab.getStyle().set("filter", "grayscale(100%)");
-            }
+    Tabs tabs = new Tabs(homeTab, swatchTab, bookTab, headTab);
 
-            if (swatchTab.isSelected()) {
-                swatchTab.getStyle().remove("filter");
-            } else {
-                swatchTab.getStyle().set("filter", "grayscale(100%)");
-            }
+    tabs.getStyle().set("color", "black");
+    tabs.getStyle().set("height", "62px");
+    tabs.addThemeVariants(TabsVariant.LUMO_EQUAL_WIDTH_TABS);
 
-            if (headTab.isSelected()) {
-                headTab.getStyle().remove("filter");
-            } else {
-                headTab.getStyle().set("filter", "grayscale(100%)");
-            }
+    tabs.addSelectedChangeListener(
+        change -> {
+          if (homeTab.isSelected()) {
+            homeTab.getStyle().set("filter", "grayscale(0%)");
+          } else {
+            homeTab.getStyle().set("filter", "grayscale(100%)");
+          }
 
-            if (bookTab.isSelected()) {
-                bookTab.getStyle().remove("filter");
-            } else {
-                bookTab.getStyle().set("filter", "grayscale(100%)");
-            }
+          if (swatchTab.isSelected()) {
+            swatchTab.getStyle().remove("filter");
+          } else {
+            swatchTab.getStyle().set("filter", "grayscale(100%)");
+          }
 
+          if (headTab.isSelected()) {
+            headTab.getStyle().remove("filter");
+          } else {
+            headTab.getStyle().set("filter", "grayscale(100%)");
+          }
+
+          if (bookTab.isSelected()) {
+            bookTab.getStyle().remove("filter");
+          } else {
+            bookTab.getStyle().set("filter", "grayscale(100%)");
+          }
         });
 
+    addToNavbar(true, tabs);
+  }
 
-        addToNavbar(true, tabs);
-    }
+  @Override
+  protected void afterNavigation() {
+    super.afterNavigation();
+    viewTitle.setText(getCurrentPageTitle());
+  }
 
-
-
-    @Override
-    protected void afterNavigation() {
-        super.afterNavigation();
-        viewTitle.setText(getCurrentPageTitle());
-    }
-
-    private String getCurrentPageTitle() {
-        PageTitle title = getContent().getClass().getAnnotation(PageTitle.class);
-        return title == null ? "" : title.value();
-    }
+  private String getCurrentPageTitle() {
+    PageTitle title = getContent().getClass().getAnnotation(PageTitle.class);
+    return title == null ? "" : title.value();
+  }
 }

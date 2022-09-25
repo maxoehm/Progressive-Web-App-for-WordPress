@@ -5,7 +5,6 @@ import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.html.*;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.dom.DomEventListener;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.RouteConfiguration;
@@ -14,18 +13,12 @@ import de.heallife.app.data.entity.PostMetaService;
 import de.heallife.app.data.entity.Post;
 import de.heallife.app.data.service.CategoryService;
 import de.heallife.app.views.MainLayout;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import javax.annotation.security.PermitAll;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @PageTitle("Blog")
@@ -38,8 +31,6 @@ public class BlogView extends VerticalLayout implements DateFormatView {
     private CategoryService categoryService;
     private VerticalLayout main;
     private PostMetaService postMetaService;
-
-    Logger logger = LoggerFactory.getLogger(BlogView.class);
 
     public BlogView(CategoryService categoryService, PostMetaService postMetaService) throws ParseException {
         this.categoryService = categoryService;
@@ -72,7 +63,7 @@ public class BlogView extends VerticalLayout implements DateFormatView {
 
             HorizontalLayout postLayout = new HorizontalLayout();
 
-            if (first) {
+      if (first) {
                 first = false;
                 postLayout.getStyle().set("margin-top", "1rem");
             }
@@ -86,7 +77,6 @@ public class BlogView extends VerticalLayout implements DateFormatView {
                 titleImage.addClassName("titleImage");
 
             }
-
 
 
             Paragraph meta = new Paragraph();
@@ -105,7 +95,7 @@ public class BlogView extends VerticalLayout implements DateFormatView {
             VerticalLayout textComponent = new VerticalLayout();
             textComponent.addClassName("metaHold");
             textComponent.add(title, meta);
-            postLayout.add(titleImage, textComponent);
+      postLayout.add(titleImage, textComponent);
 
             int finalI = i;
             postLayout.addClickListener(click -> {
@@ -117,9 +107,9 @@ public class BlogView extends VerticalLayout implements DateFormatView {
 
             });
 
-            postLayout.addClassName("postSection");
-            list.add(postLayout);
-        }
+      postLayout.addClassName("postSection");
+      list.add(postLayout);
+    }
 
         list.getStyle().set("margin-top", "-1rem");
 
