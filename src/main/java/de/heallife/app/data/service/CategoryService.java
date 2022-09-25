@@ -119,10 +119,14 @@ public class CategoryService {
   }
 
   public boolean isInCategory(CATEGORY category, Post post) {
-    return Stream.of(
-            termRelationshipRepository.findQehrgTermRelationshipsByIdObjectId(
-                Long.valueOf(post.getId())))
-        .anyMatch(categoryResult -> categoryResult.equals(CATEGORY.Challenges));
+
+    for (QehrgTermRelationship qr : termRelationshipRepository.findQehrgTermRelationshipsByIdObjectId(Long.valueOf(post.getId()))) {
+      if (qr.getId().getTermTaxonomyId().equals(101L)) {
+        return true;
+      }
+    }
+
+    return false;
   }
 
   public List<Post> getAllPostsByCategory(CATEGORY category) {

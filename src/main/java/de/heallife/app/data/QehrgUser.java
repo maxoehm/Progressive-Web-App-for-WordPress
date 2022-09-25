@@ -1,6 +1,7 @@
 package de.heallife.app.data;
 
 import java.time.Instant;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
@@ -45,6 +46,8 @@ public class QehrgUser extends AbstractEntity {
 
   @Value("{$user.popUpLastSeen:0000}")
   private Integer postPopUpLastSeen;
+
+  private LocalDateTime lastPopupSeen;
 
   public String getUserActivationKey() {
     return userActivationKey;
@@ -124,5 +127,16 @@ public class QehrgUser extends AbstractEntity {
 
   public void setPostPopUpLastSeen(Integer postPopUpLastSeen) {
     this.postPopUpLastSeen = postPopUpLastSeen;
+  }
+
+  public LocalDateTime getLastPopupSeen() {
+    if (lastPopupSeen == null) {
+      return LocalDateTime.of(2000, 1, 1, 0, 0);
+    }
+    return lastPopupSeen;
+  }
+
+  public void setLastPopupSeen(LocalDateTime lastPopupSeen) {
+    this.lastPopupSeen = lastPopupSeen;
   }
 }

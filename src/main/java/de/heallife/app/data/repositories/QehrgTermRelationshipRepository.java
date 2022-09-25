@@ -11,4 +11,5 @@ public interface QehrgTermRelationshipRepository extends JpaRepository<QehrgTerm
     List<QehrgTermRelationship> findQehrgTermRelationshipsByIdObjectId(Long idObject);
     List<QehrgTermRelationship> findAllById_TermTaxonomyId(Long taxId);
 
+
 }
