@@ -49,6 +49,7 @@ import org.springframework.stereotype.Service;
 @JsModule("./views/home/home-view.ts")
 @CssImport("./themes/heallifeapp/views/homeView.css")
 @CssImport(value = "./themes/heallifeapp/views/PopupDialog.css", themeFor = "vaadin-dialog-overlay")
+@CssImport(value = "./themes/heallifeapp/components/searchbar.css", themeFor = "vaadin-text-field")
 @PermitAll
 public class HomeView extends LitTemplate {
 
