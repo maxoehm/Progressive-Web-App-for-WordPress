@@ -2,6 +2,7 @@ package de.heallife.app.views.home;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -28,9 +29,13 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
+import javax.validation.constraints.Null;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Service;
 
 /**
  * A Designer generated component for the home-view template.
@@ -204,7 +209,10 @@ public class HomeView extends LitTemplate {
   }
 
   private void buildDialogNewPost() {
-    Optional<Post> latestPost = newPostNotificationService.getPost();
+
+      try {
+
+        Optional<Post> latestPost = newPostNotificationService.getPost();
 
     if (latestPost.isPresent()) {
 
@@ -255,5 +263,9 @@ public class HomeView extends LitTemplate {
       dialog.add(vertical);
       dialog.open();
     }
+
+      } catch (NullPointerException e) {
+          UI.getCurrent().getPage().reload();
+      }
   }
 }

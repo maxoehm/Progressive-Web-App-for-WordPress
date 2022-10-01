@@ -61,7 +61,7 @@ public class NewPostNotificationService {
     }
 
 
-    return barrier > 1;
+    return barrier >= 1;
   }
 
   private Optional<Post> get5LatestUpdates() {
@@ -100,9 +100,11 @@ public class NewPostNotificationService {
   public void setSeen() {
     if (latestUpdatedPost.isEmpty()) {
       user.setPostPopUpLastSeen(post.get().getId());
-      user.setLastPopupSeen(LocalDateTime.now());
-      userService.updateEntity(user);
+    } else {
+      user.setPostPopUpLastSeen(latestUpdatedPost.get().getId());
     }
+    user.setLastPopupSeen(LocalDateTime.now());
+    userService.updateEntity(user);
 
   }
 }
