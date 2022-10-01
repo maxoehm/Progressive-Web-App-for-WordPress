@@ -6,10 +6,8 @@ import de.heallife.app.data.entity.PostMetaService;
 import de.heallife.app.data.service.CategoryService;
 import de.heallife.app.data.service.QehrgUserService;
 import de.heallife.app.security.PostService;
-
 import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.logging.Logger;
 import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
@@ -48,8 +46,9 @@ public class NewPostNotificationService {
     int barrier = 0;
 
     try {
-      if (user.getLastPopupSeen().isAfter(LocalDateTime.now().minusHours(24)) && latestUpdatedPost.isPresent()) {
-          barrier++;
+      if (user.getLastPopupSeen().isAfter(LocalDateTime.now().minusHours(24))
+          && latestUpdatedPost.isPresent()) {
+        barrier++;
       }
 
       if (!user.getPostPopUpLastSeen().equals(post.get().getId())) {
@@ -60,8 +59,7 @@ public class NewPostNotificationService {
       return true;
     }
 
-
-    return barrier > 1;
+    return barrier >= 1;
   }
 
   private Optional<Post> get5LatestUpdates() {
@@ -79,7 +77,8 @@ public class NewPostNotificationService {
 
     try {
 
-      if (LocalDateTime.now().isAfter(user.getLastPopupSeen().plusHours(24)) && latestUpdatedPost.isPresent()) {
+      if (LocalDateTime.now().isAfter(user.getLastPopupSeen().plusHours(24))
+          && latestUpdatedPost.isPresent()) {
         return latestUpdatedPost;
       }
 
@@ -100,9 +99,10 @@ public class NewPostNotificationService {
   public void setSeen() {
     if (latestUpdatedPost.isEmpty()) {
       user.setPostPopUpLastSeen(post.get().getId());
-      user.setLastPopupSeen(LocalDateTime.now());
-      userService.updateEntity(user);
+    } else {
+      user.setPostPopUpLastSeen(latestUpdatedPost.get().getId());
     }
-
+    user.setLastPopupSeen(LocalDateTime.now());
+    userService.updateEntity(user);
   }
 }

@@ -2,6 +2,7 @@ package de.heallife.app.views.home;
 
 import com.vaadin.flow.component.Key;
 import com.vaadin.flow.component.Tag;
+import com.vaadin.flow.component.UI;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dependency.CssImport;
 import com.vaadin.flow.component.dependency.JsModule;
@@ -204,56 +205,63 @@ public class HomeView extends LitTemplate {
   }
 
   private void buildDialogNewPost() {
-    Optional<Post> latestPost = newPostNotificationService.getPost();
 
-    if (latestPost.isPresent()) {
+    try {
 
-      H2 h2 = new H2("Es gibt neue Inhalte.");
-      Paragraph body = new Paragraph("Hier kannst du sie dir ansehen.");
-      VerticalLayout vertical = new VerticalLayout();
+      Optional<Post> latestPost = newPostNotificationService.getPost();
 
-      VerticalLayout blogPostMin = new VerticalLayout();
+      if (latestPost.isPresent()) {
 
-      blogPostMin.setId("blogPostMin");
-      blogPostMin
-          .getStyle()
-          .set("background-image", "url(" + newPostNotificationService.getImageUrl() + ")");
-      blogPostMin.getStyle().set("background-size", "cover");
-      H3 titleImage = new H3(latestPost.get().getPostTitle());
-      titleImage.setId("titleImage");
-      titleImage.getElement().setAttribute("lang", "de");
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        H2 h2 = new H2("Es gibt neue Inhalte.");
+        Paragraph body = new Paragraph("Hier kannst du sie dir ansehen.");
+        VerticalLayout vertical = new VerticalLayout();
 
-      LocalDateTime ldt =
-          LocalDateTime.ofInstant(latestPost.get().getPostDate(), ZoneId.systemDefault());
-      DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-      Paragraph meta = new Paragraph(ldt.format(format));
-      meta.setId("meta");
+        VerticalLayout blogPostMin = new VerticalLayout();
 
-      blogPostMin.add(titleImage, meta);
-      vertical.setAlignItems(FlexComponent.Alignment.CENTER);
+        blogPostMin.setId("blogPostMin");
+        blogPostMin
+            .getStyle()
+            .set("background-image", "url(" + newPostNotificationService.getImageUrl() + ")");
+        blogPostMin.getStyle().set("background-size", "cover");
+        H3 titleImage = new H3(latestPost.get().getPostTitle());
+        titleImage.setId("titleImage");
+        titleImage.getElement().setAttribute("lang", "de");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-      Button dismiss = new Button("Nicht jetzt", event -> dialog.close());
-      Button viewPost =
-          new Button(
-              "Jetzt Anschauen",
-              event -> {
-                dialog.close();
-                String route =
-                    RouteConfiguration.forSessionScope()
-                        .getUrl(PostView.class, latestPost.get().getId());
-                dialog.getUI().ifPresent(ui -> ui.navigate(route));
-              });
+        LocalDateTime ldt =
+            LocalDateTime.ofInstant(latestPost.get().getPostDate(), ZoneId.systemDefault());
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        Paragraph meta = new Paragraph(ldt.format(format));
+        meta.setId("meta");
 
-      viewPost.setThemeName("primary");
-      viewPost.setId("viewPostBtn");
-      dismiss.setId("dismissBtn");
-      h2.setId("h1Notify");
-      body.setId("bodyNotify");
+        blogPostMin.add(titleImage, meta);
+        vertical.setAlignItems(FlexComponent.Alignment.CENTER);
 
-      vertical.add(h2, body, blogPostMin, new HorizontalLayout(dismiss, viewPost));
-      dialog.add(vertical);
-      dialog.open();
+        Button dismiss = new Button("Nicht jetzt", event -> dialog.close());
+        Button viewPost =
+            new Button(
+                "Jetzt Anschauen",
+                event -> {
+                  dialog.close();
+                  String route =
+                      RouteConfiguration.forSessionScope()
+                          .getUrl(PostView.class, latestPost.get().getId());
+                  dialog.getUI().ifPresent(ui -> ui.navigate(route));
+                });
+
+        viewPost.setThemeName("primary");
+        viewPost.setId("viewPostBtn");
+        dismiss.setId("dismissBtn");
+        h2.setId("h1Notify");
+        body.setId("bodyNotify");
+
+        vertical.add(h2, body, blogPostMin, new HorizontalLayout(dismiss, viewPost));
+        dialog.add(vertical);
+        dialog.open();
+      }
+
+    } catch (NullPointerException e) {
+      UI.getCurrent().getPage().reload();
     }
   }
 }
