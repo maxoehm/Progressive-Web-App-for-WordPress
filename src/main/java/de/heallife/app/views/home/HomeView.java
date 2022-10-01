@@ -29,13 +29,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 import javax.annotation.security.PermitAll;
 import javax.inject.Inject;
-import javax.validation.constraints.Null;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.stereotype.Service;
 
 /**
  * A Designer generated component for the home-view template.
@@ -210,62 +206,62 @@ public class HomeView extends LitTemplate {
 
   private void buildDialogNewPost() {
 
-      try {
+    try {
 
-        Optional<Post> latestPost = newPostNotificationService.getPost();
+      Optional<Post> latestPost = newPostNotificationService.getPost();
 
-    if (latestPost.isPresent()) {
+      if (latestPost.isPresent()) {
 
-      H2 h2 = new H2("Es gibt neue Inhalte.");
-      Paragraph body = new Paragraph("Hier kannst du sie dir ansehen.");
-      VerticalLayout vertical = new VerticalLayout();
+        H2 h2 = new H2("Es gibt neue Inhalte.");
+        Paragraph body = new Paragraph("Hier kannst du sie dir ansehen.");
+        VerticalLayout vertical = new VerticalLayout();
 
-      VerticalLayout blogPostMin = new VerticalLayout();
+        VerticalLayout blogPostMin = new VerticalLayout();
 
-      blogPostMin.setId("blogPostMin");
-      blogPostMin
-          .getStyle()
-          .set("background-image", "url(" + newPostNotificationService.getImageUrl() + ")");
-      blogPostMin.getStyle().set("background-size", "cover");
-      H3 titleImage = new H3(latestPost.get().getPostTitle());
-      titleImage.setId("titleImage");
-      titleImage.getElement().setAttribute("lang", "de");
-      DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        blogPostMin.setId("blogPostMin");
+        blogPostMin
+            .getStyle()
+            .set("background-image", "url(" + newPostNotificationService.getImageUrl() + ")");
+        blogPostMin.getStyle().set("background-size", "cover");
+        H3 titleImage = new H3(latestPost.get().getPostTitle());
+        titleImage.setId("titleImage");
+        titleImage.getElement().setAttribute("lang", "de");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
 
-      LocalDateTime ldt =
-          LocalDateTime.ofInstant(latestPost.get().getPostDate(), ZoneId.systemDefault());
-      DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
-      Paragraph meta = new Paragraph(ldt.format(format));
-      meta.setId("meta");
+        LocalDateTime ldt =
+            LocalDateTime.ofInstant(latestPost.get().getPostDate(), ZoneId.systemDefault());
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        Paragraph meta = new Paragraph(ldt.format(format));
+        meta.setId("meta");
 
-      blogPostMin.add(titleImage, meta);
-      vertical.setAlignItems(FlexComponent.Alignment.CENTER);
+        blogPostMin.add(titleImage, meta);
+        vertical.setAlignItems(FlexComponent.Alignment.CENTER);
 
-      Button dismiss = new Button("Nicht jetzt", event -> dialog.close());
-      Button viewPost =
-          new Button(
-              "Jetzt Anschauen",
-              event -> {
-                dialog.close();
-                String route =
-                    RouteConfiguration.forSessionScope()
-                        .getUrl(PostView.class, latestPost.get().getId());
-                dialog.getUI().ifPresent(ui -> ui.navigate(route));
-              });
+        Button dismiss = new Button("Nicht jetzt", event -> dialog.close());
+        Button viewPost =
+            new Button(
+                "Jetzt Anschauen",
+                event -> {
+                  dialog.close();
+                  String route =
+                      RouteConfiguration.forSessionScope()
+                          .getUrl(PostView.class, latestPost.get().getId());
+                  dialog.getUI().ifPresent(ui -> ui.navigate(route));
+                });
 
-      viewPost.setThemeName("primary");
-      viewPost.setId("viewPostBtn");
-      dismiss.setId("dismissBtn");
-      h2.setId("h1Notify");
-      body.setId("bodyNotify");
+        viewPost.setThemeName("primary");
+        viewPost.setId("viewPostBtn");
+        dismiss.setId("dismissBtn");
+        h2.setId("h1Notify");
+        body.setId("bodyNotify");
 
-      vertical.add(h2, body, blogPostMin, new HorizontalLayout(dismiss, viewPost));
-      dialog.add(vertical);
-      dialog.open();
-    }
-
-      } catch (NullPointerException e) {
-          UI.getCurrent().getPage().reload();
+        vertical.add(h2, body, blogPostMin, new HorizontalLayout(dismiss, viewPost));
+        dialog.add(vertical);
+        dialog.open();
       }
+
+    } catch (NullPointerException e) {
+      UI.getCurrent().getPage().reload();
+    }
   }
 }
