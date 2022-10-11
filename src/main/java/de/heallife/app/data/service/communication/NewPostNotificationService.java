@@ -72,19 +72,25 @@ public class NewPostNotificationService {
     return Optional.empty();
   }
 
+  /*
+  Vermuteter Fehler: Post edited überschreibt vorherige Funktion indem diese immer gilt
+   */
+
+
   public Optional<Post> getPost() {
     setSeen();
 
     try {
+
+      if (!user.getPostPopUpLastSeen().equals(post.get().getId())) {
+        return latestPost;
+      }
 
       if (LocalDateTime.now().isAfter(user.getLastPopupSeen().plusHours(24))
           && latestUpdatedPost.isPresent()) {
         return latestUpdatedPost;
       }
 
-      if (!user.getPostPopUpLastSeen().equals(post.get().getId())) {
-        return latestPost;
-      }
     } catch (NullPointerException e) {
       return latestPost;
     }
