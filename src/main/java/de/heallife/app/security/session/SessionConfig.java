@@ -31,6 +31,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.session.config.annotation.web.http.EnableSpringHttpSession;
 import org.springframework.session.data.redis.RedisSessionRepository;
 
+/*
 @Configuration(proxyBeanMethods = false)
 @EnableConfigurationProperties(RedisSessionProperties.class)
 @EnableSpringHttpSession
@@ -72,3 +73,4 @@ public class SessionConfig {
     }
 
 }
+ */
