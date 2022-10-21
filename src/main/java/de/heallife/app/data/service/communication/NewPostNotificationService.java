@@ -39,6 +39,7 @@ public class NewPostNotificationService {
   public void init(String auth) {
     user = userService.findAuth(auth);
     post = postService.getLatest();
+    latestPost = postService.getLatest();
     latestUpdatedPost = get5LatestUpdates();
   }
 
@@ -72,11 +73,6 @@ public class NewPostNotificationService {
     return Optional.empty();
   }
 
-  /*
-  Vermuteter Fehler: Post edited überschreibt vorherige Funktion indem diese immer gilt
-   */
-
-
   public Optional<Post> getPost() {
     setSeen();
 
@@ -84,7 +80,7 @@ public class NewPostNotificationService {
 
       if (!user.getPostPopUpLastSeen().equals(post.get().getId())) {
         return latestPost;
-      }
+      } else
 
       if (LocalDateTime.now().isAfter(user.getLastPopupSeen().plusHours(24))
           && latestUpdatedPost.isPresent()) {
