@@ -1,12 +1,11 @@
 package de.heallife.app.data;
 
-import java.time.Instant;
-import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
 import javax.persistence.Table;
-import org.springframework.beans.factory.annotation.Value;
+import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Table(
     name = "QEhRG_users",
@@ -17,6 +16,7 @@ import org.springframework.beans.factory.annotation.Value;
     })
 @Entity
 public class QehrgUser extends AbstractEntity {
+
   @Column(name = "user_login", nullable = false, length = 60)
   private String userLogin;
 
@@ -43,9 +43,6 @@ public class QehrgUser extends AbstractEntity {
 
   @Column(name = "user_activation_key", nullable = false)
   private String userActivationKey;
-
-  @Value("{$user.popUpLastSeen:0000}")
-  private Integer postPopUpLastSeen;
 
   private LocalDateTime lastPopupSeen;
 
@@ -119,14 +116,6 @@ public class QehrgUser extends AbstractEntity {
 
   public void setUserLogin(String userLogin) {
     this.userLogin = userLogin;
-  }
-
-  public Integer getPostPopUpLastSeen() {
-    return postPopUpLastSeen;
-  }
-
-  public void setPostPopUpLastSeen(Integer postPopUpLastSeen) {
-    this.postPopUpLastSeen = postPopUpLastSeen;
   }
 
   public LocalDateTime getLastPopupSeen() {

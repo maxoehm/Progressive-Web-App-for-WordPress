@@ -2,6 +2,8 @@ package de.heallife.app.data.generator;
 
 import com.vaadin.flow.spring.annotation.SpringComponent;
 
+import de.heallife.app.data.QehrgUser;
+import de.heallife.app.data.entity.LatestPosts;
 import de.heallife.app.data.service.QehrgUserRepository;
 import de.heallife.app.data.service.QehrgUserService;
 import de.heallife.app.data.service.UserRepository;

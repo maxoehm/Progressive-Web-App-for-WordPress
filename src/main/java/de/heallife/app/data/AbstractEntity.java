@@ -4,6 +4,7 @@ import javax.annotation.Nonnull;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import java.util.ArrayList;
 
 @MappedSuperclass
 public abstract class AbstractEntity {
