@@ -1,0 +1,78 @@
+:host(:not([no-scroll])) [content] {
+  overflow: hidden;
+}
+.wp-block-video {
+  width: 130%;
+  margin-left: -10vw;
+}
+
+#h1 {
+  font-size: 1.8rem;
+  font-family: 'Montserrat', sans-serif;
+  width: 90%;
+}
+
+h1 {
+  font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 700;
+  color: #000000 !important;
+}
+
+h2 {
+  font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 700;
+  color: #000000 !important;
+}
+
+h3 {
+  font-family: 'Montserrat', Helvetica, Arial, Lucida, sans-serif;
+  font-weight: 700;
+  color: #000000 !important;
+}
+
+video {
+  margin-left: 2.3rem;
+  width: 75%;
+  height: auto;
+}
+
+figure {
+  width: 95%;
+}
+
+:host(content) {
+  overflow-x: hidden;
+}
+
+img {
+  border-radius: 10px;
+  width: 100%;
+  height: auto;
+  margin-left: -2.5rem;
+  box-shadow: 0px 10px 13px -7px #0000001f, 5px 5px 15px 5px rgb(0 0 0 / 0%);
+}
+
+audio {
+  margin-left: -2.3rem;
+}
+
+figcaption {
+  font-size: 14px;
+  font-style: italic;
+  margin-left: 2.3rem;
+}
+
+figure figcaption {
+  margin-left: -10vw;
+}
+
+blockquote {
+  border-left: 2px solid black;
+  color: black;
+  margin-left: 3vw;
+}
+blockquote p {
+padding-left: 1vw;
+color: black;
+
+}

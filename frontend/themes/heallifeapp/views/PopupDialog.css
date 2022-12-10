@@ -1,0 +1,21 @@
+[part='overlay'] {
+  background: rgb(242 247 243 / 59%);
+  border-radius: 16px;
+  box-shadow: 0 4px 40px rgb(0 0 0 / 18%);
+  backdrop-filter: blur(11.1px);
+  -webkit-backdrop-filter: blur(11.1px);
+  border: 1px solid rgb(255 255 255 / 69%);
+}
+
+@media (max-width: 480px) {
+  [part='overlay'] {
+    background: rgb(255 255 255 / 62%) !important;
+  }
+
+  [part='backdrop'] {
+    background: rgb(242 247 243 / 59%);
+    background-color: hsl(0deg 0% 0% / 38%);
+    animation: 0.2s lumo-overlay-backdrop-enter both;
+    will-change: opacity;
+  }
+}

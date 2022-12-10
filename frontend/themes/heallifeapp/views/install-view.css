@@ -1,0 +1,58 @@
+.bounce {
+
+    width: 55%;
+    height: 55%;
+
+    margin-right: -10vw;
+    margin-top: -5vw;
+
+    transform: translateX(3em);
+    animation-name: bounce;
+    animation-timing-function: ease-out;
+    animation-duration: .8s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+@keyframes bounce {
+    from {
+        transform: translateY(1em);
+    }
+    to {
+        transform: translateY(3em);
+    }
+}
+
+.rotated {
+    transform: rotate(180deg);
+
+    animation-name: bounce-r;
+    animation-timing-function: ease-out;
+    animation-duration: .8s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+}
+@keyframes bounce-r {
+    from {
+        transform: translateY(1em);
+    }
+    to {
+        transform: translateY(3em);
+    }
+}
+
+.step {
+
+    margin-left: 0.5rem;
+    margin-top: 0rem;
+    margin-bottom: 0rem;
+
+    line-height: 30px;
+
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5em;
+    font-weight: 500;
+    color: rgb(38, 38, 38);
+
+
+}
