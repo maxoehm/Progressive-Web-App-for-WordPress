@@ -5,7 +5,6 @@ import de.wpwa.app.data.service.CategoryService;
 import de.wpwa.app.security.PostService;
 import java.util.List;
 import javax.inject.Inject;
-
 import org.springframework.stereotype.Service;
 
 @Service

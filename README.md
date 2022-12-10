@@ -1,4 +1,5 @@
 # PWA / Web App for WordPress
+
 This is an old project that I decided to share. It is to displays all posts that are published. Please keep in mind that this app is an old project that has been developed in 2019.
 
 ## Set Up
@@ -11,9 +12,11 @@ In order to start and deploy this application, there are a few steps that need t
 4. Lastly, session storage is not yet implemented in this project, so keep that in mind.
 
 ## Known Issues
+
 Session storage is not implemented yet.
 
 ## Conclusion
+
 This is a simple project to display all posts. It should show a list of posts for an established database [from WordPress]. It mostly is a first attempt at creating a PWA/ Web App that displays WordPress posts and converts them into Java objects.
 
 ## Running the application

@@ -2,9 +2,8 @@ package de.wpwa.app.security;
 
 import de.wpwa.app.data.User;
 import de.wpwa.app.data.service.SubscriptionManagement;
-import java.util.Collections;
-
 import de.wpwa.app.data.service.UserRepository;
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -15,7 +15,6 @@ import de.wpwa.app.data.entity.Post;
 import de.wpwa.app.data.entity.PostMetaService;
 import de.wpwa.app.data.service.CategoryService;
 import de.wpwa.app.views.MainLayout;
-
 import java.util.Collections;
 import java.util.List;
 import javax.annotation.security.PermitAll;

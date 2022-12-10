@@ -14,7 +14,6 @@ import com.vaadin.flow.router.Route;
 import de.wpwa.app.data.entity.Post;
 import de.wpwa.app.security.PostService;
 import de.wpwa.app.views.MainLayout;
-
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

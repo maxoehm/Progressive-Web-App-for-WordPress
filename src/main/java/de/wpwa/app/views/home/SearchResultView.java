@@ -12,7 +12,6 @@ import de.wpwa.app.data.entity.Post;
 import de.wpwa.app.data.entity.PostMetaService;
 import de.wpwa.app.data.service.library.SearchService;
 import de.wpwa.app.views.MainLayout;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 import javax.annotation.security.PermitAll;

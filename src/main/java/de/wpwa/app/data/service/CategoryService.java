@@ -35,8 +35,7 @@ public class CategoryService {
   public List<String> getCategories(Post post) {
 
     List<TermRelationship> resultList =
-        termRelationshipRepository.findTermRelationshipsByIdObjectId(
-            Long.valueOf(post.getId()));
+        termRelationshipRepository.findTermRelationshipsByIdObjectId(Long.valueOf(post.getId()));
 
     List<String> categories = new ArrayList<>();
 
@@ -103,7 +102,8 @@ public class CategoryService {
 
   public boolean isInCategory(CATEGORY category, Post post) {
 
-    for (TermRelationship qr : termRelationshipRepository.findTermRelationshipsByIdObjectId(Long.valueOf(post.getId()))) {
+    for (TermRelationship qr :
+        termRelationshipRepository.findTermRelationshipsByIdObjectId(Long.valueOf(post.getId()))) {
       if (qr.getId().getTermTaxonomyId().equals(101L)) {
         return true;
       }

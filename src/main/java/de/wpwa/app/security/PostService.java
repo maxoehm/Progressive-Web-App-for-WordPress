@@ -5,7 +5,6 @@ import de.wpwa.app.data.service.PostRepository;
 import java.util.List;
 import java.util.Optional;
 import javax.inject.Inject;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

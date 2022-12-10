@@ -15,7 +15,6 @@ import de.wpwa.app.views.MainLayout;
 import java.text.ParseException;
 import java.util.List;
 import javax.annotation.security.PermitAll;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
