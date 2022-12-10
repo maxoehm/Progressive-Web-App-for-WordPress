@@ -238,10 +238,13 @@ public class HomeView extends LitTemplate {
         blogPostMin.add(titleImage, meta);
         vertical.setAlignItems(FlexComponent.Alignment.CENTER);
 
-        Button dismiss = new Button("Nicht jetzt", event -> {
-            dialog.close();
-            newPostNotificationService.close();
-        });
+        Button dismiss =
+            new Button(
+                "Nicht jetzt",
+                event -> {
+                  dialog.close();
+                  newPostNotificationService.close();
+                });
         Button viewPost =
             new Button(
                 "Jetzt Anschauen",
@@ -249,7 +252,7 @@ public class HomeView extends LitTemplate {
                   dialog.close();
                   newPostNotificationService.close();
 
-                    String route =
+                  String route =
                       RouteConfiguration.forSessionScope()
                           .getUrl(PostView.class, latestPost.get().getId());
                   dialog.getUI().ifPresent(ui -> ui.navigate(route));

@@ -1,48 +1,48 @@
 package de.heallife.app.data.entity;
 
-import org.hibernate.Hibernate;
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.Entity;
 import java.io.Serializable;
 import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Embeddable;
+import org.hibernate.Hibernate;
 
 @Embeddable
 public class QehrgTermRelationshipId implements Serializable {
-    private static final long serialVersionUID = 3862252456563784994L;
-    @Column(name = "object_id", nullable = false)
-    private Long objectId;
-    @Column(name = "term_taxonomy_id", nullable = false)
-    private Long termTaxonomyId;
+  private static final long serialVersionUID = 3862252456563784994L;
 
-    public Long getTermTaxonomyId() {
-        return termTaxonomyId;
-    }
+  @Column(name = "object_id", nullable = false)
+  private Long objectId;
 
-    public void setTermTaxonomyId(Long termTaxonomyId) {
-        this.termTaxonomyId = termTaxonomyId;
-    }
+  @Column(name = "term_taxonomy_id", nullable = false)
+  private Long termTaxonomyId;
 
-    public Long getObjectId() {
-        return objectId;
-    }
+  public Long getTermTaxonomyId() {
+    return termTaxonomyId;
+  }
 
-    public void setObjectId(Long objectId) {
-        this.objectId = objectId;
-    }
+  public void setTermTaxonomyId(Long termTaxonomyId) {
+    this.termTaxonomyId = termTaxonomyId;
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(termTaxonomyId, objectId);
-    }
+  public Long getObjectId() {
+    return objectId;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
-        QehrgTermRelationshipId entity = (QehrgTermRelationshipId) o;
-        return Objects.equals(this.termTaxonomyId, entity.termTaxonomyId) &&
-                Objects.equals(this.objectId, entity.objectId);
-    }
+  public void setObjectId(Long objectId) {
+    this.objectId = objectId;
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(termTaxonomyId, objectId);
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+    QehrgTermRelationshipId entity = (QehrgTermRelationshipId) o;
+    return Objects.equals(this.termTaxonomyId, entity.termTaxonomyId)
+        && Objects.equals(this.objectId, entity.objectId);
+  }
 }

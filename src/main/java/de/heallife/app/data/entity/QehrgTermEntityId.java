@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 public class QehrgTermEntityId implements Serializable {
 
-    private Long id;
-    private Long id1;
-
+  private Long id;
+  private Long id1;
 }

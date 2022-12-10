@@ -1,6 +1,5 @@
 package de.heallife.app.views;
 
-
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.server.auth.AnonymousAllowed;
@@ -9,9 +8,5 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 @AnonymousAllowed
 public class ErrorView extends FlexLayout {
 
-    public ErrorView() {
-
-    }
-
-
+  public ErrorView() {}
 }

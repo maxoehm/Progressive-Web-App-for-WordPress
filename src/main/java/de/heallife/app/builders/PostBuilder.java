@@ -1,4 +1,3 @@
 package de.heallife.app.builders;
 
-public class PostBuilder {
-}
+public class PostBuilder {}

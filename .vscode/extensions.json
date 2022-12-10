@@ -1,9 +1,4 @@
 {
-  "recommendations": [
-    "runem.lit-plugin",
-    "vscjava.vscode-java-pack",
-    "pivotal.vscode-spring-boot",
-    "vaadin.studio"
-  ],
+  "recommendations": ["runem.lit-plugin", "vscjava.vscode-java-pack", "pivotal.vscode-spring-boot", "vaadin.studio"],
   "unwantedRecommendations": []
 }

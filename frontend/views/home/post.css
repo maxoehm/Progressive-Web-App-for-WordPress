@@ -72,7 +72,6 @@ blockquote {
   margin-left: 3vw;
 }
 blockquote p {
-padding-left: 1vw;
-color: black;
-
+  padding-left: 1vw;
+  color: black;
 }

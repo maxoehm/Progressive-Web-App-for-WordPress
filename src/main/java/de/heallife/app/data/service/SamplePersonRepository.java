@@ -1,10 +1,6 @@
 package de.heallife.app.data.service;
 
 import de.heallife.app.data.entity.SamplePerson;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-import java.time.LocalDate;
 
-public interface SamplePersonRepository extends JpaRepository<SamplePerson, Integer> {
-
-}
+public interface SamplePersonRepository extends JpaRepository<SamplePerson, Integer> {}

@@ -1,11 +1,11 @@
 package de.heallife.app.data;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
 import javax.persistence.Table;
-import java.time.Instant;
-import java.time.LocalDateTime;
 
 @Table(
     name = "QEhRG_users",

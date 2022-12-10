@@ -22,37 +22,27 @@
 }
 
 .box_cat {
-
   border-radius: 15px;
-
 }
 
 #yogaNidra {
-
-  background-image: url("/images/events/gw.jpg");
+  background-image: url('/images/events/gw.jpg');
   background-size: 100% auto;
-
 }
 
 #events {
-
-  background-image: url("/images/events/scott-webb-2X6nZA0jmvU-unsplash.jpg");
+  background-image: url('/images/events/scott-webb-2X6nZA0jmvU-unsplash.jpg');
   background-size: 100% auto;
-
 }
 
 #events_local {
-
-  background-image: url("/images/events/martin-adams-MpTdvXlAsVE-unsplash.jpg");
+  background-image: url('/images/events/martin-adams-MpTdvXlAsVE-unsplash.jpg');
   background-size: 100% auto;
-
 }
 
 #gutenMorgen {
-
-  background-image: url("/images/events/cupofnothing.jpg");
+  background-image: url('/images/events/cupofnothing.jpg');
   background-size: 100% auto;
-
 }
 
 .description {

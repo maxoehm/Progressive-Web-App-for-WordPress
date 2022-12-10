@@ -4,9 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface QehrgUsermetaRepository extends JpaRepository<QehrgUsermeta, Long> {
 
-    QehrgUsermeta findByUserId(Long userId);
+  QehrgUsermeta findByUserId(Long userId);
 
-    QehrgUsermeta findByUserIdAndMetaKey(Long userId, String metaKey);
-
-
+  QehrgUsermeta findByUserIdAndMetaKey(Long userId, String metaKey);
 }

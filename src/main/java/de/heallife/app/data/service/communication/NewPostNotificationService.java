@@ -11,9 +11,6 @@ import de.heallife.app.security.PostService;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import javax.inject.Inject;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -94,9 +91,7 @@ public class NewPostNotificationService {
         latestPosts.setNewPostId(post.get().getId());
         userService.updateEntity(user);
         return latestPost;
-      } else
-
-      if (LocalDateTime.now().isAfter(user.getLastPopupSeen().plusHours(12))
+      } else if (LocalDateTime.now().isAfter(user.getLastPopupSeen().plusHours(12))
           && latestUpdatedPost.isPresent()) {
 
         if (!latestPosts.getVal1().equals(latestUpdatedPost.get().getId())) {
@@ -122,5 +117,4 @@ public class NewPostNotificationService {
     latestPosts.setUsername(user.getUserEmail());
     latestPostSeenService.save(latestPosts);
   }
-
 }

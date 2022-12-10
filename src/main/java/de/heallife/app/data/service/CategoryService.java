@@ -6,7 +6,6 @@ import de.heallife.app.data.repositories.QehrgTermRelationshipRepository;
 import de.heallife.app.security.PostService;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -120,7 +119,9 @@ public class CategoryService {
 
   public boolean isInCategory(CATEGORY category, Post post) {
 
-    for (QehrgTermRelationship qr : termRelationshipRepository.findQehrgTermRelationshipsByIdObjectId(Long.valueOf(post.getId()))) {
+    for (QehrgTermRelationship qr :
+        termRelationshipRepository.findQehrgTermRelationshipsByIdObjectId(
+            Long.valueOf(post.getId()))) {
       if (qr.getId().getTermTaxonomyId().equals(101L)) {
         return true;
       }

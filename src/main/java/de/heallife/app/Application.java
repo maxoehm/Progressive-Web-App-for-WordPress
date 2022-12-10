@@ -8,12 +8,11 @@ import com.vaadin.flow.server.AppShellSettings;
 import com.vaadin.flow.server.PWA;
 import com.vaadin.flow.theme.Theme;
 import de.heallife.app.security.AuthenticatedUser;
+import javax.inject.Inject;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.vaadin.artur.helpers.LaunchUtil;
-
-import javax.inject.Inject;
 
 /**
  * The entry point of the Spring Boot application.
@@ -105,5 +104,4 @@ public class Application extends SpringBootServletInitializer implements AppShel
             + "0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,500&display=swap\" rel=\"stylesheet\">",
         Inline.Wrapping.AUTOMATIC);
   }
-
 }
