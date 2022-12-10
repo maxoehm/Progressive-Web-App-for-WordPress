@@ -1,17 +1,26 @@
-# HealLife App
+# PWA / Web App for WordPress
+This is an old project that I decided to share. It is to displays all posts that are published. Please keep in mind that this app is an old project that has been developed in 2019.
 
-This project can be used as a starting point to create your own Vaadin application with Spring Boot.
-It contains all the necessary configuration and some placeholder files to get you started.
+## Set Up
+
+In order to start and deploy this application, there are a few steps that need to be followed. Please keep in mind that this is an old project, that has been developed in 2019.
+
+1. To begin with, open application.properties and make the necessary changes, such as setting up database credentials.
+2. If you are using Member Press, it is important to keep everything as it is. Otherwise, delete the classes named mbpr.
+3. Add your logo.png and logo.svg file to the images folder.
+4. Lastly, session storage is not yet implemented in this project, so keep that in mind.
+
+## Known Issues
+Session storage is not implemented yet.
+
+## Conclusion
+This is a simple project to display all posts. It should show a list of posts for an established database [from WordPress]. It mostly is a first attempt at creating a PWA/ Web App that displays WordPress posts and converts them into Java objects.
 
 ## Running the application
 
 The project is a standard Maven project. To run it from the command line,
 type `mvnw` (Windows), or `./mvnw` (Mac & Linux), then open
 http://localhost:8080 in your browser.
-
-You can also import the project to your IDE of choice as you would with any
-Maven project. Read more on [how to set up a development environment for
-Vaadin projects](https://vaadin.com/docs/latest/guide/install) (Windows, Linux, macOS).
 
 ## Deploying to Production
 
@@ -27,35 +36,20 @@ Once the JAR file is built, you can run it using
 
 - `MainView.java` in `src/main/java` contains the navigation setup (i.e., the
   side/top bar and the main menu). This setup uses
-  [App Layout](https://vaadin.com/components/vaadin-app-layout).
 - `views` package in `src/main/java` contains the server-side Java views of your application.
 - `views` folder in `frontend/` contains the client-side JavaScript views of your application.
 - `themes` folder in `frontend/` contains the custom CSS styles.
-
-## Useful links
-
-- Read the documentation at [vaadin.com/docs](https://vaadin.com/docs).
-- Follow the tutorials at [vaadin.com/tutorials](https://vaadin.com/tutorials).
-- Watch training videos and get certified at [vaadin.com/learn/training](https://vaadin.com/learn/training).
-- Create new projects at [start.vaadin.com](https://start.vaadin.com/).
-- Search UI components and their usage examples at [vaadin.com/components](https://vaadin.com/components).
-- Discover Vaadin's set of CSS utility classes that enable building any UI without custom CSS in the [docs](https://vaadin.com/docs/latest/ds/foundation/utility-classes). 
-- Find a collection of solutions to common use cases in [Vaadin Cookbook](https://cookbook.vaadin.com/).
-- Find Add-ons at [vaadin.com/directory](https://vaadin.com/directory).
-- Ask questions on [Stack Overflow](https://stackoverflow.com/questions/tagged/vaadin) or join our [Discord channel](https://discord.gg/MYFq5RTbBn).
-- Report issues, create pull requests in [GitHub](https://github.com/vaadin/platform).
-
 
 ## Deploying using Docker
 
 To build the Dockerized version of the project, run
 
 ```
-docker build . -t heallifeapp:latest
+docker build . -t hl:latest
 ```
 
 Once the Docker image is correctly built, you can test it locally using
 
 ```
-docker run -p 8080:8080 heallifeapp:latest
+docker run -p 8080:8080 hl:latest
 ```
